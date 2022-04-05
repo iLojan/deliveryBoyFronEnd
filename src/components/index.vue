@@ -1,6 +1,6 @@
 <template>
 
-    <!-- <div class="preloader">
+  <!-- <div class="preloader">
       <div class="loader">
         <div class="ytp-spinner">
           <div class="ytp-spinner-container">
@@ -180,15 +180,17 @@
          
         </div>
       </div>
-    </section>
-  
-   
-    <a href="#" class="scroll-top btn-hover">
-      <i class="lni lni-chevron-up"></i>
-    </a>
-  </template>
-  <script>
-    export default {
-      //
-    }
-  </script>
+    </div>
+  </section>
+
+
+
+  <a href="#" class="scroll-top btn-hover">
+    <i class="lni lni-chevron-up"></i>
+  </a>
+</template>
+<script>
+  export default {
+    //
+  }
+</script>
