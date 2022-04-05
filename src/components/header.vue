@@ -26,8 +26,11 @@
                         <a class="page-scroll" href="#">Login</a>
                       </li>
                       <li class="nav-item">
-                        <a class="page-scroll" href="#">Signup</a>
+                        <a class="page-scroll" href="#">Signup12</a>
                       </li>
+
+
+                      
                     </ul>
                   </div>
                 </nav>
