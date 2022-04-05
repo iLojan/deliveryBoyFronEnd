@@ -36,6 +36,9 @@
                       <li class="nav-item">
                         <a class="page-scroll" href="#login"><font class="text-red-600">Login</font></a>
                       </li>
+                      <li class="nav-item">
+                        <a class="page-scroll" href="#">Signup</a>
+                      </li>
                     </ul>
                   </div>
                 </nav>
