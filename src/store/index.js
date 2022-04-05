@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 // import {maps} from './modules/maps.js'
 // import {test} from './modules/test.js'
 import axios from 'axios';
-import client from "../api/client.js";
+// import client from "../api/client.js";
 
 export default createStore({
     state:()=>({
@@ -47,7 +47,8 @@ export default createStore({
         async getAccessToken({commit},data){
 
             const path = "api/v1/auth/login";
-            await client.post(path,data, { withCredentials: true })
+            await axios.post(path,data, 
+                { headers: { "Authorization": `Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTcHJpbmctU2VjdXJpdHktQXBwIiwic3ViIjoicGFyZGVlcDE2MSIsImlhdCI6MTY0ODcwMjQ1MSwiZXhwIjoxNjQ4NzA2MDUxfQ._66Il-5kA0h7-DWMWZb93U3vmCGJBC-gFO6zC4WsNiE` }})
             .then(res => {
                 commit("setAccessToken",res)
             //   commit("updateAccessTokenStatus", res.status)

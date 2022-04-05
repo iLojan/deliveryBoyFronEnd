@@ -23,13 +23,7 @@
                         <a class="page-scroll" href="#services">Services</a>
                       </li>
                       <li class="nav-item">
-                        <a class="page-scroll" href="#about">About</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="page-scroll" href="#how">How It Works</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="page-scroll" href="#testimonial">Testimonials</a>
+                        <a class="page-scroll" href="#">Login</a>
                       </li>
                     </ul>
                   </div>
