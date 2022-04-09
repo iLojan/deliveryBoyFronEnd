@@ -1,6 +1,6 @@
 <template >
     <div>
-        <div class="login_form mt-16 mb-5  p-10 pt-5  mx-auto flex rounded" style="width: 500px;">
+        <div class="login_form  mb-5  p-10 pt-5  mx-auto flex rounded" style="width: 500px;">
             <div class="sec flex-1">
                 <img class="mb-3 mx-auto" style="height: 150px;" src="../assets/img/login.svg" alt="">
                 <span class="flex shadow-md mb-5 text-xs">

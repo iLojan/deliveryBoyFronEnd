@@ -51,20 +51,11 @@
       }
     },
     methods: {
-      // setMark() {
-      //   var myLatLng = new window.google.maps.LatLng(22.301803, 70.799217);
-      //   var request = {
-      //     origin: myLatLng,
-      //     destination: new window.google.maps.LatLng(this.gerMergeArray.destinationLatitude, this.gerMergeArray.destinationLongitude),
-      //     optimizeWaypoints: true,
-      //     travelMode: window.google.maps.TravelMode.DRIVING
-      //   };
-      //   directionsService.route(request, function (response, status) {
-      //     if (status == window.google.maps.DirectionsStatus.OK) {
-      //       directionsDisplay.setDirections(response);
-      //     }
-      //   });
-      // },
+     
+      passData(distance){
+        this.$emit('distance', distance)
+      },
+  
       pickUpLocation() {
         // var rendererOptions = {
         //             map: this.map,
@@ -89,7 +80,7 @@
           unitSystem: window.google.maps.UnitSystem.IMPERIAL
         }
         var output = document.getElementById('outputDiv')
-
+        const _self = this
         //pass the request to the route method
         directionsService.route(request, function (result, status) {
           console.log("result, status", result);
@@ -97,19 +88,30 @@
           if (status == window.google.maps.DirectionsStatus.OK) {
 
             //Get distance and time
-            output.innerHTML = "<div class='alert-info'>From: Batticaloa.<br />To: Colombo.<br /> Driving distance <i class='fas fa-road'></i> : " + result.routes[0].legs[0].distance.text + ".<br />Duration <i class='fas fa-hourglass-start'></i> : " + result.routes[0].legs[0].duration.text + ".</div>";
-
+            console.log("result",result);
+            output.innerHTML = "<div class='alert-info'> Driving distance <i class='fas fa-road'></i> : " 
+              + result.routes[0].legs[0].distance.text 
+              + ".<br />Duration <i class='fas fa-hourglass-start'></i> : " + 
+              result.routes[0].legs[0].duration.text 
+              + ".</div>";
+              
+              let distance ={
+                distance:result.routes[0].legs[0].distance.text,
+                duration:result.routes[0].legs[0].duration.text
+              } 
+              _self.passData(distance);
+         
             console.log("output if", output);
             //display route
             directionsDisplay.setDirections(result);
+           
           } else {
             //delete route from map
             directionsDisplay.setDirections({ routes: [] });
             //center map in London
             this.map.setCenter(this.myLatLng);
-
+          
             //show error message
-
             output.innerHTML = "<div class='alert-danger'><i class='fas fa-exclamation-triangle'></i> Could not retrieve driving distance.</div>";
           }
         });

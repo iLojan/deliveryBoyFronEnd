@@ -122,14 +122,16 @@
     </div>
   </section>
 
-
+<LoginPopup></LoginPopup>
 
   <a href="#" class="scroll-top btn-hover">
     <i class="lni lni-chevron-up"></i>
   </a>
 </template>
 <script>
+  import LoginPopup from './LoginPopup.vue'
   export default {
     //
+    components:{LoginPopup}
   }
 </script>
