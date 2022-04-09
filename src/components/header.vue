@@ -17,20 +17,24 @@
                   <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                     <ul id="nav" class="navbar-nav ml-auto">
                       <li class="nav-item">
+                        <a class="page-scroll" href="#home">Home</a>
                         
-                        <router-link class="page-scroll" :to="{name:'index'}"> Home</router-link>
                       </li>
-                      <li class="nav-item">
-                        <a class="page-scroll" href="#services">Services</a>
-                      </li>
+
                       <li class="nav-item">
                         <a class="page-scroll" href="#about">About</a>
                       </li>
+
                       <li class="nav-item">
-                        <a class="page-scroll" href="#testimonial">Team</a>
+                        <a class="page-scroll" href="#services">Services</a>
+                        
+                      </li>
+                      
+                      <li class="nav-item">
+                        <a class="page-scroll" href="#team">Team</a>
                       </li>
                       <li class="nav-item">
-                        <a class="page-scroll" href="#login"><p class="text-rose-600">Login</p></a>
+                        <a class="page-scroll" href="#login"><font class="text-red-600">Login</font></a>
                       </li>
                     </ul>
                   </div>

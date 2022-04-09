@@ -34,7 +34,7 @@
           </div>
           <div class="col-lg-6">
             <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
-              <img src="assets/img/hero/hero-img.svg" alt="" />
+              <img src="assets/img/hero/slider.svg" alt="" />
             </div>
           </div>
         </div>
@@ -56,21 +56,21 @@
         <div class="row">
           <div class="col-lg-4 col-md-6">
             <div class="single-service wow fadeInUp" data-wow-delay=".2s">
-              <div class="icon">
-                <img src="assets/img/service/service-icon-1.svg" alt="" />
+              <div class="icon m-auto">
+                <img src="assets/img/service/service-1.svg" alt="" />
               </div>
-              <div class="content">
+              <div class="text-center">
                 <h3 >Documents and Parcel Delivery</h3>
-                <p class="text-justify ">We understand the value of your documents and parcels. That’s why we provide dedicated personnel for your delivery requirements. we assure you a service that is reliable and on-time..</p>
+                <p class="text-justify m-auto ">We understand the value of your documents and parcels. That’s why we provide dedicated personnel for your delivery requirements. we assure you a service that is reliable and on-time..</p>
               </div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="single-service wow fadeInUp" data-wow-delay=".4s">
-              <div class="icon">
-                <img src="assets/img/service/service-icon-2.svg" alt="" />
+              <div class="icon m-auto">
+                <img src="assets/img/service/service-2.svg" alt="" />
               </div>
-              <div class="content">
+              <div class="text-center">
                 <h3>Urgent and Confidential Document Delivery</h3>
                 <p class="text-justify ">Need a document delivered across the island? We provide a dependable, hassle-free document delivery service, assuring the delivery of your documents with utmost care , island-wide within 24 hours.</p>
               </div>
@@ -78,10 +78,10 @@
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="single-service wow fadeInUp" data-wow-delay=".6s">
-              <div class="icon">
-                <img src="assets/img/service/service-icon-3.svg" alt="" />
+              <div class="icon m-auto">
+                <img src="assets/img/service/service-3.svg" alt="" />
               </div>
-              <div class="content">
+              <div class="text-center">
                 <h3>Special Package <br>Delivery</h3>
                 <p class="text-justify ">We undertake not only documents, but also fragile parcels that needs to be handled with extreme care. Cakes, Flower bouquets, Gifts, Hampers, etc..</p>
               </div>
@@ -97,7 +97,7 @@
         <div class="row">
           <div class="col-lg-6">
             <div class="about-img wow fadeInUp" data-wow-delay=".5s">
-              <img src="assets/img/about/about-img.svg" alt="" />
+              <img src="assets/img/about/about.svg" alt="" />
             </div>
           </div>
           <div class="col-lg-6">
@@ -114,7 +114,7 @@
     </section>
 
 
-    <section id="testimonial" class="testimonial-section img-bg pt-150 pb-40">
+    <section id="team" class="team-section img-bg pt-150 pb-40">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6">
@@ -124,16 +124,16 @@
             </div>
           </div>
         </div>
-        <div class="row testimonial-wrapper">
+        <div class="row team-wrapper">
           <div class="col-lg-4 col-md-6 -mt-30">
-            <div class="single-testimonial wow fadeInUp" data-wow-delay=".2s">
+            <div class="single-team wow fadeInUp" data-wow-delay=".2s">
              <div class="info">
                 
-                  <img class="object-center" src="assets/img/testimonial/testimonial-1.png"  width="150" height="150" alt="" />
+                  <img class="m-auto" src="assets/img/team/member-1.png"  width="150" height="150" alt="" />
         
               </div>
               <br>
-              <div class="text">
+              <div class="text-center">
                   <h5>S.Sutharshan (NET/18/B2/19)</h5>
                   <p>Team Lead & Frontend Developer</p>
                 </div>
@@ -142,14 +142,14 @@
             </div>
           </div>
          <div class="col-lg-4 col-md-6 -mt-30">
-            <div class="single-testimonial wow fadeInUp" data-wow-delay=".2s">
+            <div class="single-team wow fadeInUp" data-wow-delay=".2s">
              <div class="info">
                 
-                  <img class="object-center" src="assets/img/testimonial/testimonial-2.png"  width="150" height="150" alt="" />
+                  <img class="m-auto" src="assets/img/team/member-2.png"  width="150" height="150" alt="" />
         
               </div>
               <br>
-              <div class="text">
+              <div class="text-center">
                   <h5>I.LOJAN (MMW/18/B2/36)
 </h5>
                   <p>Backend Developer</p>
@@ -159,15 +159,15 @@
             </div>
           </div>
           <div class="col-lg-4 col-md-6 -mt-30">
-            <div class="single-testimonial wow fadeInUp" data-wow-delay=".2s">
+            <div class="single-team wow fadeInUp" data-wow-delay=".2s">
              <div class="info">
                 
-                  <img class="object-center" src="assets/img/testimonial/testimonial-3.png"  width="150" height="150" alt="" />
+                  <img class="m-auto" src="assets/img/team/member-3.png"  width="150" height="150" alt="" />
         
               </div>
               <br>
-              <div class="text">
-                  <h5>A.M.SAJITH (MMW/18/B2/28)</h5>
+              <div class="text-center">
+                  <h5 class="m-auto" >A.M.SAJITH (MMW/18/B2/28)</h5>
                   <p>Database & Documentation</p>
                 </div>
            
