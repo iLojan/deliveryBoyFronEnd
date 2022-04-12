@@ -46,9 +46,8 @@ export default createStore({
     actions:{
         async getAccessToken({commit},data){
 
-            const path = "api/v1/auth/login";
-            await axios.post(path,data, 
-                { headers: { "Authorization": `Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTcHJpbmctU2VjdXJpdHktQXBwIiwic3ViIjoicGFyZGVlcDE2MSIsImlhdCI6MTY0ODcwMjQ1MSwiZXhwIjoxNjQ4NzA2MDUxfQ._66Il-5kA0h7-DWMWZb93U3vmCGJBC-gFO6zC4WsNiE` }})
+            const path = "/api/auth/signin";
+            await axios.post(path,data,{ withCredentials: true })
             .then(res => {
                 commit("setAccessToken",res)
             //   commit("updateAccessTokenStatus", res.status)
