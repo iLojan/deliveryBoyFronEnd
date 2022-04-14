@@ -55,6 +55,12 @@
       passData(distance){
         this.$emit('distance', distance)
       },
+      converKM(data) {
+        let str = data;
+        str = str.substring(0, str.length - 3)
+        var km = str * 1.60934;
+        return km.toFixed(2)
+      },
   
       pickUpLocation() {
         // var rendererOptions = {
@@ -96,7 +102,7 @@
               + ".</div>";
               
               let distance ={
-                distance:result.routes[0].legs[0].distance.text,
+                distance:_self.converKM(result.routes[0].legs[0].distance.text) ,
                 duration:result.routes[0].legs[0].duration.text
               } 
               _self.passData(distance);

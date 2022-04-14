@@ -1,5 +1,5 @@
 <template lang="">
-  <header class="header">
+  <header class="header mb-36">
       <div class="navbar-area">
         <div class="container">
           <div class="row align-items-center">
@@ -34,7 +34,9 @@
                       <a class="page-scroll" href="#team">Team</a>
                     </li>
                     <li class="nav-item">
-                      <a class="page-scroll" href="#login"><font class="text-red-600">Login</font></a>
+                     
+                      <router-link to="login" class="text-red-600 page-scroll">Login</router-link>  
+                      
                     </li>
                   </ul>
                 </div>

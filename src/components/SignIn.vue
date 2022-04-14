@@ -15,11 +15,13 @@
                 <span @click="login" class="border-2 border-primary-color hover:bg-primary-color hover:text-gray-100 mt-3 text-primary-color block text-center p-3 px-4 text-sm rounded cursor-pointer font-bold">
                     Login
                 </span>
+                <span class="pt-1">Don’t have an account? <router-link class="text-primary-color" to="signUp">sign up</router-link></span>
             </div>
         </div>
     </div>
 </template>
 <script>
+    import axios from 'axios'
 export default {
     data() {
         return {
@@ -30,8 +32,32 @@ export default {
     methods: {
         login(){
             console.log("logindata",this.loginData);
-            this.$store.dispatch("getAccessToken", this.loginData).then(() => {
-
+            const path = "/api/auth/signin";
+             axios.post(path,this.loginData,{ withCredentials: true })
+            .then(res => {
+                console.log("setAccessToken",res.data)
+                this.getUserDetails(res.data)
+                this.$emit('update-cart', true)
+            })
+            .catch(error => {
+                console.log("updateAccessTokenStatus", error)
+            })
+        },
+        getUserDetails(email){
+            console.log("logindata",this.loginData);
+            const path = "/api/auth/getUser/"+email;
+             axios.get(path,{ withCredentials: true })
+            .then(res => {
+                localStorage.setItem('email', res.data.email);
+                localStorage.setItem('username', res.data.username);
+                localStorage.setItem('name', res.data.name);
+                localStorage.setItem('role', res.data.roles.name);
+                this.$router.push({name:"index"})
+                
+                console.log("setAccessToken",res)
+            })
+            .catch(error => {
+                console.log("updateAccessTokenStatus", error)
             })
         }
     },

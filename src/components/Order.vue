@@ -11,53 +11,51 @@
             </div>
             <div class="">
               <label for="">To</label>
-              <input type="text" class="input border py-2 w-full mb-3 " placeholder="Destination" ref="destination" />
+              <input type="text" class="input border py-2 w-full mb-3 "  placeholder="Destination" ref="destination" />
             </div>
 
 
             <button class="mb-3 border-2 py-2 w-full px-3 rounded border-primary-color font-medium text-primary-color"
               @click="pickUpLocation()">PickUp Location</button>
-          </div>
-          <div class="">
-            <button type="button" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#exampleModalLg">Large modal</button>
-            <button class="mb-3 border-2 py-2 w-full px-3 rounded border- font-medium "
+              <button class="mb-3 border-2 py-2 w-full px-3 rounded border- font-medium "
             data-bs-toggle="modal" data-bs-target="#exampleModalLg">Select Vehile type</button>
-            <div class="">
-              <label>Select Vehile type </label>
-              <select name="" class="input border py-2 w-full mb-3" id="">
-                <option value="">
-                  Select Vehile type
-                </option>
-              </select>
-            </div>
+          </div>
+         
+          <div class="" v-if="order.price">
+            
+          <div class="">
+            
             <div class="">
               <label>Select a ride </label>
+             
               <select name="" class="input border py-2 w-full mb-3" id="">
-                <option value="">
-                  Select Vehile type
+                <option  v-for="(item, index) in driverList"  :key="index" :value="item.id">
+                  {{item.username}}
                 </option>
               </select>
             </div>
           </div>
-          <div class="enter Details">
-            <div class="">
-              <label>Enter type of the material</label>
-              <input type="text" class="input border py-2 w-full mb-3" />
+            <div class="enter Details">
+              <div class="">
+                <label>Enter type of the material</label>
+                <input v-model="order.material" type="text" class="input border py-2 w-full mb-3" />
+              </div>
+              <div class="">
+                <label for="">Enter approx weight in KG</label>
+                <input type="text" v-model="order.weight" class="input border py-2 w-full mb-3 " />
+              </div>
+              <div class="">
+                <label for="">Enter additional information</label>
+                <textarea v-model="order.information" class="input border py-2 w-full mb-3 " cols="30" rows="10"></textarea>
+                <input type="text" class="input border border-primary-color py-2 w-full mb-3 " />
+              </div>
+            
+            
+              <button class="mb-3 border   py-2 w-full px-3 rounded bg-primary-color text-white "
+                @click="orderNow()">Order Now</button>
             </div>
-            <div class="">
-              <label for="">Enter approx weight in KG</label>
-              <input type="text" class="input border py-2 w-full mb-3 " />
-            </div>
-            <div class="">
-              <label for="">Enter additional information</label>
-              <textarea class="input border py-2 w-full mb-3 " cols="30" rows="10"></textarea>
-              <input type="text" class="input border border-primary-color py-2 w-full mb-3 " />
-            </div>
-
-
-            <button class="mb-3 border   py-2 w-full px-3 rounded bg-primary-color text-white "
-              @click="pickUpLocation()">Done</button>
           </div>
+           
         </div>
         <div class="col-span-8">
           <Map :disableUI="false" :zoom="12" mapType="hybrid" @distance="distance" :center="{ lat: 38.8977859, lng: -77.0057621 }"
@@ -71,14 +69,15 @@
           <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
             <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLgLabel">
-                Large modal
+                Select Vehehile Type
               </h5>
               <button type="button"
                 class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
                 data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body relative p-4">
-              <SelectVehehileTypeModel/>
+              
+              <SelectVehehileTypeModel @selectedVehile="selectVehile" :setDistance="setDistance"/>
             </div>
           </div>
         </div>
@@ -113,7 +112,20 @@
           { lant: 7.7055431, lng: 81.7165866 },
           { lant: 7.705742, lng: 81.7158264 },
           { lant: 7.7053815, lng: 81.7141455 }
-        ]
+        ],
+        order: {
+          material: "",
+          weight: 0,
+          price: 0,
+          duration: "",
+          information: "",
+          status: "",
+          fromLocation: "",
+          toLocation: "",
+          sendUser: 2,
+          userDetails: 3
+        },
+        driverList:''
       }
     },
     computed: {
@@ -122,6 +134,10 @@
       }
     },
     methods: {
+      selectVehile(e){
+        this.order.price = e.price;
+          console.log("event price",e);
+      },
       selectVehehileType(){
         this.showSelectVehehileType = true;
       },
@@ -134,6 +150,30 @@
       },
       dispatchLatLngdata() {
 
+      },
+      orderNow(){
+        console.log("orderNow",this.order);
+        const path = "api/v1/addOrder";
+             axios.post(path,this.order,{ withCredentials: true })
+            .then(res => {
+                console.log("addOrder",res);
+               
+            })
+            .catch(error => {
+                console.log("updateAccessTokenStatus", error)
+            })
+      },
+      getAllDriver(){
+        
+        const path = "api/auth/getAllUser";
+             axios.get(path,{ withCredentials: true })
+            .then(res => {
+                this.driverList =   res.data.filter(item => item.roles[0].name === "ROLE_DRIVER");
+               
+            })
+            .catch(error => {
+                console.log("updateAccessTokenStatus", error)
+            })
       },
       getAddressFrom(latLng) {
         console.log("latLng", latLng);
@@ -190,22 +230,27 @@
         };
         const originAutocomplete = new window.window.google.maps.places.Autocomplete(this.$refs["origin"], acOptions);
         originAutocomplete.addListener("place_changed", () => {
+          console.log("place.geometry",this.$refs["origin"]);
           const place = originAutocomplete.getPlace();
           this.originLat = place.geometry.location.lat()
           this.originLng = place.geometry.location.lng()
-          console.log("place", place.geometry.location.lat(), place.geometry.location.lng(), place);
+          this.order.fromLocation = place.formatted_address
+          console.log("place", place.formatted_address);
         })
 
         const destinationAutocomplete = new window.window.google.maps.places.Autocomplete(this.$refs["destination"], acOptions);
         destinationAutocomplete.addListener("place_changed", () => {
+        
           const place = destinationAutocomplete.getPlace();
           this.destinationLat = place.geometry.location.lat()
           this.destinationLng = place.geometry.location.lng()
+          this.order.toLocation = place.formatted_address
           console.log("place", place.geometry.location.lat(), place.geometry.location.lng(), place);
         })
       },
     },
     mounted() {
+      this.getAllDriver();
       this.locatorButtonPressed();
       this.autocompleteInit();
     },

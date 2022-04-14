@@ -22,8 +22,8 @@
                                 My Order
                             </div>
                             <div class="list p-3">
-                                <ul>
-                                    <li><a href=""  class="text-primary-font pb-1">All</a></li>
+                                <ul> 
+                                    <li><router-link class="text-primary-font pb-1" :to="{name:'allOrder',params:allOrders}">All</router-link></li>
                                     <li><a href=""  class="text-primary-font pb-1">Active</a></li>
                                     <li><a href=""  class="text-primary-font pb-1">Pending</a></li>
                                     <li><a href=""  class="text-primary-font pb-1">Return</a></li>
@@ -44,7 +44,12 @@
 </template>
 <script>
 export default {
-    
+    data() {
+        return {
+            allOrders:'',
+        }
+    },
+   
 }
 </script>
 <style lang="">

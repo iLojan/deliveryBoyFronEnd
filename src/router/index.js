@@ -21,6 +21,8 @@ import Orders from "../components/admin/orders/Orders.vue"
 import OderDetails from "../components/admin/orders/OrderDetails.vue"
 import adminUser from "../components/admin/users/Users.vue"
 import AdminVue from '../components/admin/Admin.vue'
+import SignUp from '../components/SignUp.vue'
+import AllVue from '../components/User/MyOrder/All.vue'
 
 const routes = [
   {
@@ -84,6 +86,11 @@ const routes = [
     component: SignInVue
   },
   {
+    path:'/signup',
+    name:'signup',
+    component:SignUp
+  },
+  {
     path:'/admin/',
     component:AdminVue,
     children:[
@@ -127,6 +134,11 @@ const routes = [
         path: '',
         name: 'manageAccount',
         component: ManageAccount
+      },
+      {
+        path:'all-order',
+        name:'allOrder',
+        component:AllVue
       },
       {
         path: 'profile',

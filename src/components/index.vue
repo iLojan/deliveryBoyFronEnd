@@ -29,7 +29,7 @@
             <p class="wow fadeInUp" data-wow-delay=".4s">
               We courier your packages to any destination in Sri Lanka, and Our cost effective services are affordable and value for money.
             </p>
-            <router-link class="main-btn btn-hover wow fadeInUp" :to="{name:'order'}"> Book My Parcel</router-link>
+            <div class="main-btn btn-hover wow fadeInUp" @click="bookParcel()" > Book My Parcel</div>
           </div>
         </div>
         <div class="col-lg-6">
@@ -186,12 +186,61 @@
   <a href="#" class="scroll-top btn-hover">
     <i class="lni lni-chevron-up"></i>
   </a>
-  <LoginPopup></LoginPopup>
+  {{hideEmail}}
+  <div class="" v-if="showEmail">
+    <LoginPopup @empty-cart="emptyCart"></LoginPopup>
+  </div>
+  
 </template>
 <script>
   import LoginPopup from './LoginPopup.vue'
   export default {
     //
-    components:{LoginPopup}
+    data() {
+      return {
+        showEmail:true,
+      }
+    },
+    components:{LoginPopup},
+    computed:{
+      hideEmail(){
+        return localStorage.getItem('email');
+      }
+    },
+    methods: {
+      bookParcel(){
+        const email = localStorage.getItem('email');
+      console.log("email",email);
+      if (email) {
+        this.$router.push({name:'order'})
+      }
+      else{
+        this.showEmail = true
+      }
+        
+      },
+      emptyCart(){
+        console.log("event");
+      },
+      showEmailPopup(e){
+        console.log("event",e);
+        this.showEmail = false
+      }
+     
+    },
+    watch: {
+      hideEmail(newCriteria, oldCriteria) {
+            console.log("newCriteria, oldCriteria",newCriteria, oldCriteria);
+            this.showEmail = false;
+               
+            }
+        },
+    mounted() {
+      const email = localStorage.getItem('email');
+      console.log("email",email);
+      if (email) {
+        this.showEmail = false
+      }
+    },
   }
 </script>
