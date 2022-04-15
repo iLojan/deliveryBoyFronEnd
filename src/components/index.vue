@@ -38,17 +38,40 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <section id="services" class="service-section pt-150">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-xl-6 col-lg-8">
-          <div class="section-title text-center mb-70">
-            <span class="wow fadeInUp" data-wow-delay=".2s">Delivery Services</span>
-           <div class="content">
-              <h4>We Provide three different type of delivery services</h4>
-    
+    </section>
+
+ <section id="about" class="about-section pt-150">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="about-img wow fadeInUp" data-wow-delay=".5s">
+              <img src="assets/img/about/about.svg" alt="" />
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="about-content">
+              <div class="section-title">
+                <span class="wow fadeInUp" data-wow-delay=".2s">About Us</span>
+                <h1 class="wow fadeInUp" data-wow-delay=".4s">Express Delivery & <br> Customer satisfaction</h1>
+                <p class="wow fadeInUp" data-wow-delay=".6s" >We are your trusted courier service partner. Specializing in door to door delivery with online we provide a reliable and efficient courier service to both individuals and corporates. Respecting the privacy and urgent nature of your deliveries. We treat every delivery with utmost care and respect, saving you both time and money.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="services" class="service-section pt-150">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-6 col-lg-8">
+            <div class="section-title text-center mb-70">
+              <span class="wow fadeInUp" data-wow-delay=".2s">Delivery Services</span>
+             <div class="content">
+                <h4>We Provide three different type of delivery services</h4>
+      
+              </div>
             </div>
           </div>
         </div>
@@ -90,37 +113,18 @@
   
        
       </div>
-    </div>
-  </section>
-  <section id="about" class="about-section pt-150">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="about-img wow fadeInUp" data-wow-delay=".5s">
-            <img src="assets/img/about/about.svg" alt="" />
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="about-content">
-            <div class="section-title">
-              <span class="wow fadeInUp" data-wow-delay=".2s">About Us</span>
-              <h1 class="wow fadeInUp" data-wow-delay=".4s">Express Delivery & <br> Customer satisfaction</h1>
-              <p class="wow fadeInUp" data-wow-delay=".6s" >We are your trusted courier service partner. Specializing in door to door delivery with online we provide a reliable and efficient courier service to both individuals and corporates. Respecting the privacy and urgent nature of your deliveries. We treat every delivery with utmost care and respect, saving you both time and money.</p>
+    </section>
+   
+
+
+    <section id="team" class="team-section img-bg pt-100 pb-40">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <div class="section-title mb-60 text-center">
+              <span class="wow fadeInUp" data-wow-delay=".2s">Team Members</span>
+              <h1 class="wow fadeInUp" data-wow-delay=".4s">Developers</h1>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section id="team" class="team-section img-bg pt-150 pb-40">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-6">
-          <div class="section-title mb-60 text-center">
-            <span class="wow fadeInUp" data-wow-delay=".2s">Team Members</span>
-            <h1 class="wow fadeInUp" data-wow-delay=".4s">Developers</h1>
           </div>
         </div>
       </div>
