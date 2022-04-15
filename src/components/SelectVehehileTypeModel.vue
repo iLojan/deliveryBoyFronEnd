@@ -1,15 +1,19 @@
 <template>
     <div>
+        <h3 class="text-h3-font block text-center mb-2">
+            Your totla distance is {{this.setDistance.distance}} KM
+            </h3>
       <div class="flex justify-center">
-          <div class="py-3 px-4 border rounded-lg text-center mr-2" @click="selectVehile('small',price('small'))">
+      
+          <div class="py-3 px-4 border rounded-lg text-center mr-2 cursor-pointer" @click="selectVehile('small',price('small'))">
             <span class="font-semibold">Small</span>   
               <label class="text-primary-color block">{{price("small")}}</label>
           </div>
-          <div class="py-3 px-4 border rounded-lg text-center mr-2"  @click="selectVehile('medium',price('medium'))">
+          <div class="py-3 px-4 border rounded-lg text-center mr-2 cursor-pointer"  @click="selectVehile('medium',price('medium'))">
             <span class="font-semibold">medium</span>   
               <label class="text-primary-color block">{{price("medium")}}</label>
         </div>
-          <div class="py-3 px-4 border rounded-lg text-center mr-2"  @click="selectVehile('large',price('large'))">
+          <div class="py-3 px-4 border rounded-lg text-center mr-2 cursor-pointer"  @click="selectVehile('large',price('large'))">
             <span class="font-semibold">large</span>   
               <label class="text-primary-color block">{{price("large")}}</label>
         </div>

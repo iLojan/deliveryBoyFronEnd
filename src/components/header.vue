@@ -33,10 +33,126 @@
                     <li class="nav-item">
                       <a class="page-scroll" href="#team">Team</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="!showUserDropDown">
                      
-                      <router-link to="login" class="text-red-600 page-scroll">Login</router-link>  
+                      <router-link to="/login" class="text-red-600 page-scroll">Login</router-link>  
                       
+                    </li>
+                    <li class="nav-item" v-if="showUserDropDown"> 
+                      <div class="flex justify-center">
+                        <div>
+                          <div class="dropdown relative">
+                            <button
+                              class="dropdown-toggle text-p1-font py-2 mt-1 font-medium text-xs leading-tight transition duration-150 ease-in-out flex items-center whitespace-nowrap"
+                              type="button"
+                              id="dropdownMenuButton1d"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                            >
+                              {{showUserDropDown}}
+                            
+                            </button>
+                            <ul
+                              class="
+                                dropdown-menu
+                                min-w-max
+                                absolute
+                                hidden
+                                bg-white
+                                text-base
+                                z-50
+                                float-left
+                                py-2
+                                list-none
+                                text-left
+                                rounded-lg
+                                shadow-lg
+                                mt-1
+                                hidden
+                                m-0
+                                bg-clip-padding
+                                border-none
+                              "
+                              aria-labelledby="dropdownMenuButton1d"
+                            >
+                              <li>
+                                
+                                <router-link  class="
+                                dropdown-item
+                                text-sm
+                                py-2
+                                px-4
+                                font-normal
+                                block
+                                w-full
+                                whitespace-nowrap
+                                bg-transparent
+                                text-gray-700
+                                hover:bg-gray-100
+                              " to="/user">My Order</router-link>
+                              </li>
+                              <li>
+                                <a
+                                  class="
+                                    dropdown-item
+                                    text-sm
+                                    py-2
+                                    px-4
+                                    font-normal
+                                    block
+                                    w-full
+                                    whitespace-nowrap
+                                    bg-transparent
+                                    text-gray-700
+                                    hover:bg-gray-100
+                                  "
+                                  href="#"
+                                  >Another action</a
+                                >
+                              </li>
+                              <li>
+                                <a
+                                  class="
+                                    dropdown-item
+                                    text-sm
+                                    py-2
+                                    px-4
+                                    font-normal
+                                    block
+                                    w-full
+                                    whitespace-nowrap
+                                    bg-transparent
+                                    text-gray-700
+                                    hover:bg-gray-100
+                                  "
+                                  href="#"
+                                  >Something else here</a
+                                >
+                              </li>
+                              <hr class="h-0 my-2 border border-solid border-t-0 border-gray-700 opacity-25" />
+                              <li>
+                                <a
+                                  class="
+                                    dropdown-item
+                                    text-sm
+                                    py-2
+                                    px-4
+                                    font-normal
+                                    block
+                                    w-full
+                                    whitespace-nowrap
+                                    bg-transparent
+                                    text-gray-700
+                                    hover:bg-gray-100
+                                  "
+                                  @click="logout()"
+                                  >Logout</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -49,7 +165,26 @@
 </template>
 <script>
 export default {
-  
+  data() {
+    return {
+      showUserDropDown:'',
+    }
+  },
+  methods: {
+    logout(){
+      localStorage.removeItem('username');
+      localStorage.removeItem('email');
+      localStorage.removeItem('role');
+      localStorage.removeItem('name');
+      this.$router.push({name:'index'})
+    }
+  },
+  mounted() {
+    var userName = localStorage.getItem('username');
+    if(userName){
+      this.showUserDropDown = userName
+    }
+  },
 }
 </script>
 <style lang="">

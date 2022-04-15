@@ -198,7 +198,7 @@
     //
     data() {
       return {
-        showEmail:true,
+        showEmail:false,
       }
     },
     components:{LoginPopup},
@@ -236,11 +236,11 @@
             }
         },
     mounted() {
-      const email = localStorage.getItem('email');
-      console.log("email",email);
-      if (email) {
-        this.showEmail = false
-      }
+      // const email = localStorage.getItem('email');
+      // console.log("email",email);
+      // if (email) {
+      //   this.showEmail = false
+      // }
     },
   }
 </script>
