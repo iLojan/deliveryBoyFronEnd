@@ -5,11 +5,11 @@
                 <img class="mb-3 mx-auto" style="height: 150px;" src="../assets/img/login.svg" alt="">
                 <span class="flex shadow-md mb-5 text-xs">
                     <span class="bg-primary-color w-28 font-bold text-center text-gray-200 p-3 px-5 rounded-l">Email</span>
-                    <input  class="field text-sm text-gray-600 p-2 px-3 rounded-r w-full" v-model="loginData.usernameOrEmail" type="text" placeholder="someonespecial@example.com">
+                    <input  class="field text-sm text-gray-600 p-2 px-3 rounded-r w-full" v-model="loginData.usernameOrEmail" type="text" placeholder="Enter Your Email">
                 </span>
                 <span class="flex shadow-md mb-5 text-xs">
                     <span class="bg-primary-color w-28 font-bold text-center text-gray-200 p-3 px-5 rounded-l">Password</span>
-                    <input class="field text-sm text-gray-600 p-2 px-3 rounded-r w-full" v-model="loginData.password" type="password" placeholder="">
+                    <input class="field text-sm text-gray-600 p-2 px-3 rounded-r w-full" v-model="loginData.password" type="password" placeholder="Enter Your Password">
                 </span>
                 <!-- <a class="text-primary-color hover:underline font-bold text-xs ml-auto cursor-pointer">Forget Password ?</a> -->
                 <span @click="login" class="border-2 border-primary-color hover:bg-primary-color hover:text-gray-100 mt-3 text-primary-color block text-center p-3 px-4 text-sm rounded cursor-pointer font-bold">
@@ -26,7 +26,7 @@ export default {
     data() {
         return {
             loginData:{
-                usernameOrEmail:'test'
+               
             }
         }
     },
