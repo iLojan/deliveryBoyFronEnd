@@ -1,9 +1,7 @@
 <template>
   <div >
     <div class="map" id="googleMap"></div>
-    <div id="outputDiv">
-
-    </div>
+ 
     <button @click="setMark()">Click</button>
   </div>
    
@@ -94,12 +92,7 @@
           if (status == window.google.maps.DirectionsStatus.OK) {
 
             //Get distance and time
-            console.log("result",result);
-            output.innerHTML = "<div class='alert-info'> Driving distance <i class='fas fa-road'></i> : " 
-              + result.routes[0].legs[0].distance.text 
-              + ".<br />Duration <i class='fas fa-hourglass-start'></i> : " + 
-              result.routes[0].legs[0].duration.text 
-              + ".</div>";
+           
               
               let distance ={
                 distance:_self.converKM(result.routes[0].legs[0].distance.text) ,

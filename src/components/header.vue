@@ -176,7 +176,7 @@ export default {
       localStorage.removeItem('email');
       localStorage.removeItem('role');
       localStorage.removeItem('name');
-      this.$router.push({name:'index'})
+      this.$router.push("/")
     }
   },
   mounted() {

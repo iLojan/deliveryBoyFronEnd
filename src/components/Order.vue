@@ -1,5 +1,8 @@
 <template>
   <div class="md:px-8  lg:w-10/12 md:10/12 w-full md:m-auto  md:p-0 p-3 md:mt-20">
+    <div v-if="showAler" class="bg-green-100 rounded-lg py-4 border px-6 mb-4 text-base text-green-700 absolute w-2/5 right-0 z-40" role="alert">
+      Your successed
+    </div>
     <div class="main">
       
       <div class="grid grid-cols-12 gap-4 px-3">
@@ -50,7 +53,7 @@
               <div class="">
                 <label for="">Enter additional information</label>
                 <textarea v-model="order.information" class="input border py-2 w-full mb-3 " cols="30" rows="10"></textarea>
-                <input type="text" class="input border border-primary-color py-2 w-full mb-3 " />
+               
               </div>
             
             
@@ -130,6 +133,7 @@
           sendUser: null,
           userDetails: null
         },
+        showAler:false,
         driverList:''
       }
     },
@@ -162,6 +166,8 @@
         const path = "api/v1/addOrder";
              axios.post(path,this.order,{ withCredentials: true })
             .then(res => {
+              this.showAler = true;
+              this.$router.push("/user")
                 console.log("addOrder",res);
                
             })
