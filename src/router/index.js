@@ -23,6 +23,7 @@ import adminUser from "../components/admin/users/Users.vue"
 import AdminVue from '../components/admin/Admin.vue'
 import SignUp from '../components/SignUp.vue'
 import AllVue from '../components/User/MyOrder/All.vue'
+import Confirmation from '../components/Confirmation.vue'
 
 const routes = [
   {
@@ -91,6 +92,11 @@ const routes = [
     component:SignUp
   },
   {
+    path:'/confirmation',
+    name:'confirmation',
+    component:Confirmation
+  },
+  {
     path:'/admin/',
     component:AdminVue,
     children:[
@@ -128,6 +134,7 @@ const routes = [
   },
   {
     path: '/user/',
+    name:'user-order',
     component: User,
     children: [
       {

@@ -4,6 +4,7 @@
         <div class="container">
           <div class="row align-items-center">
             <div class="col-lg-12">
+              
               <nav class="navbar navbar-expand-lg">
                 <a class="navbar-brand" href="#">
                   <img src="assets/img/logo/logo.svg" width="592" height="150" alt="Logo" />
@@ -33,12 +34,12 @@
                     <li class="nav-item">
                       <a class="page-scroll" href="#team">Team</a>
                     </li>
-                    <li class="nav-item" v-if="!showUserDropDown">
+                    <li class="nav-item" v-if="!getLogin">
                      
                       <router-link to="/login" class="text-red-600 page-scroll">Login</router-link>  
                       
                     </li>
-                    <li class="nav-item" v-if="showUserDropDown"> 
+                    <li class="nav-item" v-if="getLogin"> 
                       <div class="flex justify-center">
                         <div>
                           <div class="dropdown relative">
@@ -176,9 +177,26 @@ export default {
       localStorage.removeItem('email');
       localStorage.removeItem('role');
       localStorage.removeItem('name');
+      this.$store.dispatch("loginStatus", false)
       this.$router.push("/")
     }
   },
+  computed:{
+    checkUserName(){
+      return localStorage.getItem('username')
+    },
+    getLogin(){
+            return this.$store.getters.getloginStatus
+        },
+
+  },
+  watch: {
+      hideEmail(newCriteria, oldCriteria) {
+        console.log("newCriteria, oldCriteria", newCriteria, oldCriteria);
+        // this.showEmail = false;
+
+      }
+    },
   mounted() {
     var userName = localStorage.getItem('username');
     if(userName){

@@ -17,12 +17,12 @@
               <input type="text" class="input border py-2 w-full mb-3 "  placeholder="Destination" ref="destination" />
             </div>
 
-
-            <button class="mb-3 border-2 py-2 w-full px-3 rounded border-primary-color font-medium text-primary-color"
+            <button  class="mb-3 border-2 py-2 w-full px-3 rounded bg-primary-color font-medium text-white"
               @click="pickUpLocation()">PickUp Location</button>
-              <button class="mb-3 border-2 py-2 w-full px-3 rounded border- font-medium "
+              <button v-if="setDistance" class="mb-3 border py-2 w-full px-3 rounded  font-medium "
             data-bs-toggle="modal" data-bs-target="#exampleModalLg"> 
             <span v-if="order.price">total is {{order.price}} LKR</span>
+
             <span v-else>Select Vehile type</span>
             </button>
           </div>
@@ -30,6 +30,18 @@
           <div class="" v-if="order.price">
             
           <div class="">
+            <div class="">
+              <label>Receiver Surname and name</label>
+              <input v-model="order.receiverName" type="text" class="input border py-2 w-full mb-3" />
+            </div>
+            <div class="">
+              <label>Receiver Phone number</label>
+              <input v-model="order.receiverEmail" type="text" class="input border py-2 w-full mb-3" />
+            </div>
+            <div class="">
+              <label>Receiver E-mail</label>
+              <input v-model="order.receiverPhoneNumber" type="text" class="input border py-2 w-full mb-3" />
+            </div>
             
             <div class="">
               <label>Select a ride </label>
@@ -84,6 +96,7 @@
                 data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body relative p-4">
+
               
               <SelectVehehileTypeModel @selectedVehile="selectVehile" :setDistance="setDistance"/>
             </div>
@@ -127,6 +140,9 @@
           price: 0,
           duration: "",
           information: "",
+          receiverName:'',
+          receiverPhoneNumber:'',
+          receiverEmail:'',
           status: "",
           fromLocation: "",
           toLocation: "",
@@ -167,8 +183,9 @@
              axios.post(path,this.order,{ withCredentials: true })
             .then(res => {
               this.showAler = true;
-              this.$router.push("/user")
-                console.log("addOrder",res);
+              // this.$router.push("/user")
+               this.$router.push({ path: 'confirmation', query: { id: res.data.id }})
+                
                
             })
             .catch(error => {

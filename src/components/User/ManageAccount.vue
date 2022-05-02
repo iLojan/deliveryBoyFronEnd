@@ -1,5 +1,5 @@
 <template >
-    <div>
+    <div >
         <div class="tit text-h2 font-medium mb-3">Manage My Account</div>
         <div class="grid grid-cols-12  gap-4">
             <div class="md:col-span-6 col-span-12 card p-3">

@@ -53,8 +53,9 @@ export default {
                 localStorage.setItem('username', res.data.username);
                 localStorage.setItem('name', res.data.name);
                 localStorage.setItem('role', res.data.roles.name);
+                this.$store.dispatch("loginStatus", localStorage.getItem('email'))
                 this.$router.push({name:"index"})
-                
+               
                 console.log("setAccessToken",res)
             })
             .catch(error => {

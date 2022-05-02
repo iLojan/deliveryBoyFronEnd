@@ -58,10 +58,12 @@ export default {
             const path = "/api/auth/signup";
              axios.post(path,this.data,{ withCredentials: true })
             .then(res => {
-                this.$router.push({name:'login'})
+                
               console.log("res",res);
+              this.$router.push({name:'login'})
             })
             .catch(error => {
+                console.log("error","error");
               console.log("error",error);
             })
         }

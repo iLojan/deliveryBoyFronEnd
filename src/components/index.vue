@@ -200,8 +200,8 @@
   <a href="#" class="scroll-top btn-hover">
     <i class="lni lni-chevron-up"></i>
   </a>
-  {{hideEmail}}
-  <div class="" v-if="showEmail">
+  
+  <div class="" v-if="!getLogin && showEmail">
     <LoginPopup @empty-cart="emptyCart"></LoginPopup>
   </div>
 
@@ -219,9 +219,13 @@
     computed: {
       hideEmail() {
         return localStorage.getItem('email');
-      }
+      },
+      getLogin(){
+            return this.$store.getters.getloginStatus
+        },
     },
     methods: {
+      
       bookParcel() {
         const email = localStorage.getItem('email');
         console.log("email", email);
@@ -250,6 +254,7 @@
       }
     },
     mounted() {
+      this.$store.dispatch("loginStatus", localStorage.getItem('email'))
       // const email = localStorage.getItem('email');
       // console.log("email",email);
       // if (email) {

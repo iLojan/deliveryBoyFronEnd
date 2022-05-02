@@ -10,6 +10,7 @@ export default createStore({
         authenticated: false,
         sessionId: null,
         accessToken: "none",
+        loginStatus:false,
         refreshToken: "none",
         commonPath:process.env.VUE_APP_LOGIN,
         latLng:{
@@ -44,6 +45,10 @@ export default createStore({
         }
     },
     actions:{
+        loginStatus({state},data) {
+            console.log("data",data);
+            state.loginStatus = data
+        },
         async getAccessToken({commit},data){
 
             const path = "/api/auth/signin";
@@ -101,6 +106,9 @@ export default createStore({
         getLatLng(state) {
             return state.latLng;
         },
+        getloginStatus(state){
+            return state.loginStatus
+        }
     }
 })
 
