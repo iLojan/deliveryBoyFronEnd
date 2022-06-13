@@ -56,14 +56,14 @@
                           <span>Surname and name:</span>
                           <span>{{order.toLocation}}</span>
                         </li>
-                        <li class="summary__left-bottomlistitem">
+                        <!-- <li class="summary__left-bottomlistitem">
                           <span>Phone number:</span>
                           <span>{{order.toLocation}}</span>
                         </li>
                         <li class="summary__left-bottomlistitem">
                           <span>E-mail:</span>
                           <span>{{order.toLocation}}</span>
-                        </li>
+                        </li> -->
                         <li class="summary__left-bottomlistitem">
                           <span>Address:</span>
                           <span>{{order.toLocation}}</span>

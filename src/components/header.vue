@@ -50,7 +50,7 @@
                               data-bs-toggle="dropdown"
                               aria-expanded="false"
                             >
-                              {{showUserDropDown}}
+                              {{name}}
                             
                             </button>
                             <ul
@@ -168,6 +168,7 @@
 export default {
   data() {
     return {
+      name:'',
       showUserDropDown:'',
     }
   },
@@ -199,6 +200,7 @@ export default {
     },
   mounted() {
     var userName = localStorage.getItem('username');
+    this.name = userName
     if(userName){
       this.showUserDropDown = userName
     }

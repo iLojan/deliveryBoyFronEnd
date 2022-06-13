@@ -21,9 +21,9 @@
               @click="pickUpLocation()">PickUp Location</button>
               <button v-if="setDistance" class="mb-3 border py-2 w-full px-3 rounded  font-medium "
             data-bs-toggle="modal" data-bs-target="#exampleModalLg"> 
-            <span v-if="order.price">total is {{order.price}} LKR</span>
+            <span v-if="order.price">Total is {{order.price}} LKR</span>
 
-            <span v-else>Select Vehile type</span>
+            <span v-else>Select parcel type</span>
             </button>
           </div>
          
@@ -31,20 +31,20 @@
             
           <div class="">
             <div class="">
-              <label>Receiver Surname and name</label>
+              <label>Receiver name</label>
               <input v-model="order.receiverName" type="text" class="input border py-2 w-full mb-3" />
             </div>
             <div class="">
-              <label>Receiver Phone number</label>
+              <label>Receiver phone number</label>
               <input v-model="order.receiverEmail" type="text" class="input border py-2 w-full mb-3" />
             </div>
             <div class="">
-              <label>Receiver E-mail</label>
+              <label>Receiver e-mail</label>
               <input v-model="order.receiverPhoneNumber" type="text" class="input border py-2 w-full mb-3" />
             </div>
             
             <div class="">
-              <label>Select a ride </label>
+              <label>Select a river </label>
              
               <select name="" class="input border py-2 w-full mb-3" id="">
                 <option  v-for="(item, index) in driverList"  :key="index" :value="item.id">
@@ -55,8 +55,15 @@
           </div>
             <div class="enter Details">
               <div class="">
-                <label>Enter type of the material</label>
-                <input v-model="order.material" type="text" class="input border py-2 w-full mb-3" />
+                <label>Select type of the material</label>
+                <select v-model="order.material" name="" class="input border py-2 w-full mb-3" id="">
+                  <option value="Documents">
+                    Documents
+                  </option>
+                  <option value="Parcel">
+                    Parcel 
+                  </option>
+                </select>
               </div>
               <div class="">
                 <label for="">Enter approx weight in KG</label>
@@ -88,7 +95,7 @@
             <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLgLabel">
             
-                Select Vehehile Type
+                Select parcel type
                
               </h5>
               <button type="button"
@@ -135,7 +142,7 @@
           { lant: 7.7053815, lng: 81.7141455 }
         ],
         order: {
-          material: "",
+          material: "Documents",
           weight: 0,
           price: 0,
           duration: "",

@@ -5,17 +5,17 @@
             </h3>
       <div class="flex justify-center">
       
-          <div class="py-3 px-4 border rounded-lg text-center mr-2 cursor-pointer" @click="selectVehile('small',price('small'))">
-            <span class="font-semibold">Small</span>   
-              <label class="text-primary-color block">{{price("small")}}</label>
+          <div class="py-3 px-4 border rounded-lg text-center mr-2 cursor-pointer" @click="selectVehile('Normal',price('Normal'))">
+            <span class="font-semibold">Normal</span>   
+              <label class="text-primary-color block mt-2"> {{price("Normal")}} LKR</label>
           </div>
-          <div class="py-3 px-4 border rounded-lg text-center mr-2 cursor-pointer"  @click="selectVehile('medium',price('medium'))">
-            <span class="font-semibold">medium</span>   
-              <label class="text-primary-color block">{{price("medium")}}</label>
+          <div class="py-3 px-4 border rounded-lg text-center mr-2 cursor-pointer"  @click="selectVehile('SameDayCourier',price('SameDayCourier'))">
+            <span class="font-semibold">Same Day Courier</span>   
+              <label class="text-primary-color block mt-2"> {{price("SameDayCourier")}} LKR</label>
         </div>
-          <div class="py-3 px-4 border rounded-lg text-center mr-2 cursor-pointer"  @click="selectVehile('large',price('large'))">
-            <span class="font-semibold">large</span>   
-              <label class="text-primary-color block">{{price("large")}}</label>
+          <div class="py-3 px-4 border rounded-lg text-center mr-2 cursor-pointer"  @click="selectVehile('OvernightShipping',price('OvernightShipping'))">
+            <span class="font-semibold">Overnight Shipping</span>   
+              <label class="text-primary-color block mt-2"> {{price("OvernightShipping")}} LKR</label>
         </div>
      
       </div>
@@ -32,13 +32,13 @@ export default {
     methods: {
         price(type){
             let totalPrice;
-            if (type === 'small') {
-                totalPrice =this.setDistance.distance * 100
-            } else if (type === 'medium') {
-                totalPrice = this.setDistance.distance * 200
+            if (type === 'Normal') {
+                totalPrice = Math.round(this.setDistance.distance * 2)
+            } else if (type === 'SameDayCourier') {
+                totalPrice = Math.round(this.setDistance.distance * 3)
             }
-            else if (type === 'large') {
-                totalPrice = this.setDistance.distance * 400
+            else if (type === 'OvernightShipping') {
+                totalPrice = Math.round(this.setDistance.distance * 5)
             }
             return totalPrice
         },
@@ -54,9 +54,9 @@ console.log(type);
     },
     mounted() {
         console.log("this.setDistance.distance",this.setDistance.distance);
-        this.smallPrice = this.setDistance.distance * 100;
-        this.medimPrice = this.setDistance.distance * 200;
-        this.largePrice = this.setDistance.distance * 400;
+        this.smallPrice = Math.round(this.setDistance.distance * 100);
+        this.medimPrice = Math.round(this.setDistance.distance * 200);
+        this.largePrice = Math.round(this.setDistance.distance * 400);
     },
 }
 </script>
