@@ -6,10 +6,11 @@
                 <div class="flex items-center ">
                     <span class="text-primary-font font-medium">Personal Profile</span><span class="text-p3-font text-primary-color pl-2">EDIT</span>
                 </div>
-                <div class="text-p2-font pb-1">Ilojan</div>
-                <div class="text-p2-font pb-1">ilojan@gmail.com</div>
+                <div class="text-p2-font pb-1 mt-3">{{name}}</div>
+                <div class="text-p2-font pb-1">{{email}}</div>
             </div>
-            <div class="md:col-span-6 col-span-12 card p-3">
+            <div class="hidden">
+            <div class="md:col-span-6 col-span-12 card p-3 ">
                 <div class="flex items-center ">
                     <span class="text-primary-font font-medium">Address Book</span><span class="text-p3-font text-primary-color pl-2">EDIT</span>
                 </div>
@@ -17,6 +18,7 @@
                 <div class="text-p2-font pb-1">No 20 , thirumagal raod,Kallady Uppoday
                     Eastern - Batticaloa - Batticaloa Town</div>
                 <div class="text-p2-font pb-1">(+94) 758907689</div>
+            </div>
             </div>
         </div>
 
@@ -127,7 +129,17 @@
 </template>
 <script>
 export default {
-    
+    data() {
+        return {
+            name:'',
+            email:''
+        }
+     }, 
+     mounted() {
+            this.name = localStorage.getItem('username');
+            this.email = localStorage.getItem('email');
+        
+    },
 }
 </script>
 <style >
