@@ -32,7 +32,7 @@
       
             <div class="col-span-1 mb-2">
                 <span @click="signUp" class="border-2 border-primary-color hover:bg-primary-color hover:text-gray-100 mt-3 text-primary-color block text-center p-3 px-4 text-sm rounded cursor-pointer font-bold">
-                    Login
+                    SignUp
                 </span>
             </div>
           </div>
