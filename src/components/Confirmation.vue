@@ -39,7 +39,7 @@
                         </li>
                         <li class="summary__left-bottomlistitem">
                           <span>Weight:</span>
-                          <span>{{order.material}}kg</span>
+                          <span>{{order.weight}}kg</span>
                         </li>
                         <li class="summary__left-bottomlistitem">
                           <span>Total:</span>
@@ -49,34 +49,11 @@
                     </div>
                     <div class="summary__left-bottomitem">
                       <div class="summary__left-bottomtitle">
-                        Shipper
+                       Receiver
                       </div>
                       <ul class="summary__left-bottomlist">
                         <li class="summary__left-bottomlistitem">
-                          <span>Surname and name:</span>
-                          <span>{{order.toLocation}}</span>
-                        </li>
-                        <!-- <li class="summary__left-bottomlistitem">
-                          <span>Phone number:</span>
-                          <span>{{order.toLocation}}</span>
-                        </li>
-                        <li class="summary__left-bottomlistitem">
-                          <span>E-mail:</span>
-                          <span>{{order.toLocation}}</span>
-                        </li> -->
-                        <li class="summary__left-bottomlistitem">
-                          <span>Address:</span>
-                          <span>{{order.toLocation}}</span>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="summary__left-bottomitem">
-                      <div class="summary__left-bottomtitle">
-                        Consignee
-                      </div>
-                      <ul class="summary__left-bottomlist">
-                        <li class="summary__left-bottomlistitem">
-                          <span>Surname and name:</span>
+                          <span>name:</span>
                           <span>{{order.receiverName}}</span>
                         </li>
                         <li class="summary__left-bottomlistitem">
@@ -93,10 +70,36 @@
                         </li>
                       </ul>
                     </div>
+                    <div class="summary__left-bottomitem">
+                      <div class="summary__left-bottomtitle">
+                        Sender
+                      </div>
+                      <ul class="summary__left-bottomlist">
+                        <li class="summary__left-bottomlistitem">
+                          <span>Surname and name:</span>
+                          <span>{{order.receiverName}}</span>
+                        </li>
+                        <li class="summary__left-bottomlistitem">
+                          <span>Phone number:</span>
+                          <span>{{order.receiverPhoneNumber}}</span>
+                        </li>
+                        <li class="summary__left-bottomlistitem">
+                          <span>E-mail:</span>
+                          <span>{{order.receiverEmail}}</span>
+                        </li>
+                        <li class="summary__left-bottomlistitem">
+                          <span>Address:</span>
+                          <span>{{order.fromLocation}}</span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
             </section>
+            <div class="flex">
+              <button>print</button>
+            </div>
           </main>
     </div>
 </template>

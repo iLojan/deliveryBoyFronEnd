@@ -10,9 +10,9 @@
                             </div>
                             <div class="list p-3">
                                 <ul>
-                                    <li><router-link class="text-primary-font pb-1" :to="{name:'manageAccount'}">Manage My Account</router-link></li>
-                                    <li> <router-link class="text-primary-font pb-1" :to="{name:'profile'}">My Profile</router-link></li>
-                                    <li><router-link class="text-primary-font pb-1" :to="{name:'profile'}">My Review</router-link></li>
+                                    <li><router-link class="text-primary-font pb-2" :to="{name:'manageAccount'}">Manage My Account</router-link></li>
+                                    <li> <router-link class="text-gray-400 cursor-not-allowed pb-2" :to="{name:'profile'}">My Profile</router-link></li>
+                                    <li><router-link class="text-gray-400 cursor-not-allowed pb-2" :to="{name:'profile'}">My Review</router-link></li>
                                 </ul>
                             </div>
                         </div>
@@ -23,11 +23,11 @@
                             </div>
                             <div class="list p-3">
                                 <ul> 
-                                    <li><router-link class="text-primary-font pb-1" :to="{name:'allOrder',params:allOrders}">All</router-link></li>
-                                    <li><a href=""  class="text-primary-font pb-1">Active</a></li>
-                                    <li><a href=""  class="text-primary-font pb-1">Pending</a></li>
-                                    <li><a href=""  class="text-primary-font pb-1">Return</a></li>
-                                    <li><a href=""  class="text-primary-font pb-1">Delivered</a></li>
+                                    <li><router-link class="text-primary-font pb-2" :to="{name:'allOrder',params:allOrders}">All</router-link></li>
+                                    <li><a href=""  class=" pb-2 text-gray-400 cursor-not-allowed">Active</a></li>
+                                    <li><a href=""  class=" pb-2 text-gray-400 cursor-not-allowed">Pending</a></li>
+                                    <li><a href=""  class=" pb-2 text-gray-400 cursor-not-allowed">Return</a></li>
+                                    <li><a href=""  class=" pb-2 text-gray-400 cursor-not-allowed">Delivered</a></li>
                                 </ul>
                             </div>
                         </div>

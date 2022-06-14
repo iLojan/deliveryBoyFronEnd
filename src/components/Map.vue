@@ -2,7 +2,6 @@
   <div >
     <div class="map" id="googleMap"></div>
  
-    <button @click="setMark()">Click</button>
   </div>
    
   </template>
