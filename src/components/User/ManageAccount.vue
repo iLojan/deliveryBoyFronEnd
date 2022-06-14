@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="py-8">
+        <div class="py-8 hidden">
             <div>
                 <div class="tit text-h2 font-medium mb-3">Recent Orders</div>
             </div>

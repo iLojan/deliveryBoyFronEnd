@@ -17,21 +17,21 @@
                 </button>
                 <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                   <ul id="nav" class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                      <a class="page-scroll" href="#home">Home</a>
+                    <li class="nav-item" v-if="$route.name == 'index'" >
+                      <a class="page-scroll" href="/">Home</a>
                       
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="$route.name == 'index'">
                       <a class="page-scroll" href="#about">About</a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="$route.name == 'index'">
                       <a class="page-scroll" href="#services">Services</a>
                       
                     </li>
                     
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="$route.name == 'index'">
                       <a class="page-scroll" href="#team">Team</a>
                     </li>
                     <li class="nav-item" v-if="!getLogin">
@@ -50,7 +50,7 @@
                               data-bs-toggle="dropdown"
                               aria-expanded="false"
                             >
-                              {{name}}
+                              {{showUserDropDown}}
                             
                             </button>
                             <ul
@@ -168,7 +168,6 @@
 export default {
   data() {
     return {
-      name:'',
       showUserDropDown:'',
     }
   },
@@ -200,7 +199,6 @@ export default {
     },
   mounted() {
     var userName = localStorage.getItem('username');
-    this.name = userName
     if(userName){
       this.showUserDropDown = userName
     }
