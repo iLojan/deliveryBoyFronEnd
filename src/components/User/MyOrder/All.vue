@@ -16,7 +16,7 @@
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                   Price
+                                    Price
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -26,11 +26,10 @@
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     To
                                 </th>
-
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Item
-                                </th>
+                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Item
+                            </th>
                                 <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 
@@ -38,41 +37,42 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(item, index) in allOrders" :key="index">
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm ">
+                            <tr v-for="(item, index) in order" :key="index" class="text-left">
+                                <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm ">
                                     <div class="flex items-center">
                                       
                                         <div class="ml-3">
-                                            <p class="text-gray-900 whitespace-no-wrap">
+                                            <p class="text-gray-900 whitespace-no-wrap text-left text-sm">
                                                 {{item.id}}
                                             </p>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap text-center">{{item.price}}</p>
+                                <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap text-left text-sm">
+                                        {{item.price}} LKR
+                                    </p>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm ">
-                                    <div class="flex items-center float-right">
-                                      
-                                        <p class="text-gray-900 whitespace-no-wrap text-center">{{item.fromLocation}}</p>
-                                    </div>
+                                <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap text-left text-sm">
+                                        {{item.fromLocation}}
+                                    </p>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap text-center">
-                                    {{item.toLocation}}
+                                <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap text-left text-sm">
+                                        {{item.toLocation}}
+                                    </p>
+                                </td>
+                                <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap text-left text-sm">
+                                        {{item.material}}
                                     </p>
                                 </td>
                              
-                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap text-center">
-                                    {{item.material}}
-                                    </p>
-                                </td>
                                 
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-primary-color">Manage</td>
+                                <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm text-primary-color">Manage</td>
                             </tr>
-                          
+                            
                         </tbody>
                     </table>
                 </div>
@@ -85,24 +85,22 @@
 export default {
     data() {
         return {
-            allOrders:'',
+            order:'',
         }
     },
     methods: {
-        getAllOrders(){
-            const path = "http://localhost:8080/api/v1/orders";
-             axios.get(path,{ withCredentials: true })
-            .then(res => {
-                this.allOrders = res.data;
-               
-            })
-            .catch(error => {
-                console.log("updateAccessTokenStatus", error)
-            })
-        }
+        getOrderByEmail(){
+      let userId = localStorage.getItem("email")
+      let path = "/api/v1/orderByEmail/"+userId;
+    axios.get(path,{ withCredentials: true })
+    .then(res=>{
+      this.order = res.data
+      console.log(res);
+    })
+    },
     },
     mounted() {
-        this.getAllOrders();
+        this.getOrderByEmail();
     },
 }
 </script>

@@ -81,7 +81,7 @@
               <div class="">
                 <label>Select a river </label>
 
-                <select name="" class="input border py-2 w-full mb-3" id="">
+                <select name="" class="input border py-2 w-full mb-3" id="" v-model="order.driverId">
                   <option v-for="(item, index) in driverList" :key="index" :value="item.id">
                     {{ item.username }}
                   </option>
@@ -177,6 +177,8 @@ export default {
         receiverEmail: '',
         status: "",
         fromLocation: "",
+        userId:"",
+        driverId:'',
         toLocation: "",
         sendUser: null,
         userDetails: null
@@ -314,6 +316,7 @@ export default {
     this.getAllDriver();
     this.locatorButtonPressed();
     this.autocompleteInit();
+    this.order.userId = localStorage.getItem("email")
   },
 }
   </script>

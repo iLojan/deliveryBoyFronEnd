@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="py-8 hidden">
+        <div class="py-8">
             <div>
                 <div class="tit text-h2 font-medium mb-3">Recent Orders</div>
             </div>
@@ -37,16 +37,20 @@
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Placed On
+                                    Price
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Items
+                                    From
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Total
+                                    To
                                 </th>
+                                <th
+                                class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Item
+                            </th>
                                 <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 
@@ -54,72 +58,42 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm ">
+                            <tr v-for="(item, index) in order" :key="index" class="text-left">
+                                <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm ">
                                     <div class="flex items-center">
                                       
                                         <div class="ml-3">
-                                            <p class="text-gray-900 whitespace-no-wrap">
-                                                20612
+                                            <p class="text-gray-900 whitespace-no-wrap text-left text-sm">
+                                                {{item.id}}
                                             </p>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap text-center">05/01/2022</p>
+                                <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap text-left text-sm">
+                                        {{item.price}} LKR
+                                    </p>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm ">
-                                    <div class="flex items-center float-right">
-                                      
-                                        <div class="flex-shrink-0 w-10 h-10 hidden sm:table-cell">
-                                            <img class="w-full h-full rounded-full"
-                                                src="https://images.unsplash.com/photo-1601046668428-94ea13437736?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2167&q=80"
-                                                alt="" />
-                                        </div>
-                                    </div>
+                                <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap text-left text-sm">
+                                        {{item.fromLocation}}
+                                    </p>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap text-center">
-                                    Rs. 1,455
+                                <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap text-left text-sm">
+                                        {{item.toLocation}}
+                                    </p>
+                                </td>
+                                <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap text-left text-sm">
+                                        {{item.material}}
                                     </p>
                                 </td>
                              
                                 
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-primary-color">Manage</td>
+                                <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm text-primary-color">Manage</td>
                             </tr>
-                            <tr>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <div class="flex items-center">
-                                      
-                                        <div class="ml-3">
-                                            <p class="text-gray-900 whitespace-no-wrap">
-                                                20612
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap text-center">05/01/2022</p>
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm ">
-                                    <div class="flex items-center float-right">
-                                      
-                                        <div class="flex-shrink-0 w-10 h-10 hidden sm:table-cell">
-                                            <img class="w-full h-full rounded-full"
-                                                src="https://images.unsplash.com/photo-1601046668428-94ea13437736?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2167&q=80"
-                                                alt="" />
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap text-center">
-                                    Rs. 1,455
-                                    </p>
-                                </td>
-                             
-                                
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm  text-primary-color">Manage</td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -128,17 +102,30 @@
     </div>
 </template>
 <script>
+    import axios from "axios";
 export default {
     data() {
         return {
             name:'',
-            email:''
+            email:'',
+            order:''
         }
      }, 
+     methods: {
+        getOrderByEmail(){
+      let userId = localStorage.getItem("email")
+      let path = "/api/v1/orderByEmail/"+userId;
+    axios.get(path,{ withCredentials: true })
+    .then(res=>{
+      this.order = res.data
+      console.log(res);
+    })
+    },
+     },
      mounted() {
             this.name = localStorage.getItem('username');
             this.email = localStorage.getItem('email');
-        
+        this.getOrderByEmail()
     },
 }
 </script>

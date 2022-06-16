@@ -31,7 +31,7 @@
                       <ul class="summary__left-bottomlist">
                         <li class="summary__left-bottomlistitem">
                           <span>Route:</span>
-                          <span>{{order.fromLocation}} - {{order.toLocation}}</span>
+                          <span class="w-4/6">{{order.fromLocation}} - {{order.toLocation}}</span>
                         </li>
                         <li class="summary__left-bottomlistitem">
                           <span>Type of shipment:</span>
@@ -76,16 +76,16 @@
                       </div>
                       <ul class="summary__left-bottomlist">
                         <li class="summary__left-bottomlistitem">
-                          <span>Surname and name:</span>
-                          <span>{{order.receiverName}}</span>
+                          <span>Name:</span>
+                          <span>{{user.name}}</span>
                         </li>
-                        <li class="summary__left-bottomlistitem">
+                        <!-- <li class="summary__left-bottomlistitem">
                           <span>Phone number:</span>
                           <span>{{order.receiverPhoneNumber}}</span>
-                        </li>
+                        </li> -->
                         <li class="summary__left-bottomlistitem">
                           <span>E-mail:</span>
-                          <span>{{order.receiverEmail}}</span>
+                          <span>{{user.email}}</span>
                         </li>
                         <li class="summary__left-bottomlistitem">
                           <span>Address:</span>
@@ -97,9 +97,7 @@
                 </div>
               </div>
             </section>
-            <div class="flex">
-              <button>print</button>
-            </div>
+         
           </main>
     </div>
 </template>
@@ -109,6 +107,7 @@ export default {
   data() {
     return {
       order:'',
+      user:'',
     }
   },
   methods: {
@@ -120,12 +119,23 @@ export default {
       this.order = res.data
       console.log(res);
     })
+    },
+    getUser(id){
+      console.log("id",id);
+      let userId = localStorage.getItem("email")
+      let path = "/api/auth/getUser/"+userId;
+    axios.get(path,{ withCredentials: true })
+    .then(res=>{
+      this.user = res.data
+      console.log(res);
+    })
     }
   },
   mounted() {
     console.log("query",this.$route.query);
     let id = this.$route.query
     this.getOrder(id)
+    this.getUser();
  
   },
     
