@@ -26,7 +26,7 @@
                   <div class="summary__left-bottom summary__left-bottom--confirmation">
                     <div class="summary__left-bottomitem">
                       <div class="summary__left-bottomtitle">
-                        Order
+                        Package details
                       </div>
                       <ul class="summary__left-bottomlist">
                         <li class="summary__left-bottomlistitem">

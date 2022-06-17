@@ -35,7 +35,7 @@
               </div>
               <div class="">
                 <label for="">Enter approx weight in KG</label>
-                <select  v-model="order.weight" name="" class="input border py-2 w-full mb-3" id="">
+                <select  v-model="order.weight" name="" class="input border py-3 w-full mb-3" id="">
                   <option value="1">
                     0-1
                   </option>
@@ -50,11 +50,11 @@
                   </option>
                 </select>
               </div>
-              <button  class="mb-3 border py-2 w-full px-3 rounded  font-medium " data-bs-toggle="modal"
+              <button  class="mb-3 border text-h2-font py-3 w-full px-3 rounded  font-medium text- " data-bs-toggle="modal"
               data-bs-target="#exampleModalLg">
-              <span v-if="order.price">Total is {{ order.price }} LKR</span>
+              <span v-if="order.price">Total is <b>{{ order.price }} LKR</b> </span>
 
-              <span v-else>Select parcel type</span>
+              <span v-else>Select delivery type</span>
             </button>
             </div>
             <!--  -->
@@ -79,7 +79,7 @@
               </div>
 
               <div class="">
-                <label>Select a river </label>
+                <label>Select a driver </label>
 
                 <select name="" class="input border py-2 w-full mb-3" id="" v-model="order.driverId">
                   <option v-for="(item, index) in driverList" :key="index" :value="item.id">
@@ -99,7 +99,7 @@
 
 
               <button class="mb-3 border   py-2 w-full px-3 rounded bg-primary-color text-white "
-                @click="orderNow()">Order Now</button>
+                @click="orderNow()">Send now </button>
             </div>
           </div>
 
@@ -120,7 +120,7 @@
               class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLgLabel">
 
-                Select parcel type
+                Select delivery type
 
               </h5>
               <button type="button"
