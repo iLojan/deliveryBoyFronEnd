@@ -77,8 +77,8 @@
                               aria-labelledby="dropdownMenuButton1d"
                             >
                               <li>
-                                
-                                <router-link  class="
+                                {{checkRole}}
+                                <router-link v-if="checkRole ==='ROLE_USER'"  class="
                                 dropdown-item
                                 text-sm
                                 py-2
@@ -91,6 +91,20 @@
                                 text-gray-700
                                 hover:bg-gray-100
                               " to="/user">My Order</router-link>
+                            
+                                <router-link v-if="checkRole ==='ROLE_DRIVER'"  class="
+                                dropdown-item
+                                text-sm
+                                py-2
+                                px-4
+                                font-normal
+                                block
+                                w-full
+                                whitespace-nowrap
+                                bg-transparent
+                                text-gray-700
+                                hover:bg-gray-100
+                              " to="/driver">My Account</router-link>
                               </li>
                               <li>
                                 <a
@@ -182,6 +196,9 @@ export default {
     }
   },
   computed:{
+    checkRole(){
+    return localStorage.getItem('role')
+    },
     checkUserName(){
       return localStorage.getItem('username')
     },

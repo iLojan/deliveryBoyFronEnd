@@ -80,12 +80,15 @@
 
               <div class="">
                 <label>Select a driver </label>
+                  <select class="input border py-2 w-full mb-3" v-model="order.driverId">
+                    <option v-for="(item, index) in driverList" :key="index" :value="item.id">{{ item.name }} =
+                      (<span class="text-sm text-gray-100" v-for="(price,i) in item.driverPrices" :key="i">
+                        {{price.price}},
+                      </span>)
+                    </option>
+                  </select>
 
-                <select name="" class="input border py-2 w-full mb-3" id="" v-model="order.driverId">
-                  <option v-for="(item, index) in driverList" :key="index" :value="item.id">
-                    {{ item.username }}
-                  </option>
-                </select>
+           
               </div>
             </div>
             <div class="enter Details">
@@ -231,7 +234,7 @@ export default {
       const path = "api/auth/getAllUser";
       axios.get(path, { withCredentials: true })
         .then(res => {
-          this.driverList = res.data.filter(item => item.roles[0].name === "ROLE_DRIVER");
+          this.driverList = res.data.filter(item => item.roles === "ROLE_DRIVER");
 
         })
         .catch(error => {

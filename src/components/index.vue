@@ -207,6 +207,7 @@
 
 </template>
 <script>
+import axios from "axios";
   import LoginPopup from './LoginPopup.vue'
   export default {
     //
@@ -243,7 +244,17 @@
       showEmailPopup(e) {
         console.log("event", e);
         this.showEmail = false
-      }
+      },
+        getpriceDetails(){
+            const path = "/api/v1/price";
+             axios.get(path,{ withCredentials: true })
+            .then(res => {                           
+                console.log("setAccessToken",res)
+            })
+            .catch(error => {
+                console.log("updateAccessTokenStatus", error)
+            })
+        }
 
     },
     watch: {
@@ -254,6 +265,7 @@
       }
     },
     mounted() {
+      this.getpriceDetails();
       this.$store.dispatch("loginStatus", localStorage.getItem('email'))
       // const email = localStorage.getItem('email');
       // console.log("email",email);

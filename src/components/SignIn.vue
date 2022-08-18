@@ -52,7 +52,7 @@ export default {
                 localStorage.setItem('email', res.data.email);
                 localStorage.setItem('username', res.data.username);
                 localStorage.setItem('name', res.data.name);
-                localStorage.setItem('role', res.data.roles.name);
+                localStorage.setItem('role', res.data.roles);
                 this.$store.dispatch("loginStatus", localStorage.getItem('email'))
                 this.$router.push({name:"index"})
                
