@@ -46,8 +46,10 @@ export default {
         },
         getUserDetails(email){
             console.log("logindata",this.loginData);
+            
+      let commonPath = process.env.VUE_APP_SERVER
             const path = "/api/auth/getUser/"+email;
-             axios.get(path,{ withCredentials: true })
+             axios.get(commonPath+path,{ withCredentials: true })
             .then(res => {
                 localStorage.setItem('email', res.data.email);
                 localStorage.setItem('username', res.data.username);

@@ -5,6 +5,7 @@ import Driver from "../components/driver/Driver.vue"
 import User from "../components/User/User.vue"
 import ManageAccount from "../components/User/ManageAccount.vue"
 import DriverManageAccount from "../components/driver/DriverManageAccount.vue"
+import OrderList from "../components/driver/OrderList.vue"
 import AddPrice from "../components/driver/AddPrice.vue"
 import UserProfile from "../components/User/UserProfile.vue"
 import SignInVue from '../components/SignIn.vue'
@@ -113,6 +114,11 @@ const routes = [
         path: 'DriverManageAccount',
         name: 'DriverManageAccount',
         component: DriverManageAccount
+      },
+      {
+        path: 'order-list',
+        name: 'order-list',
+        component: OrderList
       },
       {
         // add-price

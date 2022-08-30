@@ -113,8 +113,9 @@ export default {
   methods: {
     getOrder(id){
       console.log("id",id);
+      let commonPath = process.env.VUE_APP_SERVER
       let path = "/api/v1/orderById/"+id.id;
-    axios.get(path,{ withCredentials: true })
+    axios.get(commonPath+path,{ withCredentials: true })
     .then(res=>{
       this.order = res.data
       console.log(res);
@@ -123,8 +124,9 @@ export default {
     getUser(id){
       console.log("id",id);
       let userId = localStorage.getItem("email")
+      let commonPath = process.env.VUE_APP_SERVER
       let path = "/api/auth/getUser/"+userId;
-    axios.get(path,{ withCredentials: true })
+    axios.get(commonPath+path,{ withCredentials: true })
     .then(res=>{
       this.user = res.data
       console.log(res);
