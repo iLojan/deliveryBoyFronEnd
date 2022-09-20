@@ -101,8 +101,8 @@
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModalLg"
               >
-                <span v-if="order.price"
-                  >Total is <b>{{ order.price }} LKR</b>
+                <span v-if="order.standardPrice"
+                  >Total is <b>{{ order.standardPrice }} LKR</b>
                 </span>
 
                 <span v-else>Select delivery type</span>
@@ -111,7 +111,7 @@
             <!--  -->
           </div>
 
-          <div class="" v-if="order.price">
+          <div class="" v-if="order.standardPrice">
             <div class="">
               <div class="">
                 <label>Receiver name</label>
@@ -186,7 +186,7 @@
       <!-- end -->
       <!-- DriverDiv  -->
       <div v-if="showDriverDiv">
-      <div class="bg-white shadow-md rounded-lg py-4 px-3 w-4/5 m-auto">
+      <div class="bg-white  rounded-lg py-4 px-3 w-4/5 m-auto">
        <div class="" >
         <label for="" class="font-medium text-h3-font mb-4 mt-2"
           >Select Driver</label
@@ -198,29 +198,37 @@
               flex
               items-center
               rounded-md
-              w-28
+              w-auto
               h-28
               mr-2
               flex-col
               p-3
+             cursor-pointer
+             hover:bg-gray-300
             "
             v-for="(item, index) in driverList"
             :key="index"
             :value="item.id"
             @click="setDrive(item)"
+            :class="item.id === selectedUserId? 'bg-gray-600 text-white':'' "
           >
-            <label class="font-medium text-p1-font mb-2">{{ item.name }}</label>
+            <label class="font-medium text-p1-font mb-2">{{ item.name }}{{order.id}}-{{item.driverPrices.orderId}}</label>
+             <span
+              class="font-normal text-p2-font mb-2"
+            >
+          standardPrice {{ order.standardPrice }}</span
+            >
             <span
               class="font-normal text-p2-font mb-2"
-              v-if="item.driverPrices?.price"
+              v-if="item.driverPrices?.price && order.id === item.driverPrices.orderId"
             >
-              price{{ item.driverPrices?.price }}</span
+              additional price  {{ item.driverPrices?.price }}</span
             >
             <span
               class="font-normal text-p2-font"
-              v-if="item.driverPrices?.hour"
+              v-if="item.driverPrices?.hour && order.id === item.driverPrices.orderId"
             >
-              hour{{ item.driverPrices?.hour }}</span
+              hour {{ item.driverPrices?.hour }}</span
             >
           </div>
         </div>
@@ -230,18 +238,18 @@
                 class="
                   mb-3
                   border
-                  py-2
+                  py-3
                   w-32
                   ml-auto
                   mt-3
-                  px-3
+                  px-4
                   rounded
                   bg-primary-color
                   text-white
                 "
-                @click="updateOrder()"
+                @click="updateOrder(true)"
               >
-                Order
+                Order now
               </button>
       </div>
        
@@ -364,6 +372,7 @@ export default {
         { lant: 7.7053815, lng: 81.7141455 },
       ],
       order: {
+        id:'',
         material: "Documents",
         weight: "1",
         total: 0,
@@ -384,6 +393,7 @@ export default {
         updatedAt: new Date(),
         userDetails: null,
       },
+      selectedUserId:0,
       showAler: false,
       driverList: "",
     };
@@ -395,12 +405,20 @@ export default {
   },
   methods: {
     setDrive(driver){
+      this.selectedUserId = driver.id;
      this.order.driverId = driver.id
      this.order.driverExtraPrice = driver.price;
-     this.order.standardPrice = this.order.standardPrice + driver.price
+     if(driver.driverPrices.price && this.order.id === driver.driverPrices.orderId){
+   this.order.total = this.order.standardPrice + driver.driverPrices.price
+     }
+     else{
+      this.order.total = this.order.standardPrice
+     }
+  
+     console.log(driver,"this.order",this.order);
     },
     selectVehile(e) {
-      this.order.price = e.price;
+      this.order.standardPrice = e.price;
       console.log("event price", e);
       this.orderNow();
     },
@@ -424,6 +442,7 @@ export default {
         .post(path, this.order, { withCredentials: true })
         .then((res) => {
           console.log(res);
+          this.order.id = res.data.id
           // this.showAler = true;
         })
         .catch((error) => {
@@ -432,19 +451,22 @@ export default {
     },
     next() {
       this.getAllDriver();
-      this.updateOrder();
+      this.updateOrder(false);
       this.showDriverDiv = true;
     },
-    updateOrder() {
+    updateOrder(status) {
       console.log("orderNow", this.order);
       const path = "api/v1/addOrder";
       axios
         .post(path, this.order, { withCredentials: true })
         .then((res) => {
           console.log(res);
-          // this.showAler = true;
+          if(status){
+             this.showAler = true;
           // this.$router.push("/user")
-          // this.$router.push({ path: 'confirmation', query: { id: res.data.id } })
+          this.$router.push({ path: 'confirmation', query: { id: res.data.id } })
+          }
+         
         })
         .catch((error) => {
           console.log("updateAccessTokenStatus", error);

@@ -10,6 +10,8 @@ export default createStore({
         authenticated: false,
         sessionId: null,
         accessToken: "none",
+        userName:"",
+        userRole:"",
         loginStatus:false,
         refreshToken: "none",
         commonPath:process.env.VUE_APP_LOGIN,
@@ -108,6 +110,13 @@ export default createStore({
         },
         getloginStatus(state){
             return state.loginStatus
+        },
+        getUserName(state){
+            let user ={
+                userName : state.userName,
+                role : state.userRole
+            }
+            return user;
         }
     }
 })

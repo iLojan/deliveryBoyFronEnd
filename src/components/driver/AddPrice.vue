@@ -4,7 +4,6 @@
         
           <div class="flex justify-between items-center mb-5">
             <h2 class="font-semibold text-primary-font text-h2-font">Add additional charge {{selectedOrderId}}</h2>
-            <button type="" class="bg-secondary-color py-2 px-4 text-white rounded-lg" @click="addPrice()">Add Price </button>
         </div>
         <!-- {{driver.driverPrices}} -->
         <div class="" >
@@ -13,21 +12,25 @@
                     <div class="">
                     <label>Price</label>
                     <input v-model="driverPrices.price" type="text" placeholder="price" class="input border border-gray-300 py-2 w-full mb-3"  />
+                    
                     </div>
                 </div>
              
                 <div class="col-span-4">
                     <div class="">
-                    <label>time</label>
+                    <label>hour</label>
                     <input v-model="driverPrices.hour" type="text" placeholder="hour" class="input border border-gray-300 py-2 w-full mb-3" />
+                  
                     </div>
                 </div>
             </div>
         </div>
          <div class="flex justify-end items-center mb-5">
-            <button type="" class="bg-primary-color py-2 px-4 text-white rounded-lg" @click="update()">Save</button>
+            <button type="" 
+            :disabled="driverPrices.price <= 0 && driverPrices.hour <= 0" 
+            :class="driverPrices.price <= 0 || driverPrices.hour <= 0?'cursor-not-allowed opacity-25':''"  class="bg-primary-color py-2 px-4 text-white rounded-lg" data-bs-dismiss="modal" @click="update()">Save</button>
         </div>
-      
+        
     </div>
     
     
@@ -41,16 +44,18 @@ export default {
     return {
       driver: {  },
        driverPrices:{
-price:0,
-hour:"",
-orderId:0
+          price:0,
+          hour:0,
+          orderId:0
       },
+      showPriceError:false,
+      showHourError:false
     };
   },
   methods: {
     addPrice(){
-let priceObj =   {"price": "", "OrderId": "", "hour": "" }
-this.driver.driverPrices.push(priceObj)
+      let priceObj =   {"price": "", "OrderId": "", "hour": "" }
+      this.driver.driverPrices.push(priceObj)
     },
     getOrderByEmail() {
       let userId = localStorage.getItem("email");
@@ -77,12 +82,21 @@ this.driver.driverPrices.push(priceObj)
       this.driver.driverPrices.orderId = this.selectedOrderId;
       this.driver.driverPrices.price = this.driverPrices.price;
       this.driver.driverPrices.hour = this.driverPrices.hour
-       let commonPath = process.env.VUE_APP_SERVER
+      if(this.driverPrices.price <= 0){
+        this.showPriceError = true
+      }
+      else if(this.driverPrices.hour <= 0){
+        this.showHourError = true
+      }
+      else{
+         let commonPath = process.env.VUE_APP_SERVER
        let path = "/api/auth/putUser";
        let driver = {user:this.driver}
       axios.post(commonPath+path,driver, { withCredentials: true }).then((res) => {
             console.log(res);
       });
+      }
+      
     }
   },
   mounted() {

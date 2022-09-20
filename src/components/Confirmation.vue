@@ -94,10 +94,13 @@
                       </ul>
                     </div>
                   </div>
-                </div>
+                  <div class="flex w-full justify-center">
+                      <router-link class="bg-primary-color p-3 rounded-xl text-white mt-3" to="/user">go to dashboard</router-link>
+               
+                  </div>
+           </div>
               </div>
             </section>
-         
           </main>
     </div>
 </template>

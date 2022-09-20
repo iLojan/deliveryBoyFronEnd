@@ -116,13 +116,13 @@ const routes = [
         component: DriverManageAccount
       },
       {
-        path: 'order-list',
+        path: '',
         name: 'order-list',
         component: OrderList
       },
       {
         // add-price
-        path:'',
+        path:'add-price',
         name:'addPrice',
         component:AddPrice
       },

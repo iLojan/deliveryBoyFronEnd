@@ -50,7 +50,7 @@
                               data-bs-toggle="dropdown"
                               aria-expanded="false"
                             >
-                              {{showUserDropDown}}
+                              {{getUserDetails.userName}}
                             
                             </button>
                             <ul
@@ -77,8 +77,7 @@
                               aria-labelledby="dropdownMenuButton1d"
                             >
                               <li>
-                                {{checkRole}}
-                                <router-link v-if="checkRole ==='ROLE_USER'"  class="
+                                <router-link v-if="getUserDetails.role ==='ROLE_USER'"  class="
                                 dropdown-item
                                 text-sm
                                 py-2
@@ -205,7 +204,22 @@ export default {
     getLogin(){
             return this.$store.getters.getloginStatus
         },
+        getUserDetails(){
+           let user ={
+                userName : "",
+                role : ""
+            }
+          if(this.$store.getters.getUserName.userName){
+               user.userName = this.$store.getters.getUserName.userName
+             user.role = this.$store.getters.getUserName.role
+          }
+          else{
+            user.userName = localStorage.getItem('username');
+             user.role = localStorage.getItem('role')
+          }
 
+ return user;
+}
   },
   watch: {
       hideEmail(newCriteria, oldCriteria) {

@@ -51,6 +51,8 @@ export default {
             const path = "/api/auth/getUser/"+email;
              axios.get(commonPath+path,{ withCredentials: true })
             .then(res => {
+                this.$store.state.userName = res.data.username
+                this.$store.state.userRole = res.data.roles
                 localStorage.setItem('email', res.data.email);
                 localStorage.setItem('username', res.data.username);
                 localStorage.setItem('name', res.data.name);

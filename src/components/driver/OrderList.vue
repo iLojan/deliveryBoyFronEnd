@@ -32,16 +32,17 @@
                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 create date
               </th>
-                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                <th scope="col" class="text-sm font-medium w-40 text-gray-900 px-6 py-4 text-left">
                 Add Price
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(order, index) in orders" :key="index" class="bg-gray-100 border-b">
+            <tr v-for="(order, index) in orders" :key="index"  class="bg-gray-50 border-b">
               <td class="px-6 py-4  text-sm font-medium text-gray-900">{{order.id}}</td>
               <td class="text-sm text-gray-900 w-64 font-light px-6 py-4 ">
-                {{order.fromLocation}}
+                {{order.fromLocation}} 
+                <!-- {{getTime(order.updatedAt)}} -->
               </td>
               <td class="text-sm text-gray-900 w-64 font-light px-6 py-4 ">
                 {{order.toLocation}}
@@ -61,9 +62,9 @@
                <td class="text-sm text-gray-900 font-light px-6 py-4 ">
                 {{getDate(order.updatedAt)}}
               </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 ">
-               <button @click="setOrder(order.id)" class="mb-3 border text-p2-font py-3 w-full px-3 rounded  font-medium text- " data-bs-toggle="modal"
-              data-bs-target="#exampleModalLg"> add driver price </button>
+              <td class="text-sm text-gray-900 font-light px-2 w-40 py-4 ">
+               <button @click="setOrder(order.id)" class="mb-3 border text-p2-font py-2 bg-secondary-color text-white w-full px-1 rounded   font-medium text- " data-bs-toggle="modal"
+              data-bs-target="#exampleModalLg"> add price </button>
               </td>
             </tr>
             
@@ -119,8 +120,16 @@ export default {
          getDate(date){
           let dt,time;
           dt = date.slice(0,10).replace(/-/g,'/')
-           time = date.slice(11,16).replace(/-/g,'/')
+           time = date.slice(11,19).replace(/-/g,'/')
           return dt +" "+ time
+         },
+           getTime(date){
+            let newDate = new Date();
+            console.log(newDate,"   ",newDate.getMinutes(),"date",newDate.getHours(),'===');
+          let dt,time;
+          dt = newDate.getHours()
+           time = date.slice(11,19).replace(/-/g,'/')
+          return dt +" === "+ time
          },
         getOrderByEmail(){
             let commonPath = process.env.VUE_APP_SERVER

@@ -12,16 +12,19 @@
             <div class="flex justify-center">
 
                 <div class="py-3 px-4 border rounded-lg text-center mr-2 cursor-pointer"
+                data-bs-dismiss="modal"
                     @click="selectVehile('Normal',price('Normal'))">
                     <span class="font-semibold">Normal</span>
                     <label class="text-primary-color block mt-2"> {{price("Normal")}} LKR</label>
                 </div>
                 <div class="py-3 px-4 border rounded-lg text-center mr-2 cursor-pointer"
+                data-bs-dismiss="modal"
                     @click="selectVehile('SameDayCourier',price('SameDayCourier'))">
                     <span class="font-semibold">Same Day Courier</span>
                     <label class="text-primary-color block mt-2"> {{price("SameDayCourier")}} LKR</label>
                 </div>
                 <div class="py-3 px-4 border rounded-lg text-center mr-2 cursor-pointer"
+                data-bs-dismiss="modal"
                     @click="selectVehile('OvernightShipping',price('OvernightShipping'))">
                     <span class="font-semibold">Overnight Shipping</span>
                     <label class="text-primary-color block mt-2"> {{price("OvernightShipping")}} LKR</label>
