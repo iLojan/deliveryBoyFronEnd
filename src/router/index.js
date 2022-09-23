@@ -4,6 +4,7 @@ import Order from "../components/Order.vue"
 import Driver from "../components/driver/Driver.vue"
 import User from "../components/User/User.vue"
 import ManageAccount from "../components/User/ManageAccount.vue"
+import DriverRating from "../components/User/DriverRating.vue"
 import DriverManageAccount from "../components/driver/DriverManageAccount.vue"
 import OrderList from "../components/driver/OrderList.vue"
 import AddPrice from "../components/driver/AddPrice.vue"
@@ -92,6 +93,11 @@ const routes = [
         path: '',
         name: 'manageAccount',
         component: ManageAccount
+      },
+      {
+        path:"add-rating",
+        name:"addRating",
+        component:DriverRating
       },
       {
         path:'all-order',

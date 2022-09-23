@@ -188,7 +188,7 @@
       <div v-if="showDriverDiv">
       <div class="bg-white  rounded-lg py-4 px-3 w-4/5 m-auto">
        <div class="" >
-        <label for="" class="font-medium text-h3-font mb-4 mt-2"
+        <label for="" class="font-medium text-h2-font mb-4 mt-2"
           >Select Driver</label
         >
         <div class="flex items-center">
@@ -196,12 +196,12 @@
             class="
               border
               flex
-              items-center
               rounded-md
-              w-auto
-              h-28
+              w-1/5
+              h-36
               mr-2
               flex-col
+              items-start
               p-3
              cursor-pointer
              hover:bg-gray-300
@@ -212,24 +212,26 @@
             @click="setDrive(item)"
             :class="item.id === selectedUserId? 'bg-gray-600 text-white':'' "
           >
-            <label class="font-medium text-p1-font mb-2">{{ item.name }}{{order.id}}-{{item.driverPrices.orderId}}</label>
-             <span
+          <div class=" flex flex-col my-auto">
+              <div class="mb-2">
+             <label class="font-medium text-h2-font ">{{ item.name }}-{{item.id}}-{{item.driverPrices.orderId}}</label>
+            <span class="font-normal text-sm text-secondary-font" v-if="item?.driverRatings.length > 0">rating is {{showRating(item?.driverRatings)}} ({{item?.driverRatings.length}})</span>
+          </div>
+          <label class="font-normal text-p2-font mb-2">
+          standardPrice <strong>{{ order.standardPrice }}</strong> 
+          </label>
+            <label
               class="font-normal text-p2-font mb-2"
-            >
-          standardPrice {{ order.standardPrice }}</span
-            >
-            <span
-              class="font-normal text-p2-font mb-2"
-              v-if="item.driverPrices?.price && order.id === item.driverPrices.orderId"
-            >
-              additional price  {{ item.driverPrices?.price }}</span
-            >
-            <span
+              v-if="item.driverPrices?.price && order.id === item.driverPrices.orderId">
+              additional price <strong>{{ item.driverPrices?.price }}</strong> 
+            </label>
+            <label
               class="font-normal text-p2-font"
-              v-if="item.driverPrices?.hour && order.id === item.driverPrices.orderId"
-            >
-              hour {{ item.driverPrices?.hour }}</span
-            >
+              v-if="item.driverPrices?.hour && order.id === item.driverPrices.orderId">
+              hour <strong>{{ item.driverPrices?.hour }}</strong>
+            </label>
+          </div>
+        
           </div>
         </div>
       </div>
@@ -395,7 +397,14 @@ export default {
       },
       selectedUserId:0,
       showAler: false,
-      driverList: "",
+      driver:{
+rating:""
+      },      
+driverList: "",
+      rating:0,
+      total:0,
+      ratingCal:0,
+      ratingList:[]
     };
   },
   computed: {
@@ -404,6 +413,55 @@ export default {
     },
   },
   methods: {
+    showRating(ratingList) {
+      console.log("ratingList", ratingList);
+    let ratingCal = 0,total =0;
+      if (ratingList.length > 0) {
+        console.log("ratingList",ratingList.length);
+        for (let index = 0; index < ratingList.length; index++) {
+                     total += ratingList[index].rating;
+        }
+        // ratingList.forEach((rate) => {
+        //   total += rate.rating;
+        // });
+        ratingCal = (total / ratingList.length).toFixed(1);
+      }
+      return ratingCal;
+    },
+    setDriverIdToRating(id){
+      // this.getRating(id);
+    },
+            getRating(id){                
+                 let commonPath = process.env.VUE_APP_SERVER
+                 let rating;
+                const path = "/api/auth/getRating/"+id;
+                axios.get(commonPath+path,{ withCredentials: true })
+                .then(res => {
+                  console.log("res.data.rating",res.data.length);
+                    // this.rating = this.calculateRating(res.data) 
+                    // this.ratingList.push({rating:this.rating,id:id})  
+                    if(res.data.length > 0 ){
+                      let arra=[];
+                      
+                    res.data.forEach(rate => { arra.push(rate.rating) });     
+                  //  arra.reduce(function (curr, prev) { return curr + prev; })
+    this.rating   = 10; 
+                     console.log("rating",arra )
+                    }
+                    else{
+                      this.rating = 0
+                    }       
+                })                
+                return this.rating;
+            },
+            calculateRating(rating){
+                // if(rating.length >0 ){
+                //     rating.forEach(rate => { this.total += rate.rating });
+                //     this.ratingCal = (this.total/rating.length).toFixed(1)
+                // }
+              return rating
+            },
+
     setDrive(driver){
       this.selectedUserId = driver.id;
      this.order.driverId = driver.id
@@ -473,13 +531,14 @@ export default {
         });
     },
     getAllDriver() {
-      const path = "api/auth/getAllUser";
+      const path = "api/auth/getUserByRole/ROLE_DRIVER";
       axios
         .get(path, { withCredentials: true })
         .then((res) => {
-          this.driverList = res.data.filter(
-            (item) => item.roles === "ROLE_DRIVER"
-          );
+          this.driverList = res.data;
+          // this.driverList = res.data.filter(
+          //   (item) => item.roles === "ROLE_DRIVER"
+          // );
         })
         .catch((error) => {
           console.log("updateAccessTokenStatus", error);
@@ -576,6 +635,20 @@ export default {
         );
       });
     },
+  },
+  
+  watch: {
+      driverList: {
+        handler: function (newData, oldData) {
+          if(newData){
+      newData.forEach(driver => {
+        this.setDriverIdToRating(driver.id)
+        console.log("driver",driver);
+      });
+          }
+        },
+        deep: true,
+      },
   },
   mounted() {
     this.locatorButtonPressed();
