@@ -43,7 +43,11 @@
                         </li>
                         <li class="summary__left-bottomlistitem">
                           <span>Total:</span>
-                          <span>{{order.price}} LKR</span>
+                          <span>{{order.total}} LKR</span>
+                        </li>
+                          <li class="summary__left-bottomlistitem">
+                          <span>Status:</span>
+                          <span>{{order.status}}</span>
                         </li>
                       </ul>
                     </div>

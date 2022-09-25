@@ -214,7 +214,7 @@
           >
           <div class=" flex flex-col my-auto">
               <div class="mb-2">
-             <label class="font-medium text-h2-font ">{{ item.name }}-{{item.id}}-{{item.driverPrices.orderId}}</label>
+             <label class="font-medium text-h2-font ">{{ item.name }}</label>
             <span class="font-normal text-sm text-secondary-font" v-if="item?.driverRatings.length > 0">rating is {{showRating(item?.driverRatings)}} ({{item?.driverRatings.length}})</span>
           </div>
           <label class="font-normal text-p2-font mb-2">
@@ -385,7 +385,7 @@ export default {
         receiverName: "",
         receiverPhoneNumber: "",
         receiverEmail: "",
-        status: "",
+        status: "pending",
         fromLocation: "",
         userId: "",
         driverId: "",

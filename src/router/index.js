@@ -133,8 +133,8 @@ const routes = [
         component:AddPrice
       },
       {
-        path: 'profile',
-        name: "profile",
+        path: 'driver-profile',
+        name: "Driverprofile",
         component: UserProfile
       }
     ]

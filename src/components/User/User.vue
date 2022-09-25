@@ -11,8 +11,8 @@
                             <div class="list p-3">
                                 <ul>
                                     <li><router-link class="text-primary-font pb-2" :to="{name:'manageAccount'}">Manage My Account</router-link></li>
-                                    <li> <router-link class="text-gray-400 cursor-not-allowed pb-2" :to="{name:'profile'}">My Profile</router-link></li>
-                                    <li><router-link class="text-gray-400 cursor-not-allowed pb-2" :to="{name:'profile'}">My Review</router-link></li>
+                                    <li> <router-link class="text-primary-font pb-2" :to="{name:'profile'}">My Profile</router-link></li>
+                                    <li><router-link class="text-primary-font pb-2" :to="{name:'addRating'}">My Review</router-link></li>
                                 </ul>
                             </div>
                         </div>
@@ -24,7 +24,6 @@
                             <div class="list p-3">
                                 <ul> 
                                     <li><router-link class="text-primary-font pb-2" :to="{name:'allOrder',params:allOrders}">All</router-link></li>
-                                    <li><router-link class="text-primary-font pb-2" to="/user/add-rating">Rating</router-link></li>
                                     <li><a href=""  class=" pb-2 text-gray-400 cursor-not-allowed">Pending</a></li>
                                     <li><a href=""  class=" pb-2 text-gray-400 cursor-not-allowed">Return</a></li>
                                     <li><a href=""  class=" pb-2 text-gray-400 cursor-not-allowed">Delivered</a></li>
