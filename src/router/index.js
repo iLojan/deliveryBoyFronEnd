@@ -7,6 +7,14 @@ import ManageAccount from "../components/User/ManageAccount.vue"
 import DriverRating from "../components/User/DriverRating.vue"
 import DriverManageAccount from "../components/driver/DriverManageAccount.vue"
 import OrderList from "../components/driver/OrderList.vue"
+import PendingOrder from "../components/driver/PendingOrder.vue"
+import ReturnOrder from "../components/driver/ReturnOrder.vue"
+import Inprogress from "../components/driver/Inprogress.vue"
+import DeliveredOrder from "../components/driver/DeliveredOrder.vue"
+import UserPendingOrder from "../components/User/MyOrder/PendingOrder.vue"
+import UserReturnOrder from "../components/User/MyOrder/ReturnOrder.vue"
+import UserInprogress from "../components/User/MyOrder/Inprogress.vue"
+import UserDeliveredOrder from "../components/User/MyOrder/DeliveredOrder.vue"
 import AddPrice from "../components/driver/AddPrice.vue"
 import UserProfile from "../components/User/UserProfile.vue"
 import SignInVue from '../components/SignIn.vue'
@@ -108,7 +116,27 @@ const routes = [
         path: 'profile',
         name: "profile",
         component: UserProfile
-      }
+      },
+      {
+        path:'my-in-progress',
+        name:'my-inprogress',
+        component:UserInprogress
+      },
+      {
+        path:'my-pending-order',
+        name:'my-pendingOrder',
+        component:UserPendingOrder
+      },      
+      {
+        path:'my-return-order',
+        name:'my-returnOrder',
+        component:UserReturnOrder
+      },      
+      {
+        path:'my-delivered-order',
+        name:'my-deliveredOrder',
+        component:UserDeliveredOrder
+      }, 
     ]
   },
   {
@@ -126,6 +154,26 @@ const routes = [
         name: 'order-list',
         component: OrderList
       },
+      {
+        path:'in-progress',
+        name:'inprogress',
+        component:Inprogress
+      },
+      {
+        path:'pending-order',
+        name:'pendingOrder',
+        component:PendingOrder
+      },      
+      {
+        path:'return-order',
+        name:'returnOrder',
+        component:ReturnOrder
+      },      
+      {
+        path:'delivered-order',
+        name:'deliveredOrder',
+        component:DeliveredOrder
+      },      
       {
         // add-price
         path:'add-price',

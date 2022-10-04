@@ -21,15 +21,15 @@
                         <!--  -->
                         <div class="">
                             <div class="title font-medium">
-                                My Order 123
+                                My Order 
                             </div>
                             <div class="list p-3">
                                 <ul> 
-                                    <li><router-link class="text-primary-font pb-2" :to="{name:'allOrder',params:allOrders}">All</router-link></li>
-                                    <li><a href=""  class=" pb-2 text-gray-400 cursor-not-allowed">Active</a></li>
-                                    <li><a href=""  class=" pb-2 text-gray-400 cursor-not-allowed">Pending</a></li>
-                                    <li><a href=""  class=" pb-2 text-gray-400 cursor-not-allowed">Return</a></li>
-                                    <li><a href=""  class=" pb-2 text-gray-400 cursor-not-allowed">Delivered</a></li>
+                                    <!-- <li><router-link class="text-primary-font pb-2" :to="{name:'allOrder',params:allOrders}">All</router-link></li> -->
+                                    <li><router-link class="text-primary-font pb-2" :to="{name:'inprogress'}">Active</router-link></li>
+                                    <li><router-link class="text-primary-font pb-2" :to="{name:'pendingOrder'}">Pending 11</router-link></li>
+                                    <li><router-link class="text-primary-font pb-2" :to="{name:'returnOrder'}">Return</router-link></li>
+                                    <li><router-link class="text-primary-font pb-2" :to="{name:'deliveredOrder'}">Delivered</router-link></li>
                                 </ul>
                             </div>
                         </div>

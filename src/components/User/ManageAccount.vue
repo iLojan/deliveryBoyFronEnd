@@ -47,6 +47,10 @@
                                     class="px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     To
                                 </th>
+                                   <th
+                                class="px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Status
+                                     </th>
                                 <th
                                 class="px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 Item
@@ -84,6 +88,35 @@
                                         {{item.toLocation}}
                                     </p>
                                 </td>
+                                  <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm">
+                                        <span
+                                                        v-if="item.status === 'New'"
+                                                        :class="item.status === 'New' ? 'text-newColor' : ''"
+                                                        >New</span
+                                                    >
+                                                    <span
+                                                        v-if="item.status === 'InProgress'"
+                                                        :class="
+                                                        item.status === 'InProgress'
+                                                            ? 'text-inProgressColor'
+                                                            : 'rr'
+                                                        "
+                                                        >Pickup</span
+                                                    >
+                                                    <span
+                                                        v-if="item.status === 'Success'"
+                                                        :class="
+                                                        item.status === 'Success' ? 'text-SuccessColor' : ''
+                                                        "
+                                                        >Delivered</span
+                                                    >
+                                                    <span
+                                                        v-if="item.status === 'Fail'"
+                                                        :class="item.status === 'Fail' ? 'text-failColor' : ''"
+                                                        >Fail</span
+                                                    >
+                                    </td>
+                              
                                 <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap text-left text-sm">
                                         {{item.material}}
@@ -91,7 +124,7 @@
                                 </td>
                              
                                 
-                                <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm text-primary-color">{{item.status}}</td>
+                               
                             </tr>
                             
                         </tbody>

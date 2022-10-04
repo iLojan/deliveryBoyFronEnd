@@ -24,6 +24,10 @@ module.exports = {
         'select-flight-b':'#66BD90',
         'toggle-color':'#D8DBE3',
         'bound-green-color':'#43946A',
+        'inProgressColor':"rgb(245 158 11)",
+        'SuccessColor':'rgb(21 128 61)',
+        'failColor':'rgb(190 18 60)',
+        'newColor':'rgb(162 28 175)',
         'litepie-primary':colors.gray
       }
       ,

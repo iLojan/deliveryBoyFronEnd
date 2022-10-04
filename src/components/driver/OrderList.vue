@@ -17,23 +17,14 @@
               <th scope="col" class="text-sm font-medium w-64 text-gray-900 px-6 py-4 text-left">
                 To
               </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Material
-              </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Distance
-              </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                Weight
-              </th>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                price
+             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Status
               </th>
                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                 create date
               </th>
                 <th scope="col" class="text-sm font-medium w-40 text-gray-900 px-6 py-4 text-left">
-                Add Price
+              
               </th>
             </tr>
           </thead>
@@ -47,24 +38,18 @@
               <td class="text-sm text-gray-900 w-64 font-light px-6 py-4 ">
                 {{order.toLocation}}
               </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 ">
-                {{order.material}}
-              </td>
-               <td class="text-sm text-gray-900 font-light px-6 py-4 ">
-                {{order.distance}}
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 ">
-                {{order.weight}}
-              </td>
-              <td class="text-sm text-gray-900 font-light px-6 py-4 ">
-                {{order.price}}
+              <td class="text-sm text-gray-900 w-64 font-light px-6 py-4 ">
+                <span v-if="order.status ==='New'" :class="order.status ==='New'?'text-newColor':''">New</span>
+                <span v-if="order.status ==='InProgress'" :class="order.status ==='InProgress'?'text-inProgressColor':'rr'">Pickup</span>
+                <span v-if="order.status ==='Success'" :class="order.status ==='Success'?'text-SuccessColor':'' ">Delivered</span>
+                <span v-if="order.status ==='Fail'" :class="order.status ==='Fail'?'text-failColor':'' ">Fail</span>
               </td>
                <td class="text-sm text-gray-900 font-light px-6 py-4 ">
                 {{getDate(order.updatedAt)}}
               </td>
               <td class="text-sm text-gray-900 font-light px-2 w-40 py-4 ">
-               <button @click="setOrder(order.id)" class="mb-3 border text-p2-font py-2 bg-secondary-color text-white w-full px-1 rounded   font-medium text- " data-bs-toggle="modal"
-              data-bs-target="#exampleModalLg"> add price </button>
+               <button @click="setOrder(order)" class="mb-3 border text-p2-font py-2 bg-secondary-color text-white w-full px-1 rounded   font-medium text- " data-bs-toggle="modal"
+              data-bs-target="#exampleModalLg"> Action </button>
               </td>
             </tr>
             
@@ -94,7 +79,7 @@
             <div class="modal-body relative p-4">
 
 
-              <AddPrice :selectedOrderId="selectedOrderId" />
+              <AddPrice :selectedOrder="selectedOrder" />
             </div>
           </div>
         </div>
@@ -109,13 +94,13 @@ export default {
     data() {
         return {
             orders:'',    
-            selectedOrderId:'',       
+            selectedOrder:'',       
             interval:null
         }
     },
     methods: {
-         setOrder(id){
-          this.selectedOrderId = id
+         setOrder(order){
+          this.selectedOrder = order
          },
          getDate(date){
           let dt,time;

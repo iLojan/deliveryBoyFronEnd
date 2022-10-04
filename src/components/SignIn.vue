@@ -54,6 +54,7 @@ export default {
                 this.$store.state.userName = res.data.username
                 this.$store.state.userRole = res.data.roles
                 localStorage.setItem('email', res.data.email);
+                localStorage.setItem('id', res.data.id);
                 localStorage.setItem('username', res.data.username);
                 localStorage.setItem('name', res.data.name);
                 localStorage.setItem('role', res.data.roles);

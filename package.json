@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.12.12",
-    "@headlessui/vue": "^1.3.0",
+    "@headlessui/vue": "^1.7.3",
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/postcss7-compat": "^2.1.2",
     "axios": "^0.24.0",
