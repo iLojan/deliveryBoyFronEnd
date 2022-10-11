@@ -1,6 +1,6 @@
 <template>
-  <div>
-     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div>
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
         <div class="overflow-hidden">
           <table class="min-w-full">
@@ -10,7 +10,7 @@
                   scope="col"
                   class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                 >
-                  Order Id
+                 Order Id
                 </th>
                 <th
                   scope="col"
@@ -24,10 +24,8 @@
                     text-left
                   "
                 >
-                  Driver Id
+                  User Id
                 </th>
-
-             
                 <th
                   scope="col"
                   class="
@@ -40,33 +38,42 @@
                     text-left
                   "
                 >
-                  Driver Name
+                  User Phone
                 </th>
                 <th
                   scope="col"
-                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                  class="
+                    text-sm
+                    font-medium
+                    w-64
+                    text-gray-900
+                    px-6
+                    py-4
+                    text-left
+                  "
                 >
                   Status
                 </th>
-                <th
-                  scope="col"
-                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                >
-                  Rating
-                </th>
+               
+               
               </tr>
             </thead>
             <tbody>
-              <tr class="bg-gray-50 border-b">
-                <td class="px-6 py-4 text-sm font-medium text-gray-900">1</td>
+              <tr
+            
+                class="bg-gray-50 border-b"
+              >
+                <td class="px-6 py-4 text-sm font-medium text-gray-900">
+                  1
+                </td>
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
                   12
                   <!--getTime(order.updatedAt)}} -->
                 </td>
-
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
-                  Lojan
+                  0758907689
                 </td>
+              
                 <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
                   <button
                     class="
@@ -74,37 +81,17 @@
                       border
                       text-p2-font
                       py-2
-                      px-4
                       bg-green-500
                       text-white
                       w-full
+                      px-1
                       rounded-full
                       font-medium
                       text-
                     "
+                    
                   >
-                    Complete
-                  </button>
-                </td>
-                <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
-                  <button
-                    class="
-                      mb-3
-                      ml-2
-                      border
-                      text-p2-font
-                      py-2
-                      bg-primary-color
-                      text-white
-                      w-full
-                      px-4
-                      rounded-full
-                      font-medium
-                      text-
-                    "
-                    @click="setRating(55)"
-                  >
-                    Rating
+                    Stetus Update
                   </button>
                 </td>
               </tr>
@@ -113,8 +100,7 @@
         </div>
       </div>
     </div>
-  </div>
-  <!--  -->
+      <!--  -->
     <TransitionRoot as="template" :show="open">
       <Dialog as="div" class="relative z-10" @close="open = false">
         <TransitionChild
@@ -207,9 +193,9 @@
       </Dialog>
     </TransitionRoot>
     <!--  -->
+    </div>
 </template>
 <script>
-import axios from "axios";
 import {
   Dialog,
   DialogPanel,
@@ -218,7 +204,7 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 export default {
-  components: {
+     components: {
     Dialog,
     DialogPanel,
     DialogTitle,
@@ -227,81 +213,11 @@ export default {
   },
   data() {
     return {
-      orders: "",
-      open: false,
-      selectedId: "",
-      driver:"",
-      comments:''
-    };
+       open: false,
+    }
   },
-  methods: {
-     getDriverById(id) {
-      let commonPath = process.env.VUE_APP_SERVER
-      let path = "/api/auth/getUserById/"+id;
-    axios.get(commonPath+path,{ withCredentials: true })
-    .then(res=>{
-        this.driver = res.data;
-      });
-    },
-        saveRating(){
-           
-                    this.driver.driverRatings.push({
-                   "rating":this.ratingValue,
-                   "comments":this.comments
-                    })
-                    console.log("driverId",this.driver.driverRatings);
-              let commonPath = process.env.VUE_APP_SERVER
-                const path = "/api/auth/putUser/";
-                let driver = {user:this.driver}
-                axios.post(commonPath+path,driver,{ withCredentials: true })
-                .then(res => {
-                    if(res.data){
-                        this.$emit("closePopup",false)
-                    }
-                })
-        },
-      closePopup(event) {
-        this.getOrderDriverId()
-      this.open = event;
-    },
-     setRating(id) {
-      this.selectedId = id;
-      this.open = true;
-      this.getDriverById(id)
-    },
-    getOrderDriverId() {
-        let userId = localStorage.getItem("email")
-      let commonPath = process.env.VUE_APP_SERVER
-      let path = "/api/v1/orderByEmail/"+userId;
-    axios.get(commonPath+path,{ withCredentials: true })
-    .then(res=>{
-        this.orders = this.filtertems(res.data);
-      });
-    },
-    filtertems(data) {
-      console.log("data", data);
-      const searchObject = data.filter((order) => order.status === "Success");
-      return searchObject;
-    },
-    getDate(date){
-        console.log("date",date);
-        let dt,time;
-        dt = date.slice(0,10).replace(/-/g,'/')
-        time = date.slice(11,19).replace(/-/g,'/')
-        return dt +" "+ time
-    },
-    getTime(date){
-        let newDate = new Date();
-        console.log(newDate,"   ",newDate.getMinutes(),"date",newDate.getHours(),'===');
-        let dt,time;
-        dt = newDate.getHours()
-        time = date.slice(11,19).replace(/-/g,'/')
-        return dt +" === "+ time
-    },
-  },
-  mounted() {
-    this.getOrderDriverId();
-  },
-};
+}
 </script>
-<style lang=""></style>
+<style lang="">
+    
+</style>

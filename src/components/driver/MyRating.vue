@@ -1,0 +1,86 @@
+<template>
+    <div>
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="overflow-hidden">
+          <table class="min-w-full">
+            <thead class="bg-white border-b">
+              <tr>
+              
+                <th
+                  scope="col"
+                  class="
+                    text-sm
+                    font-medium
+                    w-64
+                    text-gray-900
+                    px-6
+                    py-4
+                    text-left
+                  "
+                >
+                  Order Id
+                </th>
+
+             
+                <th
+                  scope="col"
+                  class="
+                    text-sm
+                    font-medium
+                    w-64
+                    text-gray-900
+                    px-6
+                    py-4
+                    text-left
+                  "
+                >
+                   User  Id
+                </th>
+                <th
+                  scope="col"
+                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                >
+                  Rating
+                </th>
+                <th
+                  scope="col"
+                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                >
+                  Comments
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-gray-50 border-b">
+                <td class="px-6 py-4 text-sm font-medium text-gray-900">1</td>
+                <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
+                  1
+                  <!--getTime(order.updatedAt)}} -->
+                </td>
+
+                <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
+                  12
+                </td>
+                <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
+                 4.5
+                </td>
+                <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
+                Test
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    </div>
+</template>
+<script>
+export default {
+    
+}
+</script>
+<style>
+    
+</style>

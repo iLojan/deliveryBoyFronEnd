@@ -122,6 +122,7 @@ export default {
 </script>
 <style >
     .active{
-        border-bottom: solid 2px #3BA3B1  ;
+        color: #3BA3B1 !important ;
+        font-weight: 600 !important;
     }
 </style>

@@ -11,10 +11,13 @@ import PendingOrder from "../components/driver/PendingOrder.vue"
 import ReturnOrder from "../components/driver/ReturnOrder.vue"
 import Inprogress from "../components/driver/Inprogress.vue"
 import DeliveredOrder from "../components/driver/DeliveredOrder.vue"
+import DriverBargain from "../components/driver/DriverBargain.vue"
 import UserPendingOrder from "../components/User/MyOrder/PendingOrder.vue"
 import UserReturnOrder from "../components/User/MyOrder/ReturnOrder.vue"
 import UserInprogress from "../components/User/MyOrder/Inprogress.vue"
+import AllRequest from "../components/User/AllRequest.vue"
 import UserDeliveredOrder from "../components/User/MyOrder/DeliveredOrder.vue"
+import UserBargain from "../components/User/UserBargain.vue"
 import AddPrice from "../components/driver/AddPrice.vue"
 import UserProfile from "../components/User/UserProfile.vue"
 import SignInVue from '../components/SignIn.vue'
@@ -22,6 +25,8 @@ import Dashboard from "../components/admin/Dashboard.vue"
 import DeliveryBoy from "../components/admin/deliveryBoy/DeliveryBoy.vue"
 import AddDeliveryBoy from "../components/admin/deliveryBoy/AddDeliveryBoy.vue"
 import Orders from "../components/admin/orders/Orders.vue"
+import DriverOrders from "../components/driver/Orders.vue"
+import MyRating from "../components/driver/MyRating.vue"
 import OderDetails from "../components/admin/orders/OrderDetails.vue"
 import adminUser from "../components/admin/users/Users.vue"
 import AdminVue from '../components/admin/Admin.vue'
@@ -64,7 +69,8 @@ const routes = [
         path: '',
         name: 'dashboard',
         component: Dashboard
-      },
+      },      
+     
       {
         path: 'delivery-boy',
         name: 'deliveryBoy',
@@ -108,6 +114,17 @@ const routes = [
         component:DriverRating
       },
       {
+        path:"all-request",
+        name:"allRequest",
+        component:AllRequest
+
+      },
+      {
+        path:"user-bargain",
+        name:"userBargain",
+        component:UserBargain
+      },
+      {
         path:'all-order',
         name:'allOrder',
         component:AllVue
@@ -145,12 +162,12 @@ const routes = [
     component: Driver,
     children: [
       {
-        path: 'DriverManageAccount',
+        path: '',
         name: 'DriverManageAccount',
         component: DriverManageAccount
       },
       {
-        path: '',
+        path: 'available-order',
         name: 'order-list',
         component: OrderList
       },
@@ -160,10 +177,25 @@ const routes = [
         component:Inprogress
       },
       {
+        path: 'driverOrders',
+        name: 'driverOrders',
+        component: DriverOrders
+      },
+      {
         path:'pending-order',
         name:'pendingOrder',
         component:PendingOrder
-      },      
+      },
+      {
+        path:"my-rating",
+        name:"MyRating",
+        component:MyRating
+      },   
+      {
+        path:'driver-bargain',
+        name:'driverBargain',
+        component:DriverBargain
+      },   
       {
         path:'return-order',
         name:'returnOrder',

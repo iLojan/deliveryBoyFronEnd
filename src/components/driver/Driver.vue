@@ -25,11 +25,16 @@
                             </div>
                             <div class="list p-3">
                                 <ul> 
-                                    <!-- <li><router-link class="text-primary-font pb-2" :to="{name:'allOrder',params:allOrders}">All</router-link></li> -->
-                                    <li><router-link class="text-primary-font pb-2" :to="{name:'inprogress'}">Active</router-link></li>
-                                    <li><router-link class="text-primary-font pb-2" :to="{name:'pendingOrder'}">Pending 11</router-link></li>
-                                    <li><router-link class="text-primary-font pb-2" :to="{name:'returnOrder'}">Return</router-link></li>
-                                    <li><router-link class="text-primary-font pb-2" :to="{name:'deliveredOrder'}">Delivered</router-link></li>
+                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'order-list'}">Available Order</router-link></li>
+                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'driverBargain'}">Bargain</router-link></li>
+                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'driverOrders'}">My Order</router-link></li>
+                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'MyRating'}">My Rating</router-link></li>
+                                    <!-- <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'allOrder',params:allOrders}">All</router-link></li> -->
+                                    <!-- <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'driverOrders'}">Orders</router-link></li> -->
+                                    
+                                    <!-- <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'pendingOrder'}">Pending</router-link></li> -->
+                                    <!-- <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'returnOrder'}">Return</router-link></li> -->
+                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'deliveredOrder'}">Delivered</router-link></li>
                                 </ul>
                             </div>
                         </div>

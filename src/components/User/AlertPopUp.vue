@@ -15,19 +15,14 @@
           leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
             <DialogPanel class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
               <div class="bg-white px-4 pt-2 pb-4 sm:p-6 sm:pb-4">
-                <div class="sm:flex sm:items-start">
+                <div class="">
                  <div class="mt-3  sm:mt-0 sm:ml-4 sm:text-left">
-                    <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">  {{
-                      alertCode == 400
-                        ? "Registration fail"
-                        : "Registration successful"
-                    }}</DialogTitle>
+               
                  <div class="sm:flex sm:items-start mt-2 items-center">
             
-                <div class="text-p1-font text-center sm:mt-0  sm:text-left">
-                
+                <div class="w-full text-center">
                   <div class="mt-2">
-                    <p class="text-sm text-gray-500">{{ alertMgs }}</p>
+                    <p class="text-sm text-gray-500 text-p1-font">{{ errorData }}</p>
                   </div>
                 </div>
               </div>
@@ -48,10 +43,10 @@
 </template>
 
 <script>
-import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
 export default {
-    props:["alertCode","alertMgs",'showAlert'],
-    components:{Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot},
+    props:['errorData'],
+    components:{Dialog, DialogPanel, TransitionChild, TransitionRoot},
     data() {
         return {
           open:true  
@@ -59,13 +54,7 @@ export default {
     },
     methods: {
         hidden(){
-            if (this.alertCode=== 400) {
-                this.$emit('hideAlert', false)
-            }
-            else{
-                this.$emit('hideAlert', false)
-                  this.$router.push({ name: "login" });
-            }
+             this.$emit('hideAlert', false)              
             
         }
         

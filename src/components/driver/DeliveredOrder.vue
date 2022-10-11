@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div>
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -170,6 +170,7 @@ export default {
   },
   methods: {
     getOrderDriverId() {
+      console.log("dfsdf");
       let driverId = localStorage.getItem("id");
       let commonPath = process.env.VUE_APP_SERVER;
       let path = "/api/v1/orderDriverId/" + driverId;

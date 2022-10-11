@@ -23,11 +23,13 @@
                             </div>
                             <div class="list p-3">
                                   <ul> 
-                                    <!-- <li><router-link class="text-primary-font pb-2" :to="{name:'allOrder',params:allOrders}">All</router-link></li> -->
-                                    <li><router-link class="text-primary-font pb-2" :to="{name:'my-inprogress'}">Active</router-link></li>
-                                    <li><router-link class="text-primary-font pb-2" :to="{name:'my-pendingOrder'}">Pending 11</router-link></li>
-                                    <li><router-link class="text-primary-font pb-2" :to="{name:'my-returnOrder'}">Return</router-link></li>
-                                    <li><router-link class="text-primary-font pb-2" :to="{name:'my-deliveredOrder'}">Delivered</router-link></li>
+                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'allRequest'}">Request</router-link></li>
+                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'userBargain'}">Bargain</router-link></li>
+                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'my-inprogress'}">Confirm</router-link></li>
+                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'my-deliveredOrder'}">Complete Order</router-link></li>
+                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'my-pendingOrder'}">Cancelled</router-link></li>
+                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'my-returnOrder'}">Return</router-link></li>
+                                    
                                 </ul>
                             </div>
                         </div>

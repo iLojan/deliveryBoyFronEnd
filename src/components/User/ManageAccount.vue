@@ -59,6 +59,7 @@
                                 class="px-4 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 
                             </th>
+                            <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,7 +124,9 @@
                                     </p>
                                 </td>
                              
-                                
+                                <th>
+                                    <button class="px-4 py-2 bg-secondary-color font-medium text-white rounded-lg" @click="updateStatus(item.id)">cancel</button>
+                                </th>
                                
                             </tr>
                             
@@ -132,16 +135,24 @@
                 </div>
             </div>
         </div>
+       <div v-if="showAlert">
+        show
+        <AlertPopUp @hideAlert="hideAlert"  :errorData="errorData"></AlertPopUp>
+       </div>
+        
     </div>
 </template>
 <script>
+import AlertPopUp from './AlertPopUp.vue'
     import axios from "axios";
 export default {
+    components:{AlertPopUp},
     data() {
         return {
             name:'',
             email:'',
-            order:''
+            order:'',
+            showAlert:false
         }
      }, 
      methods: {
@@ -151,9 +162,31 @@ export default {
       let path = "/api/v1/orderByEmail/"+userId;
     axios.get(commonPath+path,{ withCredentials: true })
     .then(res=>{
-      this.order = res.data
+      this.order = this.filtertems(res.data)
       console.log(res);
     })
+    },
+    hideAlert(){
+        this.showAlert = false;
+        this.getOrderByEmail();
+    },
+    updateStatus(id){
+     let status = {
+        id:id,
+        status: "Cancel"      
+     }
+      let commonPath = process.env.VUE_APP_SERVER
+       let path = "/api/v1/updateStatus";
+      axios.post(commonPath+path,status, { withCredentials: true }).then((res) => {
+        this.showAlert = true;
+        this.errorData = "your order has been cancelled successfully"
+            console.log("updateStatus",res);
+      });
+    },
+    filtertems(data) {
+      console.log("data", data);
+      const searchObject = data.filter((order) => order.status != "Cancel");
+      return searchObject;
     },
      },
      mounted() {

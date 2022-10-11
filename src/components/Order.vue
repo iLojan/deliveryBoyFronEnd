@@ -385,7 +385,7 @@ export default {
         receiverName: "",
         receiverPhoneNumber: "",
         receiverEmail: "",
-        status: "pending",
+        status: "New",
         fromLocation: "",
         userId: "",
         driverId: "",
@@ -394,6 +394,7 @@ export default {
         createdAt: new Date(),
         updatedAt: new Date(),
         userDetails: null,
+        driverAdditionalCharge:'',
       },
       selectedUserId:0,
       showAler: false,
@@ -464,7 +465,8 @@ driverList: "",
 
     setDrive(driver){
       this.selectedUserId = driver.id;
-     this.order.driverId = driver.id
+     this.order.driverId = driver.id;
+     this.order.driverAdditionalCharge = driver.price;
      this.order.driverExtraPrice = driver.price;
      if(driver.driverPrices.price && this.order.id === driver.driverPrices.orderId){
    this.order.total = this.order.standardPrice + driver.driverPrices.price
@@ -509,7 +511,7 @@ driverList: "",
     },
     next() {
       this.getAllDriver();
-      this.updateOrder(false);
+      this.updateOrder(true);
       this.showDriverDiv = true;
     },
     updateOrder(status) {
@@ -522,7 +524,7 @@ driverList: "",
           if(status){
              this.showAler = true;
           // this.$router.push("/user")
-          this.$router.push({ path: 'confirmation', query: { id: res.data.id } })
+          this.$router.push({ name: 'allRequest',})
           }
          
         })

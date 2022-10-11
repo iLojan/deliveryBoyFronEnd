@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div>
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
         <div class="overflow-hidden">
           <table class="min-w-full">
@@ -10,7 +10,7 @@
                   scope="col"
                   class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                 >
-                  Order Id
+                 Order Id
                 </th>
                 <th
                   scope="col"
@@ -26,7 +26,6 @@
                 >
                   Driver Id
                 </th>
-
                 <th
                   scope="col"
                   class="
@@ -39,33 +38,50 @@
                     text-left
                   "
                 >
-                  Driver Phone
+                  Price
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    text-sm
+                    font-medium
+                    w-64
+                    text-gray-900
+                    px-6
+                    py-4
+                    text-left
+                  "
+                >
+                  Duration
                 </th>
                 <th
                   scope="col"
                   class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                 >
-                  Track Order
+                  Bargain
                 </th>
-                <th
-                  scope="col"
-                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                >
-                  Cancel Order
-                </th>
+               
               </tr>
             </thead>
             <tbody>
-              <tr class="bg-gray-50 border-b">
-                <td class="px-6 py-4 text-sm font-medium text-gray-900">1</td>
+              <tr
+            
+                class="bg-gray-50 border-b"
+              >
+                <td class="px-6 py-4 text-sm font-medium text-gray-900">
+                  1
+                </td>
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
                   12
                   <!--getTime(order.updatedAt)}} -->
                 </td>
-
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
-                  0768898585
+                  250
                 </td>
+                   <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
+                 1 hour
+                </td>
+              
                 <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
                   <button
                     class="
@@ -73,36 +89,17 @@
                       border
                       text-p2-font
                       py-2
-                      px-4
                       bg-green-500
                       text-white
                       w-full
+                      px-1
                       rounded-full
                       font-medium
                       text-
                     "
+                    @click="BargainPopup()"
                   >
-                    Track
-                  </button>
-                </td>
-                <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
-                  <button
-                    class="
-                      mb-3
-                      ml-2
-                      border
-                      text-p2-font
-                      py-2
-                      bg-primary-color
-                      text-white
-                      w-full
-                      px-4
-                      rounded-full
-                      font-medium
-                      text-
-                    "
-                  >
-                    Cancel
+                    Final Price
                   </button>
                 </td>
               </tr>
@@ -111,58 +108,27 @@
         </div>
       </div>
     </div>
-  </div>
+    <div class="" v-if="showPopup">
+        <BargainPopup></BargainPopup>
+    </div>
+    </div>
 </template>
 <script>
-import axios from "axios";
+import BargainPopup from "../common/BargainPopup.vue";
 export default {
-  data() {
-    return {
-      orders: "",
-    };
-  },
-  methods: {
-    getOrderDriverId() {
-      let userId = localStorage.getItem("email");
-      let commonPath = process.env.VUE_APP_SERVER;
-      let path = "/api/v1/orderByEmail/" + userId;
-      axios.get(commonPath + path, { withCredentials: true }).then((res) => {
-        this.orders = this.filtertems(res.data);
-      });
+    components:{BargainPopup},
+    data() {
+        return {
+          showPopup:false  
+        }
     },
-    filtertems(data) {
-      console.log("data", data);
-      const searchObject = data.filter(
-        (order) => order.status === "InProgress"
-      );
-      return searchObject;
+    methods: {
+        BargainPopup(){
+            this.showPopup = true
+        }
     },
-    getDate(date) {
-      console.log("date", date);
-      let dt, time;
-      dt = date.slice(0, 10).replace(/-/g, "/");
-      time = date.slice(11, 19).replace(/-/g, "/");
-      return dt + " " + time;
-    },
-    getTime(date) {
-      let newDate = new Date();
-      console.log(
-        newDate,
-        "   ",
-        newDate.getMinutes(),
-        "date",
-        newDate.getHours(),
-        "==="
-      );
-      let dt, time;
-      dt = newDate.getHours();
-      time = date.slice(11, 19).replace(/-/g, "/");
-      return dt + " === " + time;
-    },
-  },
-  mounted() {
-    this.getOrderDriverId();
-  },
-};
+}
 </script>
-<style lang=""></style>
+<style>
+    
+</style>

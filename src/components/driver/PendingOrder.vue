@@ -179,7 +179,7 @@ export default {
     },
     filtertems(data) {
       console.log("data", data);
-      const searchObject = data.filter((order) => order.status === "New");
+      const searchObject = data.filter((order) => order.status === "Pending");
       return searchObject;
     },
     getDate(date){

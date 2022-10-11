@@ -25,7 +25,10 @@ export default {
     props:['driverId'],
     data() {
         return {
-            driver:"",
+            driver:{
+                id:"",
+                driverRatings
+            },
             ratingValue:1,
               rating:0,
             total:0,
@@ -33,10 +36,18 @@ export default {
         }
     },
     mounted() {
-        this.driver = this.driverId
+        this.getDriverById()
     //    this.getRating(); 
     },
     methods: {
+         getDriverById() {
+      let commonPath = process.env.VUE_APP_SERVER
+      let path = "/api/auth/getUserById/"+this.driverId;
+    axios.get(commonPath+path,{ withCredentials: true })
+    .then(res=>{
+        this.driver = res.data;
+      });
+    },
         saveRating(){
             let rating ={
                    rating:this.ratingValue,
