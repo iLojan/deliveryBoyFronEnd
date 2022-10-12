@@ -139,12 +139,17 @@ export default {
         driverId = localStorage.getItem("id");
       let path = "/api/v1/bargainByDriverId/" + driverId;
       axios.get(commonPath + path, { withCredentials: true }).then((res) => {
-        this.bargain = this.sortedItems(res.data);
+        this.bargain = this.filtertems(res.data);
         console.log("this.bargain", this.bargain, "===", newOdrders);
       });
     },
     cancelAutoUpdate() {
       clearInterval(this.timer);
+    },
+        filtertems(data) {
+      console.log("data", data);
+      const searchObject = data.filter((bargain) => bargain.status === "Open");
+      return searchObject;
     },
     sortedItems: function (items) {
       return items.sort((a, b) => new Date(b.id) - new Date(a.id));

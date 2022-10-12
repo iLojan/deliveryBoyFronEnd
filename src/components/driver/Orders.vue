@@ -24,7 +24,7 @@
                     text-left
                   "
                 >
-                  User Id
+                  From
                 </th>
                 <th
                   scope="col"
@@ -38,7 +38,7 @@
                     text-left
                   "
                 >
-                  User Phone
+                  To
                 </th>
                 <th
                   scope="col"
@@ -52,7 +52,7 @@
                     text-left
                   "
                 >
-                  Status
+                  Stetus Update
                 </th>
                
                
@@ -61,17 +61,17 @@
             <tbody>
               <tr
             
-                class="bg-gray-50 border-b"
+                class="bg-gray-50 border-b" v-for="(order,index) in orders" :key="index"
               >
                 <td class="px-6 py-4 text-sm font-medium text-gray-900">
-                  1
+                  {{order.id}}
                 </td>
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
-                  12
+                  {{order.fromLocation}}
                   <!--getTime(order.updatedAt)}} -->
                 </td>
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
-                  0758907689
+                  {{order.toLocation}}
                 </td>
               
                 <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
@@ -89,9 +89,9 @@
                       font-medium
                       text-
                     "
-                    
+                    @click="statusPopup(order.id)"
                   >
-                    Stetus Update
+                    {{order.status}}
                   </button>
                 </td>
               </tr>
@@ -153,38 +153,34 @@
                 "
               >
                 <div class="bg-white px-4 pt-2 pb-4 sm:p-6 sm:pb-4">
-                  <div class="">
-                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                      <DialogTitle
-                        as="h2"
-                        class="text-lg font-medium leading-6 text-left text-gray-900"
-                        >Set Rating</DialogTitle
-                      >
-                      <div class="mt-2">
-                      <div class="flex flex-col my-4">
-            <div class="flex flex-col">
-                <label class="text-primary-font mb-2 text-left">Select Rating</label>
-                <select class="rounded-xl border w-56 px-4 py-3 border-gray-300" v-model="ratingValue">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-
-                </select>
-            </div>
-             <div class="flex flex-col mt-2">
-                <label class="text-primary-font mb-2 text-left">Add Comments</label>
-              <textarea rows="5" class="border-gray-300 border rounded-xl" v-model="comments"></textarea>
-            </div>
-            <div class=" mt-3">
-
-                <button class="p-3 w-full rounded-xl bg-primary-color text-white font-medium" @click="saveRating()">Save</button>
+                   <!-- update status -->
+          <div class="mt-5" >
+            <div class="grid grid-cols-12 gap-2 mb-2 content-end px-3 py-4 bg-gray-50 rounded-lg"  :key="index">
+              <div class="col-span-12">
+                <h2 class="font-bold ">Update Status</h2>
+              </div>
+                <div class="col-span-6">
+                    <div class="">
+                    <label class="block text-secondary-font font-medium capitalize">Select Status</label>
+                   <select v-model="status.status" class="rounded  text-p1-font text-primary-font bg-transparent focus:ring-0 pl-2 bg-white border border-gray-300 py-2 w-full">
+                    <option value="InProgress">Pickup</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Success">Delivered</option>
+                    <option value="Fail">Ruturn</option>
+                   </select>  
+                  
+                    </div>
+                </div>
+             
+                  <div class="col-span-4 flex justify-end items-end ">
+                    <label></label>
+            <button 
+              class="bg-primary-color py-2.5 px-4 text-white rounded-lg w-full" 
+          
+             @click="updateStatus()">Update Status</button>
+        </div>
             </div>
         </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </DialogPanel>
             </TransitionChild>
@@ -199,22 +195,56 @@
 import {
   Dialog,
   DialogPanel,
-  DialogTitle,
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
+import axios from "axios";
 export default {
      components: {
     Dialog,
     DialogPanel,
-    DialogTitle,
     TransitionChild,
     TransitionRoot
   },
   data() {
     return {
        open: false,
+       orders:"",
+       status:{
+       id:"",
+       status: ""
+      },
     }
+  },
+  methods: {
+    statusPopup(id){
+      this.open = true;
+      this.status.id = id
+    },
+    updateStatus(){
+  let commonPath = process.env.VUE_APP_SERVER;
+       let path = "/api/v1/updateStatus";
+      axios.post(commonPath+path,this.status, { withCredentials: true }).then((res) => {
+            console.log("updateStatus",res);
+      });
+    },
+    getOrderDriverId() {
+      let driverId = localStorage.getItem("id");
+      let commonPath = process.env.VUE_APP_SERVER;
+      let path = "/api/v1/orderDriverId/" + driverId;
+      axios.get(commonPath + path, { withCredentials: true }).then((res) => {
+        this.orders = this.filtertems(res.data);
+         console.log("data", this.orders);
+      });
+    },
+    filtertems(data) {
+     
+      const searchObject = data.filter((order) => {return (order.status != "Cancel" && order.status != "Success")} );
+      return searchObject;
+    },
+  },
+  mounted() {
+    this.getOrderDriverId();
   },
 }
 </script>

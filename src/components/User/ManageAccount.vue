@@ -157,7 +157,7 @@ export default {
      }, 
      methods: {
         getOrderByEmail(){
-      let userId = localStorage.getItem("email")
+      let userId = localStorage.getItem("id")
       let commonPath = process.env.VUE_APP_SERVER
       let path = "/api/v1/orderByEmail/"+userId;
     axios.get(commonPath+path,{ withCredentials: true })

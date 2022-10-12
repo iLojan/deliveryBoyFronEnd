@@ -130,7 +130,7 @@ export default {
     },
     getUser(id){
       console.log("id",id);
-      let userId = localStorage.getItem("email")
+      let userId = localStorage.getItem("id")
       let commonPath = process.env.VUE_APP_SERVER
       let path = "/api/auth/getUser/"+userId;
     axios.get(commonPath+path,{ withCredentials: true })

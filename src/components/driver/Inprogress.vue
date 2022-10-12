@@ -179,7 +179,7 @@ export default {
     },
     filtertems(data) {
       console.log("data", data);
-      const searchObject = data.filter((order) => order.status === "InProgress");
+      const searchObject = data.filter((order) => order.status != "Cancel");
       return searchObject;
     },
     getDate(date){

@@ -32,34 +32,7 @@
             <label class="text-primary-font font-semibold">{{selectedOrder.standardPrice}}</label>
           </div>
         </div>
-        <!-- update status -->
-          <div class="mt-5" >
-            <div class="grid grid-cols-12 gap-2 mb-2 content-end px-3 py-4 bg-gray-50 rounded-lg"  :key="index">
-              <div class="col-span-12">
-                <h2 class="font-bold ">Update Status</h2>
-              </div>
-                <div class="col-span-6">
-                    <div class="">
-                    <label class="block text-secondary-font font-medium capitalize">Select Status</label>
-                   <select v-model="status.status" class="rounded  text-p1-font text-primary-font bg-transparent focus:ring-0 pl-2 bg-white border border-gray-300 py-2 w-full">
-                    <option value="InProgress">Pickup</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Success">Delivered</option>
-                    <option value="Fail">Ruturn</option>
-                   </select>  
-                  
-                    </div>
-                </div>
-             
-                  <div class="col-span-4 flex justify-end items-end ">
-                    <label></label>
-            <button 
-              class="bg-primary-color py-2.5 px-4 text-white rounded-lg w-full" 
-          
-             @click="updateStatus()">Update Status</button>
-        </div>
-            </div>
-        </div>
+       
         <!-- set price -->
         <div class="mt-5" >
             <div class="grid grid-cols-12 gap-2 mb-2 content-end px-3 py-4 bg-gray-50 rounded-lg"  :key="index">
