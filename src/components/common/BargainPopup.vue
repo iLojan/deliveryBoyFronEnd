@@ -1,6 +1,7 @@
 <template>
-    <div>
-          <!--  -->
+  <div>
+    
+    <!--  -->
     <TransitionRoot as="template" :show="open">
       <Dialog as="div" class="relative z-10" @close="open = false">
         <TransitionChild
@@ -57,43 +58,119 @@
                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <DialogTitle
                         as="h2"
-                        class="text-lg font-medium leading-6 text-left flex justify-between text-gray-900"
-                        ><h2 class="font-bold ">Add additional charge</h2>
-                        <span class="font-bold " @click="hide()">X</span>
-                        </DialogTitle
-                      >
+                        class="
+                          text-lg
+                          font-medium
+                          leading-6
+                          text-left
+                          flex
+                          justify-between
+                          text-gray-900
+                        "
+                        ><h2 class="font-bold">Add additional charge</h2>
+                        <span class="font-bold cursor-pointer" @click="hide()">X</span>
+                      </DialogTitle>
                       <div class="mt-2">
-                       <div class="mt-5" >
-            <div class="grid grid-cols-12 gap-2 mb-2 content-end px-3 py-4 bg-gray-50 rounded-lg"  :key="index">
-              <div class="col-span-12">
-                
-              </div>
-                <div class="col-span-4">
-                    <div class="">
-                    <label class="block text-secondary-font font-medium capitalize">Price</label>
-                    <input v-model="driverPrices.price" type="text" placeholder="price" class="w-full border  rounded  text-p1-font text-primary-font  focus:ring-0 pl-2  border-gray-300 py-2  "  />
-                    
-                    </div>
-                </div>
-             
-                <div class="col-span-4">
-                    <div class="">
-                    <label class="block text-secondary-font font-medium capitalize">hour</label>
-                    <input v-model="driverPrices.hour" type="text" placeholder="hour" class="w-full border  rounded  text-p1-font text-primary-font  focus:ring-0 pl-2  border-gray-300 py-2 " />
-                  
-                    </div>
-                </div>
-                  <div class="col-span-4 flex justify-end items-end ">
-                    <label></label>
-            <button 
-            :disabled="driverPrices.price <= 0 && driverPrices.hour <= 0" 
-            :class="driverPrices.price <= 0 || driverPrices.hour <= 0?'cursor-not-allowed opacity-25':''"  class="bg-primary-color py-2.5 px-4 text-white rounded-lg w-full" 
-            data-bs-dismiss="modal"
-             >Set</button>
-             <!-- @click="update()" -->
-        </div>
-            </div>
-        </div>  
+                        <div class="mt-5">
+                          <div
+                            class="
+                              grid grid-cols-12
+                              gap-2
+                              mb-2
+                              content-end
+                              px-3
+                              py-4
+                              bg-gray-50
+                              rounded-lg
+                            "
+                          >
+                            <div class="col-span-12"></div>
+                            <div class="col-span-4">
+                              <div class="">
+                                <label
+                                  class="
+                                    block
+                                    text-secondary-font
+                                    font-medium
+                                    capitalize
+                                  "
+                                  >Price</label
+                                >
+                                <input
+                                  v-model="driverPrices.price"
+                                  type="text"
+                                  placeholder="price"
+                                  class="
+                                    w-full
+                                    border
+                                    rounded
+                                    text-p1-font text-primary-font
+                                    focus:ring-0
+                                    pl-2
+                                    border-gray-300
+                                    py-2
+                                  "
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-span-4">
+                              <div class="">
+                                <label
+                                  class="
+                                    block
+                                    text-secondary-font
+                                    font-medium
+                                    capitalize
+                                  "
+                                  >hour</label
+                                >
+                                <input
+                                  v-model="driverPrices.hour"
+                                  type="text"
+                                  placeholder="hour"
+                                  class="
+                                    w-full
+                                    border
+                                    rounded
+                                    text-p1-font text-primary-font
+                                    focus:ring-0
+                                    pl-2
+                                    border-gray-300
+                                    py-2
+                                  "
+                                />
+                              </div>
+                            </div>
+                            <div class="col-span-4 flex justify-end items-end">
+                              <label></label>
+                              <button
+                                :disabled="
+                                  driverPrices.price <= 0 &&
+                                  driverPrices.hour <= 0
+                                "
+                                :class="
+                                  driverPrices.price <= 0 ||
+                                  driverPrices.hour <= 0
+                                    ? 'cursor-not-allowed opacity-25'
+                                    : ''
+                                "
+                                class="
+                                  bg-green-500
+                                  py-2.5
+                                  px-4
+                                  text-white
+                                  rounded-lg
+                                  w-full
+                                "
+                                @click="update()"
+                              >
+                                Sent
+                              </button>
+                              <!-- @click="update()" -->
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -105,8 +182,7 @@
       </Dialog>
     </TransitionRoot>
     <!--  -->
-      
-    </div>
+  </div>
 </template>
 <script>
 import {
@@ -116,27 +192,42 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
+import axios from "axios";
 export default {
-     components: {
+  props: ["selectedBargainRate"],
+  components: {
     Dialog,
     DialogPanel,
     DialogTitle,
     TransitionChild,
     TransitionRoot,
   },
-    data() {
-        return {
-            driverPrices:{},
-            open: true,
-        }
+  data() {
+    return {
+      driverPrices: {},
+      open: true,
+    };
+  },
+  methods: {
+    hide() {
+      this.open = false;
+      this.$emit("hidenPopup",false)
     },
-    methods: {
-        hide(){
-            
-        }
+    update() {
+      let commonPath = process.env.VUE_APP_SERVER;
+      let path = "/api/v1/updateBargain";
+      axios
+        .post(commonPath + path, this.driverPrices, { withCredentials: true })
+        .then((res) => {
+          console.log(res);
+          this.hide();
+        });
     },
-}
+  },
+  mounted() {
+    this.driverPrices = this.selectedBargainRate;
+    console.log("driverPrices",this.driverPrices);
+  },
+};
 </script>
-<style>
-    
-</style>
+<style></style>

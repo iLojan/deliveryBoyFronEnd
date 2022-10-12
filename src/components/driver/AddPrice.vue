@@ -103,6 +103,14 @@ export default {
   data() {
     return {
       driver: {  },
+      bargain:{
+       userId:0,
+       driverId:0,
+       orderId:0,
+       price:0,
+       hour:0,
+       status:"Open"
+      },
        driverPrices:{
           price:0,
           hour:0,
@@ -122,7 +130,7 @@ export default {
       this.driver.driverPrices.push(priceObj)
     },
     getOrderByEmail() {
-      let userId = localStorage.getItem("email");
+      let userId = localStorage.getItem("id");
      let commonPath = process.env.VUE_APP_SERVER
      console.log("commonPath",commonPath);
       let path = commonPath+"/api/auth/getUser/" + userId;
@@ -153,9 +161,15 @@ export default {
       });
     },
     update(){
-      this.driver.driverPrices.orderId = this.selectedOrder.id;
-      this.driver.driverPrices.price = this.driverPrices.price;
-      this.driver.driverPrices.hour = this.driverPrices.hour
+      console.log("this.selectedOrder",this.selectedOrder);
+      let myId = localStorage.getItem("id");
+    this.driverPrices.orderId  = this.selectedOrder.id;
+      this.bargain.orderId = this.selectedOrder.id;
+      this.bargain.price = this.driverPrices.price;
+      this.bargain.hour = this.driverPrices.hour;
+      this.bargain.userId = this.selectedOrder.userId;
+      this.bargain.driverId = myId;
+ console.log("this.bargain",this.bargain);
       if(this.driverPrices.price <= 0){
         this.showPriceError = true
       }
@@ -164,17 +178,16 @@ export default {
       }
       else{
          let commonPath = process.env.VUE_APP_SERVER
-       let path = "/api/auth/putUser";
-       let driver = {user:this.driver}
-      axios.post(commonPath+path,driver, { withCredentials: true }).then((res) => {
+       let path = "/api/v1/addBargain";
+      axios.post(commonPath+path,this.bargain, { withCredentials: true }).then((res) => {
             console.log(res);
       });
       }
       
     }
   },
-  mounted() {
-    this.driverPrices.orderId  = this.selectedOrder.id;
+  mounted() {    
+    this.bargain.userId = this.selectedOrder?.userId;
     this.getOrderByEmail();
   },
 };

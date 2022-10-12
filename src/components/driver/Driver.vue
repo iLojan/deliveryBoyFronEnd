@@ -10,11 +10,11 @@
                             </div>
                             <div class="list p-3">
                                 <ul>
-                                    <li><router-link class="text-primary-font pb-2" :to="{name:'DriverManageAccount'}">Manage My Account</router-link></li>
-                                    <li><router-link class="text-primary-font pb-2" :to="{name:'order-list'}">Orders</router-link></li>
-                                    <!-- <li><router-link class="text-primary-font pb-2" :to="{name:'addPrice'}">Add Price</router-link></li> -->
-                                    <li> <router-link class="text-gray-400 cursor-not-allowed pb-2" :to="{name:'profile'}">My Profile</router-link></li>
-                                    <li><router-link class="text-gray-400 cursor-not-allowed pb-2" :to="{name:'profile'}">My Review</router-link></li>
+                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'DriverManageAccount'}">Manage My Account</router-link></li>
+                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'order-list'}">Orders</router-link></li>
+                                    <!-- <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'addPrice'}">Add Price</router-link></li> -->
+                                    <li> <router-link active-class="active" class="text-gray-400 cursor-not-allowed pb-2" :to="{name:'profile'}">My Profile</router-link></li>
+                                    <li><router-link active-class="active" class="text-gray-400 cursor-not-allowed pb-2" :to="{name:'profile'}">My Review</router-link></li>
                                 </ul>
                             </div>
                         </div>

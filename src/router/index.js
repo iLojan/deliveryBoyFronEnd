@@ -15,6 +15,7 @@ import DriverBargain from "../components/driver/DriverBargain.vue"
 import UserPendingOrder from "../components/User/MyOrder/PendingOrder.vue"
 import UserReturnOrder from "../components/User/MyOrder/ReturnOrder.vue"
 import UserInprogress from "../components/User/MyOrder/Inprogress.vue"
+import CancelledOrder from "../components/User/MyOrder/CancelledOrder.vue"
 import AllRequest from "../components/User/AllRequest.vue"
 import UserDeliveredOrder from "../components/User/MyOrder/DeliveredOrder.vue"
 import UserBargain from "../components/User/UserBargain.vue"
@@ -139,6 +140,11 @@ const routes = [
         name:'my-inprogress',
         component:UserInprogress
       },
+      {
+        path:'cancelled-order',
+        name:'cancelledOrder',
+        component:CancelledOrder
+      },      
       {
         path:'my-pending-order',
         name:'my-pendingOrder',

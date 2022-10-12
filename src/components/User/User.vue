@@ -6,13 +6,13 @@
                     <div class="menu">
                         <div class="">
                             <div class="title font-medium ">
-                                Manage My Account
+                                My Account
                             </div>
                             <div class="list p-3">
                                 <ul>
-                                    <li><router-link class="text-primary-font pb-2" :to="{name:'manageAccount'}">Manage My Account</router-link></li>
-                                    <li> <router-link class="text-primary-font pb-2" :to="{name:'profile'}">My Profile</router-link></li>
-                                    <li><router-link class="text-primary-font pb-2" :to="{name:'addRating'}">My Review</router-link></li>
+                                    <li><router-link  active-class="active" class="text-primary-font pb-2" :to="{name:'manageAccount'}">Manage My Account</router-link></li>
+                                    <li><router-link  active-class="active" class="text-primary-font pb-2" :to="{name:'profile'}">My Profile</router-link></li>
+                                    <li><router-link  active-class="active" class="text-primary-font pb-2" :to="{name:'addRating'}">My Review</router-link></li>
                                 </ul>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                                     <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'userBargain'}">Bargain</router-link></li>
                                     <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'my-inprogress'}">Confirm</router-link></li>
                                     <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'my-deliveredOrder'}">Complete Order</router-link></li>
-                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'my-pendingOrder'}">Cancelled</router-link></li>
+                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'cancelledOrder'}">Cancelled</router-link></li>
                                     <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'my-returnOrder'}">Return</router-link></li>
                                     
                                 </ul>

@@ -343,6 +343,58 @@
         </div>
       </div>
     </div>
+    <div >
+        <TransitionRoot as="template" :show="open">
+    <Dialog as="div" class="relative z-10" >
+      <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+      </TransitionChild>
+
+      <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <TransitionChild as="template" 
+          enter="ease-out duration-300" 
+          enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" enter-to="opacity-100 translate-y-0 sm:scale-100" 
+          leave="ease-in duration-200" 
+          leave-from="opacity-100 translate-y-0 sm:scale-100" 
+          leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+            <DialogPanel class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+              <div class="bg-white px-4 pt-2 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                 <div class="mt-3  sm:mt-0 sm:ml-4 sm:text-left">
+                    <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900"> 
+                       <!-- {{
+                      alertCode == 400
+                        ? "Registration fail"
+                        : "Registration successful"
+                    }}
+                     -->
+                     success
+                    </DialogTitle>
+                 <div class="sm:flex sm:items-start mt-2 items-center">
+            
+                <div class="text-p1-font text-center sm:mt-0  sm:text-left">
+                
+                  <div class="mt-2">
+                    <p class="text-sm text-gray-500">Order has been placed</p>
+                  </div>
+                </div>
+              </div>
+                  </div>
+                </div>
+              </div>
+              <div class=" px-4 py-2 sm:flex sm:flex-row-reverse sm:px-6">
+                <button type="button" class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-green-500 text-white px-4 py-2 text-base font-medium  shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" 
+                @click="hidden()"
+                 ref="cancelButtonRef">Cancel</button>
+              </div>
+            </DialogPanel>
+          </TransitionChild>
+        </div>
+      </div>
+    </Dialog>
+  </TransitionRoot>
+    </div>
   </div>
 </template>
 
@@ -350,8 +402,9 @@
 import Map from "./Map.vue";
 import axios from "axios";
 import SelectVehehileTypeModel from "./SelectVehehileTypeModel.vue";
+import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 export default {
-  components: { Map, SelectVehehileTypeModel },
+  components: { Map, SelectVehehileTypeModel, Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot },
   data() {
     return {
       originLat: 8.5832926,
@@ -405,7 +458,8 @@ driverList: "",
       rating:0,
       total:0,
       ratingCal:0,
-      ratingList:[]
+      ratingList:[],
+      open:false,
     };
   },
   computed: {
@@ -414,6 +468,11 @@ driverList: "",
     },
   },
   methods: {
+   
+     hidden(){    
+            this.open = false;
+            this.$router.push({ name: "allRequest" });      
+    },
     showRating(ratingList) {
       console.log("ratingList", ratingList);
     let ratingCal = 0,total =0;
@@ -512,7 +571,7 @@ driverList: "",
     next() {
       this.getAllDriver();
       this.updateOrder(true);
-      this.showDriverDiv = true;
+      // this.showDriverDiv = true;
     },
     updateOrder(status) {
       console.log("orderNow", this.order);
@@ -522,9 +581,8 @@ driverList: "",
         .then((res) => {
           console.log(res);
           if(status){
-             this.showAler = true;
+             this.open = true;
           // this.$router.push("/user")
-          this.$router.push({ name: 'allRequest',})
           }
          
         })
@@ -655,7 +713,7 @@ driverList: "",
   mounted() {
     this.locatorButtonPressed();
     this.autocompleteInit();
-    this.order.userId = localStorage.getItem("email");
+    this.order.userId = localStorage.getItem("id");
   },
 };
 </script>

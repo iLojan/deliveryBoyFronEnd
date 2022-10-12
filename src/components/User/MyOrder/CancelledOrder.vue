@@ -67,44 +67,7 @@
                   {{order.toLocation}}
                 </td>
                 <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
-                  <button
-                    class="
-                      mb-3
-                      border
-                      text-p2-font
-                      py-2
-                      px-4
-                      bg-green-500
-                      text-white
-                      w-full
-                      rounded-full
-                      font-medium
-                      text-
-                    "
-                  >
-                    Track
-                  </button>
-                </td>
-                <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
-                  <button
-                    class="
-                      mb-3
-                      ml-2
-                      border
-                      text-p2-font
-                      py-2
-                      bg-primary-color
-                      text-white
-                      w-full
-                      px-4
-                      rounded-full
-                      font-medium
-                      text-
-                    "
-                    @click="cancelOrder(order.id)"
-                  >
-                    Cancel
-                  </button>
+                  {{order.total}}
                 </td>
               </tr>
             </tbody>
@@ -125,20 +88,6 @@ export default {
     };
   },
   methods: {
-     cancelOrder(id){
-     let status = {
-        id:id,
-        status: "Cancel"      
-     }
-      let commonPath = process.env.VUE_APP_SERVER
-       let path = "/api/v1/updateStatus";
-      axios.post(commonPath+path,status, { withCredentials: true }).then((res) => {
-        this.showAlert = true;
-        this.getOrderDriverId()
-        this.errorData = "your order has been cancelled successfully"
-            console.log("updateStatus",res);
-      });
-    },
     getOrderDriverId() {
       let userId = localStorage.getItem("id");
       let commonPath = process.env.VUE_APP_SERVER;
@@ -150,7 +99,7 @@ export default {
     filtertems(data) {
       console.log("data", data);
       const searchObject = data.filter(
-        (order) => order.status === "Confirmed"
+        (order) => order.status === "Cancel"
       );
       return searchObject;
     },

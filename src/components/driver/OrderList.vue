@@ -54,18 +54,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="bg-gray-50 border-b">
-                <td class="px-6 py-4 text-sm font-medium text-gray-900">1</td>
+              <tr class="bg-gray-50 border-b" v-for="(order, index) in orders" :key="index" >
+                <td class="px-6 py-4 text-sm font-medium text-gray-900">{{order.id}}</td>
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
-                  1
+                   {{order.userId}}
                   <!--getTime(order.updatedAt)}} -->
                 </td>
 
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
-                  12
-                </td>
-                <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
-                  1 hours
+                 {{order.duration}}
                 </td>
                 <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
                   <button
@@ -85,7 +82,7 @@
                     "
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModalLg"
-                    @click="setOrder(1)"
+                    @click="setOrder(order)"
                   >
                     Request
                   </button>

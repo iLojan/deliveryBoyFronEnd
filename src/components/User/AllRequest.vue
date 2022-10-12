@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+  <div>
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
         <div class="overflow-hidden">
           <table class="min-w-full">
@@ -10,7 +10,7 @@
                   scope="col"
                   class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                 >
-                 Order Id
+                  Order Id
                 </th>
                 <th
                   scope="col"
@@ -60,28 +60,22 @@
                 >
                   Bargain
                 </th>
-               
               </tr>
             </thead>
             <tbody>
-              <tr
-            
-                class="bg-gray-50 border-b"
-              >
-                <td class="px-6 py-4 text-sm font-medium text-gray-900">
-                  1
-                </td>
+              <tr class="bg-gray-50 border-b"  v-for="(bargainRate,index) in bargain" :key="index">
+                <td class="px-6 py-4 text-sm font-medium text-gray-900">{{bargainRate.id}}</td>
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
-                  12
+                  {{bargainRate.driverId}}
                   <!--getTime(order.updatedAt)}} -->
                 </td>
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
-                  250
+                  {{bargainRate.price}}
                 </td>
-                   <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
-                 1 hour
+                <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
+                  {{bargainRate.hour}}
                 </td>
-              
+
                 <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
                   <button
                     class="
@@ -97,7 +91,7 @@
                       font-medium
                       text-
                     "
-                    @click="BargainPopup()"
+                    @click="BargainPopup(bargainRate)"
                   >
                     Bargain
                   </button>
@@ -109,26 +103,58 @@
       </div>
     </div>
     <div class="" v-if="showPopup">
-        <BargainPopup></BargainPopup>
+      <BargainPopup @hidenPopup="hidenPopup" :selectedBargainRate="selectedBargainRate"></BargainPopup>
     </div>
-    </div>
+  </div>
 </template>
 <script>
 import BargainPopup from "../common/BargainPopup.vue";
+import axios from "axios";
 export default {
-    components:{BargainPopup},
-    data() {
-        return {
-          showPopup:false  
-        }
+  components: { BargainPopup },
+  data() {
+    return {
+      showPopup: false,
+      bargain:"",
+      selectedBargainRate:"",
+      interval:null
+    };
+  },
+  methods: {
+    hidenPopup(event){
+      this.showPopup = event
     },
-    methods: {
-        BargainPopup(){
-            this.showPopup = true
-        }
+    BargainPopup(data) {
+      this.selectedBargainRate = data
+      this.showPopup = true;
     },
-}
+    getBargainByUserId() {
+      let commonPath = process.env.VUE_APP_SERVER;
+      let newOdrders,
+        userId = localStorage.getItem("id");
+      let path = "/api/v1/bargainByUserId/" + userId;
+      axios.get(commonPath + path, { withCredentials: true }).then((res) => {
+        this.bargain = this.sortedItems(res.data);
+        console.log("this.bargain", this.bargain, "===", newOdrders);
+      });
+    },
+    sortedItems: function (items) {
+      return items.sort((a, b) => new Date(b.id) - new Date(a.id));
+    },
+    cancelAutoUpdate () {
+            clearInterval(this.timer);
+        }
+  },
+   mounted() {
+        this.getBargainByUserId()
+    },
+    created(){
+    this.interval = setInterval(() =>{
+      this.getBargainByUserId()},8000)
+  },
+  beforeUnmount () {
+      this.cancelAutoUpdate();
+    }
+};
 </script>
-<style>
-    
-</style>
+<style></style>

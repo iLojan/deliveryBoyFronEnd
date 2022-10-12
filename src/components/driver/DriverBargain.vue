@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+  <div>
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
         <div class="overflow-hidden">
           <table class="min-w-full">
@@ -10,7 +10,7 @@
                   scope="col"
                   class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                 >
-                 Order Id
+                  Order Id
                 </th>
                 <th
                   scope="col"
@@ -24,7 +24,7 @@
                     text-left
                   "
                 >
-                  Driver Id
+                  User Id
                 </th>
                 <th
                   scope="col"
@@ -60,28 +60,28 @@
                 >
                   Bargain
                 </th>
-               
               </tr>
             </thead>
             <tbody>
               <tr
-            
+                v-for="(bargainItem, index) in bargain"
+                :key="index"
                 class="bg-gray-50 border-b"
               >
                 <td class="px-6 py-4 text-sm font-medium text-gray-900">
-                  1
+                  {{ bargainItem.id }}
                 </td>
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
-                  12
+                  {{ bargainItem.userId }}
                   <!--getTime(order.updatedAt)}} -->
                 </td>
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
-                  250
+                  {{ bargainItem.price }}
                 </td>
-                   <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
-                 1 hour
+                <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
+                  {{ bargainItem.hour }}
                 </td>
-              
+
                 <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
                   <button
                     class="
@@ -97,7 +97,7 @@
                       font-medium
                       text-
                     "
-                    @click="BargainPopup()"
+                    @click="BargainPopup(bargainItem)"
                   >
                     Final Price
                   </button>
@@ -109,26 +109,54 @@
       </div>
     </div>
     <div class="" v-if="showPopup">
-        <BargainPopup></BargainPopup>
+      <BargainPopup :selectedBargainRate="selectedBargain"></BargainPopup>
     </div>
-    </div>
+  </div>
 </template>
 <script>
 import BargainPopup from "../common/BargainPopup.vue";
+import axios from "axios";
 export default {
-    components:{BargainPopup},
-    data() {
-        return {
-          showPopup:false  
-        }
+  components: { BargainPopup },
+  data() {
+    return {
+      showPopup: false,
+      bargain: "",
+      selectedBargain: "",
+    };
+  },
+  mounted() {
+    this.getBargainByDriverId();
+  },
+  methods: {
+    BargainPopup(data) {
+      this.selectedBargain = data;
+      this.showPopup = true;
     },
-    methods: {
-        BargainPopup(){
-            this.showPopup = true
-        }
+    getBargainByDriverId() {
+      let commonPath = process.env.VUE_APP_SERVER;
+      let newOdrders,
+        driverId = localStorage.getItem("id");
+      let path = "/api/v1/bargainByDriverId/" + driverId;
+      axios.get(commonPath + path, { withCredentials: true }).then((res) => {
+        this.bargain = this.sortedItems(res.data);
+        console.log("this.bargain", this.bargain, "===", newOdrders);
+      });
     },
-}
+    cancelAutoUpdate() {
+      clearInterval(this.timer);
+    },
+    sortedItems: function (items) {
+      return items.sort((a, b) => new Date(b.id) - new Date(a.id));
+    },
+  },
+   created(){
+    this.interval = setInterval(() =>{
+      this.getBargainByDriverId()},8000)
+  },
+  beforeUnmount () {
+      this.cancelAutoUpdate();
+    }
+};
 </script>
-<style>
-    
-</style>
+<style></style>
