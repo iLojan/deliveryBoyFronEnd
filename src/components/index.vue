@@ -30,8 +30,8 @@
               We courier your packages to any destination in Sri Lanka, and Our cost effective services are affordable
               and value for money.
             </p>
-            <div class="main-btn btn-hover wow fadeInUp" @click="bookParcel()"> Book My Parcel</div>
-          </div>
+            <div class="main-btn btn-hover wow fadeInUp" v-if="getUserDetails.role ==='ROLE_USER'" @click="bookParcel()"> Book My Parcel</div>
+            </div>
         </div>
         <div class="col-lg-6">
           <div class="hero-img wow fadeInUp" data-wow-delay=".5s">
@@ -224,6 +224,22 @@ import axios from "axios";
       getLogin(){
             return this.$store.getters.getloginStatus
         },
+          getUserDetails(){
+           let user ={
+                userName : "",
+                role : ""
+            }
+          if(this.$store.getters.getUserName.userName){
+               user.userName = this.$store.getters.getUserName.userName
+             user.role = this.$store.getters.getUserName.role
+          }
+          else{
+            user.userName = localStorage.getItem('username');
+             user.role = localStorage.getItem('role')
+          }
+
+ return user;
+}
     },
     methods: {
       

@@ -376,7 +376,7 @@
                 <div class="text-p1-font text-center sm:mt-0  sm:text-left">
                 
                   <div class="mt-2">
-                    <p class="text-sm text-gray-500">Order has been placed</p>
+                    <p class="text-sm text-gray-500">Your order has been placed</p>
                   </div>
                 </div>
               </div>
@@ -386,7 +386,7 @@
               <div class=" px-4 py-2 sm:flex sm:flex-row-reverse sm:px-6">
                 <button type="button" class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-green-500 text-white px-4 py-2 text-base font-medium  shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" 
                 @click="hidden()"
-                 ref="cancelButtonRef">Cancel</button>
+                 ref="cancelButtonRef">Ok</button>
               </div>
             </DialogPanel>
           </TransitionChild>

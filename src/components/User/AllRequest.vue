@@ -96,6 +96,26 @@
                     Bargain
                   </button>
                 </td>
+                <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
+                  <button
+                    class="
+                      mb-3
+                      border
+                      text-p2-font
+                      py-2
+                      bg-secondary-color
+                      text-white
+                      w-full
+                      px-1
+                      rounded-full
+                      font-medium
+                      text-
+                    "
+                    @click="confirm(bargainRate)"
+                  >
+                    Confirm
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -108,7 +128,7 @@
   </div>
 </template>
 <script>
-import BargainPopup from "../common/BargainPopup.vue";
+import BargainPopup from "./BargainPopup.vue";
 import axios from "axios";
 export default {
   components: { BargainPopup },
@@ -117,10 +137,68 @@ export default {
       showPopup: false,
       bargain:"",
       selectedBargainRate:"",
-      interval:null
+      interval:null,
+      selectedBargain:"",
+      order:''
     };
   },
   methods: {
+      getOrder(id){
+      console.log("id",id);
+      let commonPath = process.env.VUE_APP_SERVER
+      let path = "/api/v1/orderById/"+id;
+    axios.get(commonPath+path,{ withCredentials: true })
+    .then(res=>{
+      this.order = res.data
+      this.updateOrder();
+      console.log(res);
+    })
+    },
+     updateOrder(){
+      this.order.driverId=this.selectedBargain.driverId;
+      this.order.duration=this.selectedBargain.hour;
+      this.order.driverExtraPrice=this.selectedBargain.price;
+      this.order.total=this.selectedBargain.price+ this.order.standardPrice;
+      this.order.status="Confirmed";
+      this.selectedBargain.status = "Confirmed"
+console.log("this.order",this.order);
+this.updateOrderDetails();
+    },
+     updateOrderDetails() {
+      console.log("orderNow", this.order);
+      let commonPath = process.env.VUE_APP_SERVER
+      const path = "/api/v1/addOrder";
+      axios
+        .post(commonPath+path, this.order, { withCredentials: true })
+        .then((res) => {
+          console.log(res);
+          this.updateBargainStatus()
+         
+        })
+        .catch((error) => {
+          console.log("updateAccessTokenStatus", error);
+        });
+    },
+     updateBargainStatus() {
+      console.log("selectedBargainNow", this.selectedBargain);
+      let commonPath = process.env.VUE_APP_SERVER
+      const path = "/api/v1/updateBargainStatus";
+      axios
+        .post(commonPath+path, this.selectedBargain, { withCredentials: true })
+        .then((res) => {
+          console.log(res);
+          this.$router.push("/user/my-in-progress")
+         
+        })
+        .catch((error) => {
+          console.log("updateAccessTokenStatus", error);
+        });
+    },
+    confirm(data){
+        this.selectedBargain = data
+        console.log("data",data)
+        this.getOrder(data.orderId)
+      },
     hidenPopup(event){
       this.showPopup = event
     },

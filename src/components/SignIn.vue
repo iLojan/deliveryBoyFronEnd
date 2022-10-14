@@ -59,9 +59,16 @@ export default {
                 localStorage.setItem('name', res.data.name);
                 localStorage.setItem('role', res.data.roles);
                 this.$store.dispatch("loginStatus", localStorage.getItem('email'))
-                this.$router.push({name:"index"})
+                if (res.data.roles ==="ROLE_DRIVER") {
+                    this.$router.push({name:"DriverManageAccount"})
+                }
+                else{
+                    this.$router.push({name:"index"})
+                }
+                console.log("setAccessToken",res.data.roles)
+                
                
-                console.log("setAccessToken",res)
+                
             })
             .catch(error => {
                 console.log("updateAccessTokenStatus", error)
