@@ -43,11 +43,11 @@
            <h3 class="font-semibold text-primary-font text-h3-font">User Details</h3>
               <div class="grid grid-cols-12 gap-4">
           <div class="mt-2 col-span-6 ">
-            <label class="block text-secondary-font font-medium capitalize">From Location</label>
+            <label class="block text-secondary-font font-medium capitalize">User Name</label>
             <label class="text-primary-font font-medium mt-2">{{user?.fistName}} {{user?.lastName}}</label>
           </div>
            <div class="mt-2 col-span-6">
-            <label class="block text-secondary-font font-medium capitalize">to Location</label>
+            <label class="block text-secondary-font font-medium capitalize">User Phone Number</label>
             <label class="text-primary-font font-medium mt-2">{{user?.phoneNumber}}</label>
           </div>
         </div>
