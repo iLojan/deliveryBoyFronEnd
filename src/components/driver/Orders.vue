@@ -163,10 +163,10 @@
                     <div class="">
                     <label class="block text-secondary-font font-medium capitalize">Select Status</label>
                    <select v-model="status.status" class="rounded  text-p1-font text-primary-font bg-transparent focus:ring-0 pl-2 bg-white border border-gray-300 py-2 w-full">
-                    <option value="InProgress">Pickup</option>
-                    <option value="Pending">Pending</option>
-                    <option value="Success">Delivered</option>
-                    <option value="Fail">Ruturn</option>
+                    <option value="Pickup">Pickup</option>
+                    <!-- <option value="Pending">Pending</option> -->
+                    <option value="Delivered">Delivered</option>
+                    <option value="Ruturn">Ruturn</option>
                    </select>  
                   
                     </div>

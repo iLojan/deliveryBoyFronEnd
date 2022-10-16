@@ -1,4 +1,4 @@
-<template lang="">
+<template>
     <div class="md:px-8  lg:w-10/12 md:10/12 w-full md:m-auto  md:p-0 p-3 md:mt-12">
         <div class="main">
             <div class="grid grid-cols-12 gap-4 px-3">

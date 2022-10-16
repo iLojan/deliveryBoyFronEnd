@@ -447,6 +447,7 @@ export default {
         createdAt: new Date(),
         updatedAt: new Date(),
         userDetails: null,
+        distance:"",
         driverAdditionalCharge:'',
       },
       selectedUserId:0,
@@ -548,6 +549,7 @@ driverList: "",
     distance(event) {
       this.setDistance = event;
       this.order.duration = event.duration;
+      this.order.distance = event.distance;
       console.log("getDistance", event);
     },
     test() {

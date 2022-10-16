@@ -2,46 +2,66 @@
   <div>
     <div class="">
         
-          <div class="flex justify-between items-center mb-5">
+          <div class="flex justify-between items-center mb-3">
             <h2 class="font-semibold text-primary-font text-h2-font">Order Details {{selectedOrder.status}}</h2>
         </div>
         <!-- {{driver.driverPrices}} -->
         <div class="grid grid-cols-12 gap-4">
-          <div class="col-span-6 ">
+          <div class="mt-2 col-span-6 ">
             <label class="block text-secondary-font font-medium capitalize">From Location</label>
-            <label class="text-primary-font font-semibold">{{selectedOrder.fromLocation}}</label>
+            <label class="text-primary-font font-medium mt-2">{{selectedOrder.fromLocation}}</label>
           </div>
-           <div class="col-span-6">
+           <div class="mt-2 col-span-6">
             <label class="block text-secondary-font font-medium capitalize">to Location</label>
-            <label class="text-primary-font font-semibold">{{selectedOrder.toLocation}}</label>
+            <label class="text-primary-font font-medium mt-2">{{selectedOrder.toLocation}}</label>
           </div>
-<div class="col-span-4">
+<div class="mt-2 col-span-3">
             <label class="block text-secondary-font font-medium capitalize">material</label>
-            <label class="text-primary-font font-semibold">{{selectedOrder.material}}</label>
+            <label class="text-primary-font font-medium mt-2">{{selectedOrder.material}}</label>
           </div>
-           <div class="col-span-4">
+           <div class="mt-2 col-span-3">
             <label class="block text-secondary-font font-medium capitalize">distance</label>
-            <label class="text-primary-font font-semibold">{{selectedOrder.distance}}</label>
+            <label class="text-primary-font font-medium mt-2">{{selectedOrder.distance}}km</label>
           </div>
-            <div class="col-span-4">
+           <div class="mt-2 col-span-3">
+            <label class="block text-secondary-font font-medium capitalize">duration</label>
+            <label class="text-primary-font font-medium mt-2">{{selectedOrder.duration}}</label>
+          </div>
+          
+            <div class="mt-2 col-span-3">
             <label class="block text-secondary-font font-medium capitalize">weight</label>
-            <label class="text-primary-font font-semibold">{{selectedOrder.weight}}</label>
+            <label class="text-primary-font font-medium mt-2">{{selectedOrder.weight}}</label>
           </div>
-            <div class="col-span-12">
+            <div class="mt-2 col-span-12">
             <label class="block text-secondary-font font-medium capitalize">standard Price</label>
-            <label class="text-primary-font font-semibold">{{selectedOrder.standardPrice}}</label>
+            <label class="text-primary-font font-medium mt-2">LKR. {{selectedOrder.standardPrice}} </label>
           </div>
         </div>
-       
+
+        <!-- User Details -->
+        <div class="mt-3">
+           <h3 class="font-semibold text-primary-font text-h3-font">User Details</h3>
+              <div class="grid grid-cols-12 gap-4">
+          <div class="mt-2 col-span-6 ">
+            <label class="block text-secondary-font font-medium capitalize">From Location</label>
+            <label class="text-primary-font font-medium mt-2">{{user?.fistName}} {{user?.lastName}}</label>
+          </div>
+           <div class="mt-2 col-span-6">
+            <label class="block text-secondary-font font-medium capitalize">to Location</label>
+            <label class="text-primary-font font-medium mt-2">{{user?.phoneNumber}}</label>
+          </div>
+        </div>
+        </div>
+      
         <!-- set price -->
         <div class="mt-5" >
             <div class="grid grid-cols-12 gap-2 mb-2 content-end px-3 py-4 bg-gray-50 rounded-lg"  :key="index">
               <div class="col-span-12">
-                <h2 class="font-bold ">Add additional charge</h2>
+                <h2 class="font-bold mb-3">Add additional charge</h2>
               </div>
                 <div class="col-span-4">
                     <div class="">
-                    <label class="block text-secondary-font font-medium capitalize">Price</label>
+                    <label class="block text-secondary-font font-medium capitalize mb-2">Price</label>
                     <input v-model="driverPrices.price" type="text" placeholder="price" class="w-full border  rounded  text-p1-font text-primary-font  focus:ring-0 pl-2  border-gray-300 py-2  "  />
                     
                     </div>
@@ -49,7 +69,7 @@
              
                 <div class="col-span-4">
                     <div class="">
-                    <label class="block text-secondary-font font-medium capitalize">hour</label>
+                    <label class="block text-secondary-font font-medium capitalize mb-2">hour</label>
                     <input v-model="driverPrices.hour" type="text" placeholder="hour" class="w-full border  rounded  text-p1-font text-primary-font  focus:ring-0 pl-2  border-gray-300 py-2 " />
                   
                     </div>
@@ -65,7 +85,6 @@
             </div>
         </div>     
   </div>
-    
     
   </div>
 </template>
@@ -84,6 +103,7 @@ export default {
        hour:0,
        status:"Open"
       },
+      user:'',
        driverPrices:{
           price:0,
           hour:0,
@@ -98,6 +118,13 @@ export default {
     };
   },
   methods: {
+    getUserById() {
+      let commonPath = process.env.VUE_APP_SERVER;
+      let path = "/api/auth/getUserById/" + this.selectedOrder.userId;
+      axios.get(commonPath + path, { withCredentials: true }).then((res) => {
+        this.user = res.data;
+      });
+    },
     addPrice(){
       let priceObj =   {"price": "", "OrderId": "", "hour": "" }
       this.driver.driverPrices.push(priceObj)
@@ -161,7 +188,9 @@ export default {
   },
   mounted() {    
     this.bargain.userId = this.selectedOrder?.userId;
+    this.getUserById();
     this.getOrderByEmail();
+    
   },
 };
 </script>

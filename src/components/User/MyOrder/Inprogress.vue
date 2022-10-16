@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+ <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
         <div class="overflow-hidden">
           <table class="min-w-full">
@@ -81,6 +81,7 @@
                       font-medium
                       text-
                     "
+                    @click="trackOrder(order.status)"
                   >
                     Track
                   </button>
@@ -111,20 +112,34 @@
           </table>
         </div>
       </div>
+      <div class="" v-if="showPopup">
+         <TrackOrder @hidenPopup="hidenPopup" :selectTrackOrder="selectTrackOrder"></TrackOrder>
+    </div>
     </div>
   </div>
 </template>
 <script>
+import TrackOrder from "./TrackOrder.vue"
 import axios from "axios";
 export default {
+  components:{TrackOrder},
   data() {
     return {
       orders: "",
       showAlert:"",
-      errorData:""
+      errorData:"",
+      selectTrackOrder:"",
+      showPopup:false
     };
   },
   methods: {
+    hidenPopup(event){
+this.showPopup = event;
+    },
+    trackOrder(status){
+      this.showPopup = true;
+      this.selectTrackOrder = status;
+    },
      cancelOrder(id){
      let status = {
         id:id,
@@ -150,7 +165,7 @@ export default {
     filtertems(data) {
       console.log("data", data);
       const searchObject = data.filter(
-        (order) => order.status === "Confirmed"
+        (order) => {return (order.status != "Cancel" && order.status != "Success")} 
       );
       return searchObject;
     },
@@ -182,4 +197,7 @@ export default {
   },
 };
 </script>
-<style lang=""></style>
+<style>
+.active-line{
+}
+</style>

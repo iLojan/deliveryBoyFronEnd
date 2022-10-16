@@ -45,6 +45,12 @@
                 >
                   Duration
                 </th>
+                 <th
+                  scope="col"
+                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                >
+                  Create Date
+                </th>
                 <th
                   scope="col"
                   class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
@@ -58,12 +64,14 @@
                 <td class="px-6 py-4 text-sm font-medium text-gray-900">{{order.id}}</td>
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
                    {{order.userId}}
-                  <!--getTime(order.updatedAt)}} -->
+                   
                 </td>
 
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
                  {{order.duration}}
                 </td>
+                <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">{{getDate(order.updatedAt)}}
+                 </td>
                 <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
                   <button
                     class="
@@ -104,7 +112,7 @@
               class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalLgLabel">
 
-                Select delivery type
+             
 
               </h5>
               <button type="button"
