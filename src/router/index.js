@@ -34,14 +34,12 @@ import AdminVue from '../components/admin/Admin.vue'
 import SignUp from '../components/SignUp.vue'
 import AllVue from '../components/User/MyOrder/All.vue'
 import Confirmation from '../components/Confirmation.vue'
-
 const routes = [
   {
     path: '/',
     name: 'index',
     component: Index
   },
-  
   {
     path: '/order',
     name: 'order',
@@ -211,7 +209,8 @@ const routes = [
         path:'delivered-order',
         name:'deliveredOrder',
         component:DeliveredOrder
-      },      
+      }, 
+           
       {
         // add-price
         path:'add-price',

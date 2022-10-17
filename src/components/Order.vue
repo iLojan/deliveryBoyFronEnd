@@ -369,14 +369,14 @@
                         : "Registration successful"
                     }}
                      -->
-                     success
+                     Success
                     </DialogTitle>
                  <div class="sm:flex sm:items-start mt-2 items-center">
             
                 <div class="text-p1-font text-center sm:mt-0  sm:text-left">
                 
                   <div class="mt-2">
-                    <p class="text-sm text-gray-500">Your order has been placed</p>
+                    <p class="text-sm text-gray-500">Your order has been Successfully placed</p>
                   </div>
                 </div>
               </div>
