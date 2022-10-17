@@ -85,16 +85,21 @@
             </div>
         </div>     
   </div>
-    
+    <div class="" v-if="showAlert">
+      <AlertPopup @hidenPopup="hidenPopup" alertMgs="success" alertTitle="success" />
+    </div>
   </div>
 </template>
 <script>
+import AlertPopup from "../common/AlertPopup.vue";
 import axios from "axios";
 export default {
   props:['selectedOrder'],
+  components:{AlertPopup},
   data() {
     return {
       driver: {  },
+      showAlert:false,
       bargain:{
        userId:0,
        driverId:0,
@@ -118,6 +123,10 @@ export default {
     };
   },
   methods: {
+    hidenPopup(event){
+      this.showAlert = event;
+      this.$router.push({name:'driverBargain'})
+    },
     getUserById() {
       let commonPath = process.env.VUE_APP_SERVER;
       let path = "/api/auth/getUserById/" + this.selectedOrder.userId;
@@ -181,6 +190,7 @@ export default {
        let path = "/api/v1/addBargain";
       axios.post(commonPath+path,this.bargain, { withCredentials: true }).then((res) => {
             console.log(res);
+            this.showAlert = true
       });
       }
       

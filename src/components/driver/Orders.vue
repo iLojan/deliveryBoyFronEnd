@@ -190,6 +190,9 @@
     </TransitionRoot>
     <!--  -->
     </div>
+    <div class="" v-if="showAlert">
+      <AlertPopup @hidenPopup="hidenPopup" alertMgs="success" alertTitle="success" />
+    </div>
 </template>
 <script>
 import {
@@ -198,18 +201,21 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
+import AlertPopup from "../common/AlertPopup.vue";
 import axios from "axios";
 export default {
      components: {
     Dialog,
     DialogPanel,
     TransitionChild,
-    TransitionRoot
+    TransitionRoot,
+    AlertPopup
   },
   data() {
     return {
        open: false,
        orders:"",
+       showAlert:"",
        status:{
        id:"",
        status: ""
@@ -221,11 +227,17 @@ export default {
       this.open = true;
       this.status.id = id
     },
+     hidenPopup(event){
+      this.showAlert = event;
+      this.getOrderDriverId()
+    },
     updateStatus(){
   let commonPath = process.env.VUE_APP_SERVER;
        let path = "/api/v1/updateStatus";
       axios.post(commonPath+path,this.status, { withCredentials: true }).then((res) => {
             console.log("updateStatus",res);
+            this.open = false;
+            this.showAlert = true
       });
     },
     getOrderDriverId() {

@@ -12,7 +12,7 @@
                                 <ul>
                                     <li><router-link  active-class="active" class="text-primary-font pb-2" :to="{name:'manageAccount'}">Manage My Account</router-link></li>
                                     <li><router-link  active-class="active" class="text-primary-font pb-2" :to="{name:'profile'}">My Profile</router-link></li>
-                                    <li><router-link  active-class="active" class="text-primary-font pb-2" :to="{name:'addRating'}">My Review</router-link></li>
+                                    <!-- <li><router-link  active-class="active" class="text-primary-font pb-2" :to="{name:'addRating'}">My Review</router-link></li> -->
                                 </ul>
                             </div>
                         </div>

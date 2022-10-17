@@ -44,12 +44,14 @@
                 <th
                   scope="col"
                   class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                
                 >
                   Track Order
                 </th>
                 <th
                   scope="col"
                   class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                  
                 >
                   Cancel Order
                 </th>
@@ -102,6 +104,8 @@
                       font-medium
                       text-
                     "
+                    :disabled="order.status != 'New' || order.status != 'Confirmed' "
+                    :class="order.status != 'New' || order.status != 'Confirmed' ? 'opacity-25 cursor-not-allowed':'opacity-100 cursor-pointer'"
                     @click="cancelOrder(order.id)"
                   >
                     Cancel

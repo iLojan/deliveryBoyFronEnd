@@ -2,25 +2,34 @@
     <div>
         <Bargain @deleteBargain="deleteBargain" :bargain="bargain"/>
     </div>
+      <div class="" v-if="showAlert">
+      <AlertPopup @hidenPopup="hidenAlertPopup" alertMgs="Delete success" alertTitle="success" />
+    </div>
 </template>
 <script>
 import Bargain from "../common/Bargain.vue";
 import axios from "axios";
+import AlertPopup from "../common/AlertPopup.vue";
 export default {
-    components:{Bargain},
+    components:{Bargain,AlertPopup},
     data() {
         return {
-            bargain:""
+            bargain:"",
+            showAlert:false
         }
     },
     methods: {
+      hidenAlertPopup(event){
+      this.showAlert = event;
+      this.$router.push("/user/my-in-progress")
+      },
        deleteBargain(event){
          let commonPath = process.env.VUE_APP_SERVER
          let path = "/api/v1/delete/"+event;
           axios.delete(commonPath+path,{ withCredentials: true })
           .then(res=>{
             this.getBargainByUserId()
-            console.log(res);
+            this.showAlert = true;
           })
       },
           getBargainByUserId(){

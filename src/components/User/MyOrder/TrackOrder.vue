@@ -49,7 +49,7 @@
                   text-left
                   shadow-xl
                   transition-all
-                  sm:my-8 sm:w-full sm:max-w-lg
+                  sm:my-8 sm:w-full sm:max-w-6xl
                 "
               >
                 <div class="bg-white px-4 pt-2 pb-4 sm:p-6 sm:pb-4">
@@ -69,55 +69,49 @@
                         ><h2 class="font-bold">Track the Order</h2>
                         <span class="font-bold cursor-pointer" @click="hide()">X</span>
                       </DialogTitle>
-                      <div class="mt-2">
-                        <div class="mt-5">
+                      <div class="mt-2 py-8  rounded-lg px-2">
+                        <div class="mt-5 flex">
                           <!-- {{driver.driverPrices}} -->
-       <div class="flex status  active">
-            <div class="mr-3  relative">
+       <div class="flex status items-center mr-3  active">
+            <div class="mr-3   relative">
                 <img class="status-img" src="../../../assets/img/state-done.svg" alt="" srcset="">
-                <div class="active-line flex justify-center">
-                    <img src="../../../assets/img/line.svg" alt="" srcset="">
-                </div>
+              
             </div>
-            <div class="mt-1">
+            <div class="">
                 <label class="text-primary-font font-medium">Order has been created</label>
             </div>
         </div>
-        <div class="flex status ">
+        <div class="flex status items-center mr-3 ">
             <div class="mr-3  relative">
                 <img class="status-img" src="../../../assets/img/state-done.svg" alt="" srcset="">
-                <div class="active-line flex justify-center">
-                    <img src="../../../assets/img/line.svg" alt="" srcset="">
-                </div>
+              
+             
             </div>
-            <div class="mt-1">
-                <label class="text-secondary-font font-medium">Courier has been Confirmed</label>
+            <div class="">
+                <label class="text-primary-font font-medium">Courier has been Confirmed</label>
                
             </div>
         </div>
-           <div class="flex status ">
+           <div class="flex status items-center mr-3 ">
             <div class="mr-3  relative">
                 <img class="status-img" v-if="!picked" src="../../../assets/img/state-next.stage.svg" alt="" srcset="">
                 <img class="status-img" v-if="picked" src="../../../assets/img/state-done.svg" alt="" srcset="">
-               
-                <div class="active-line flex justify-center">
-                    <img src="../../../assets/img/line.svg" alt="" srcset="">
-                </div>
+              
             </div>
-            <div class="mt-1">
-                <label class="text-secondary-font font-medium">Courier picked up the Parcel</label>
+            <div class="">
+                <label class="text-primary-font font-medium">Courier picked up the Parcel</label>
                
             </div>
         </div>
-        <div class="flex status ">
+        <div class="flex status items-center mr-3">
             <div class="mr-3  relative">
                <img class="status-img" :src="derliverd?'./assets/img/state-done.svg':'./assets/img/state-next.stage.svg'" alt="" srcset="">
                 <img class="status-img" v-if="!derliverd" src="../../../assets/img/state-next.stage.svg" alt="" srcset="">
                 <img class="status-img" v-if=" derliverd" src="../../../assets/img/state-done.svg" alt="" srcset="">
                
             </div>
-            <div class="mt-1">
-                <label class="text-secondary-font font-medium">Derliverd</label>
+            <div class="">
+                <label class="text-primary-font font-medium">Derliverd</label>
                
             </div>
         </div>

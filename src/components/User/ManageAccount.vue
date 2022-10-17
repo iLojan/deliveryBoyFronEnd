@@ -92,28 +92,28 @@
                                   <td class="px-2 text-left py-5 border-b border-gray-200 bg-white text-sm">
                                         <span
                                                         v-if="item.status === 'New'"
-                                                        :class="item.status === 'New' ? 'text-newColor' : ''"
+                                                        :class="item.status === 'New' ? 'text-white font-medium rounded-lg p-1 bg-newColor' : ''"
                                                         >New</span
                                                     >
                                                     <span
-                                                        v-if="item.status === 'InProgress'"
+                                                        v-if="item.status === 'Pickup'"
                                                         :class="
-                                                        item.status === 'InProgress'
-                                                            ? 'text-inProgressColor'
+                                                        item.status === 'Pickup'
+                                                            ? 'text-white font-medium rounded-lg p-1 bg-inProgressColor'
                                                             : 'rr'
                                                         "
                                                         >Pickup</span
                                                     >
                                                     <span
-                                                        v-if="item.status === 'Success'"
+                                                        v-if="item.status === 'Delivered'"
                                                         :class="
-                                                        item.status === 'Success' ? 'text-SuccessColor' : ''
+                                                        item.status === 'Delivered' ? 'text-white font-medium rounded-lg p-1 bg-SuccessColor' : ''
                                                         "
                                                         >Delivered</span
                                                     >
                                                     <span
-                                                        v-if="item.status === 'Fail'"
-                                                        :class="item.status === 'Fail' ? 'text-failColor' : ''"
+                                                        v-if="item.status === 'Ruturn'"
+                                                        :class="item.status === 'Ruturn' ? 'text-white font-medium rounded-lg p-1 bg-failColor' : ''"
                                                         >Fail</span
                                                     >
                                     </td>

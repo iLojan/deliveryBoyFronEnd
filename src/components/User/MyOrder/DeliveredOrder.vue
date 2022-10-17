@@ -319,7 +319,7 @@ export default {
     },
     filtertems(data) {
       console.log("data", data);
-      const searchObject = data.filter((order) => order.status === "Success");
+      const searchObject = data.filter((order) => order.status === "Delivered");
       return searchObject;
     },
     getDate(date) {
