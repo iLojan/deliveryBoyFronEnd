@@ -135,22 +135,34 @@
         </div>
       </div>
     </div>
+      <div class="" v-if="showAlert">
+      <AlertPopup @hidenPopup="hidenAlertPopup" alertMgs="success" alertTitle="success" />
+    </div>
     </div>
 </template>
 <script>
+import AlertPopup  from "./AlertPopup.vue";
 import axios from "axios";
 export default {
     props:['bargain'],
     data() {
       return {
         order:"",
-        selectedBargain:''
+        selectedBargain:'',
+        alertMgs:'',
+        routeName:"",
+        showAlert:false,
       }
     },
     methods: {
-      confirm(data){
+      hidenAlertPopup(event){
+      this.showAlert = event;
+      this.$router.push("/user/my-in-progress")
+      },
+      confirm(data){        
+      this.routeName = "Confirmed"
+      this.showAlert = true;
         this.selectedBargain = data
-        console.log("data",data)
         this.getOrder(data.orderId)
       },
       reject(id){
