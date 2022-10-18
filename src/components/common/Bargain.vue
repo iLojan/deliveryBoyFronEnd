@@ -63,7 +63,7 @@
                  <th
                   scope="col"
                   class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                ></th>
+                > Action</th>
                
               </tr>
             </thead>
@@ -136,7 +136,7 @@
       </div>
     </div>
       <div class="" v-if="showAlert">
-      <AlertPopup @hidenPopup="hidenAlertPopup" alertMgs="success" alertTitle="success" />
+      <AlertPopup @hidenPopup="hidenAlertPopup" alertMgs="success" alertTitle="Success." />
     </div>
     </div>
 </template>

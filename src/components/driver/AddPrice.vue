@@ -12,28 +12,28 @@
             <label class="text-primary-font font-medium mt-2">{{selectedOrder.fromLocation}}</label>
           </div>
            <div class="mt-2 col-span-6">
-            <label class="block text-secondary-font font-medium capitalize">to Location</label>
+            <label class="block text-secondary-font font-medium capitalize">To Location</label>
             <label class="text-primary-font font-medium mt-2">{{selectedOrder.toLocation}}</label>
           </div>
 <div class="mt-2 col-span-3">
-            <label class="block text-secondary-font font-medium capitalize">material</label>
+            <label class="block text-secondary-font font-medium capitalize">Material</label>
             <label class="text-primary-font font-medium mt-2">{{selectedOrder.material}}</label>
           </div>
            <div class="mt-2 col-span-3">
-            <label class="block text-secondary-font font-medium capitalize">distance</label>
+            <label class="block text-secondary-font font-medium capitalize">Distance</label>
             <label class="text-primary-font font-medium mt-2">{{selectedOrder.distance}}km</label>
           </div>
            <div class="mt-2 col-span-3">
-            <label class="block text-secondary-font font-medium capitalize">duration</label>
+            <label class="block text-secondary-font font-medium capitalize">Duration</label>
             <label class="text-primary-font font-medium mt-2">{{selectedOrder.duration}}</label>
           </div>
           
             <div class="mt-2 col-span-3">
-            <label class="block text-secondary-font font-medium capitalize">weight</label>
+            <label class="block text-secondary-font font-medium capitalize">Weight</label>
             <label class="text-primary-font font-medium mt-2">{{selectedOrder.weight}}</label>
           </div>
             <div class="mt-2 col-span-12">
-            <label class="block text-secondary-font font-medium capitalize">standard Price</label>
+            <label class="block text-secondary-font font-medium capitalize">Standard Price</label>
             <label class="text-primary-font font-medium mt-2">LKR. {{selectedOrder.standardPrice}} </label>
           </div>
         </div>
@@ -57,7 +57,7 @@
         <div class="mt-5" >
             <div class="grid grid-cols-12 gap-2 mb-2 content-end px-3 py-4 bg-gray-50 rounded-lg"  :key="index">
               <div class="col-span-12">
-                <h2 class="font-bold mb-3">Add additional charge</h2>
+                <h2 class="font-bold mb-3">Bargain Requesting Price</h2>
               </div>
                 <div class="col-span-4">
                     <div class="">
@@ -80,13 +80,13 @@
             :disabled="driverPrices.price <= 0 && driverPrices.hour <= 0" 
             :class="driverPrices.price <= 0 || driverPrices.hour <= 0?'cursor-not-allowed opacity-25':''"  class="bg-primary-color py-2.5 px-4 text-white rounded-lg w-full" 
             data-bs-dismiss="modal"
-             @click="update()">Set</button>
+             @click="update()">Set Price</button>
         </div>
             </div>
         </div>     
   </div>
     <div class="" v-if="showAlert">
-      <AlertPopup @hidenPopup="hidenPopup" alertMgs="success" alertTitle="success" />
+      <AlertPopup @hidenPopup="hidenPopup" alertMgs="Request Successfully Sent" alertTitle="Bargaining Request - Driver" />
     </div>
   </div>
 </template>

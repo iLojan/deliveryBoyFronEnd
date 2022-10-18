@@ -126,7 +126,7 @@
       <BargainPopup @hidenPopup="hidenPopup" :selectedBargainRate="selectedBargainRate"></BargainPopup>
     </div>
      <div class="" v-if="showAlert">
-      <AlertPopup @hidenPopup="hidenAlertPopup" :alertMgs="alertMgs" alertTitle="success" />
+      <AlertPopup @hidenPopup="hidenAlertPopup" :alertMgs="alertMgs" alertTitle="Bargain Request - User" />
      </div>
   </div>
 </template>
@@ -215,7 +215,7 @@ this.updateOrderDetails();
         this.getOrder(data.orderId)
       },
     hidenPopup(event){
-       this.alertMgs = 'Succe'
+       this.alertMgs = 'Request Successfully Sent'
       this.showAlert = true
       this.showPopup = event
     },

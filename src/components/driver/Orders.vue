@@ -52,7 +52,7 @@
                     text-left
                   "
                 >
-                  Stetus Update
+                  Status Update
                 </th>
                
                
@@ -191,7 +191,7 @@
     <!--  -->
     </div>
     <div class="" v-if="showAlert">
-      <AlertPopup @hidenPopup="hidenPopup" alertMgs="Status Updated" alertTitle="success" />
+      <AlertPopup @hidenPopup="hidenPopup" alertMgs="Package Status Succesfully Updated" alertTitle="Status of Package" />
     </div>
 </template>
 <script>

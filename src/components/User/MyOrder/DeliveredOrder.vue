@@ -244,7 +244,7 @@
   </TransitionRoot>
   <!--  -->
     <div class="" v-if="showAlert">
-      <AlertPopup @hidenPopup="hidenAlertPopup" :alertMgs="alertMgs" alertTitle="success" />
+      <AlertPopup @hidenPopup="hidenAlertPopup" :alertMgs="alertMgs" alertTitle="Rating Updated" />
     </div>
   <!--  -->
 </template>
@@ -313,8 +313,8 @@ export default {
         .post(commonPath + path, driver, { withCredentials: true })
         .then((res) => {
           if (res.data) {
-            this.alertMgs = "Rating Added Success"
-            this.routeName = 'Rating'
+            this.alertMgs = "Rating Successfully Added"
+            this.routeName = 'Add Rating'
             this.open = false;
             this.showAlert = true
             this.$emit("closePopup", false);
