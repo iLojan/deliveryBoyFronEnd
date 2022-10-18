@@ -6,12 +6,12 @@
                     <div class="menu">
                         <div class="">
                             <div class="title font-medium ">
-                                Manage My Account 234
+                                Manage My Account 
                             </div>
                             <div class="list p-3">
-                                <ul>
+                                <ul class="driver">
                                     <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'DriverManageAccount'}">Manage My Account</router-link></li>
-                                    <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'order-list'}">Orders</router-link></li>
+                                    <!-- <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'order-list'}">Orders</router-link></li> -->
                                     <!-- <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'addPrice'}">Add Price</router-link></li> -->
                                     <li> <router-link active-class="active" class="text-gray-400 cursor-not-allowed pb-2" :to="{name:'profile'}">My Profile</router-link></li>
                                     <li><router-link active-class="active" class="text-gray-400 cursor-not-allowed pb-2" :to="{name:'profile'}">My Review</router-link></li>
@@ -24,7 +24,7 @@
                                 My Order 
                             </div>
                             <div class="list p-3">
-                                <ul> 
+                                <ul class="driver"> 
                                     <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'order-list'}">Available Order</router-link></li>
                                     <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'driverBargain'}">Bargain</router-link></li>
                                     <li><router-link active-class="active" class="text-primary-font pb-2" :to="{name:'driverOrders'}">My Order</router-link></li>
@@ -42,8 +42,11 @@
                     </div>
                 </div>
                 <div class="col-span-9  pr-3" >
-                    <h2>Driver Dashboard</h2>
+                     <h2 class="w-full text-white font-semibold bg-secondary-color text-h2-font p-4 rounded-lg text-center mb-0">Driver Dashboard</h2>
+                  <div class=" p-3 border border-2 rounded-lg" style="border-color: #B9966E !important;">
                     <router-view></router-view>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -60,6 +63,9 @@ export default {
    
 }
 </script>
-<style lang="">
-    
+<style>
+ .driver .active{
+        color: #B9966E  !important;
+    font-weight: 600 !important;
+    }   
 </style>
