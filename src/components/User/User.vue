@@ -37,6 +37,7 @@
                     </div>
                 </div>
                 <div class="col-span-9  pr-3" >
+                    <h2>User Dashboard</h2>
                     <router-view></router-view>
                 </div>
             </div>
