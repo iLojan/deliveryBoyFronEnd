@@ -191,7 +191,7 @@
     <!--  -->
     </div>
     <div class="" v-if="showAlert">
-      <AlertPopup @hidenPopup="hidenPopup" alertMgs="success" alertTitle="success" />
+      <AlertPopup @hidenPopup="hidenPopup" alertMgs="Status Updated" alertTitle="success" />
     </div>
 </template>
 <script>
