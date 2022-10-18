@@ -106,6 +106,7 @@ export default {
        orderId:0,
        price:0,
        hour:0,
+       type:"Request",
        status:"Open"
       },
       user:'',

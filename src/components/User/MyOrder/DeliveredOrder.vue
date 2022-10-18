@@ -76,16 +76,14 @@
                   <span
                     class="
                       mb-3
-                      border
                       text-p2-font
-                      py-2
-                      px-4
-                      bg-green-500
-                      text-white
+                      py-1
+                      px-1
+                      text-green-500
                       w-full
                       rounded-full
                       font-medium
-                      text-
+                      text-center
                     "
                   >
                     Complete
@@ -245,8 +243,13 @@
     </Dialog>
   </TransitionRoot>
   <!--  -->
+    <div class="" v-if="showAlert">
+      <AlertPopup @hidenPopup="hidenAlertPopup" :alertMgs="alertMgs" alertTitle="success" />
+    </div>
+  <!--  -->
 </template>
 <script>
+import AlertPopup from "../../common/AlertPopup.vue";
 import axios from "axios";
 import {
   Dialog,
@@ -262,6 +265,7 @@ export default {
     DialogTitle,
     TransitionChild,
     TransitionRoot,
+    AlertPopup
   },
   data() {
     return {
@@ -270,10 +274,24 @@ export default {
       selectedId: "",
       driver: "",
       comments: "",
-      selectedUserId:""
+      selectedUserId:"",
+      routeName:'',
+      alertMgs:"",
+      showAlert:false
     };
   },
   methods: {
+    hidenAlertPopup(event){
+      this.showAlert = event;
+      if (this.routeName === 'Confirmed') {
+        this.$router.push("/user/my-in-progress")
+      }
+      else {
+        // this.routeName = "Confirmed"
+        // this.$router.push({name:'userBargain'})        
+      }
+      
+    },
     getDriverById(id) {
       let commonPath = process.env.VUE_APP_SERVER;
       let path = "/api/auth/getUserById/" + id;
@@ -295,6 +313,10 @@ export default {
         .post(commonPath + path, driver, { withCredentials: true })
         .then((res) => {
           if (res.data) {
+            this.alertMgs = "Rating Added Success"
+            this.routeName = 'Rating'
+            this.open = false;
+            this.showAlert = true
             this.$emit("closePopup", false);
           }
         });

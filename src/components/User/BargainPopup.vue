@@ -235,6 +235,7 @@ export default {
       this.$emit("hidenPopup",false)
     },
     update() {
+      this.driverPrices.type="Bargain";
       let commonPath = process.env.VUE_APP_SERVER;
       let path = "/api/v1/updateBargain";
       axios

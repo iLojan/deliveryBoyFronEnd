@@ -127,7 +127,7 @@
     </div>
      <div class="" v-if="showAlert">
       <AlertPopup @hidenPopup="hidenAlertPopup" :alertMgs="alertMgs" alertTitle="success" />
-    </div>
+     </div>
   </div>
 </template>
 <script>
