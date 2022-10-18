@@ -28,7 +28,8 @@ module.exports = {
         'SuccessColor':'rgb(21 128 61)',
         'failColor':'rgb(190 18 60)',
         'newColor':'rgb(162 28 175)',
-        'litepie-primary':colors.gray
+        'litepie-primary':colors.gray,
+        "userDashboard-color":"#3BA3B1"
       }
       ,
       fontSize:{

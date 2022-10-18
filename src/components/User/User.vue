@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-span-9  pr-3" >
                     <h2 class="w-full text-white font-semibold text-h2-font p-4 rounded-lg text-center mb-0" style="    background: #3BA3B1;">User Dashboard</h2>
-                   <div class=" p-3 border border-2 rounded-lg" style="border-color: #3BA3B1 !important;">
+                   <div class=" p-3 border border-0 rounded-lg" style="border-color: #3BA3B1 !important;">
                     <router-view></router-view>
                     </div>
                 </div>

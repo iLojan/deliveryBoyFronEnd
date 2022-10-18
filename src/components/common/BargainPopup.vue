@@ -156,7 +156,7 @@
                                     : ''
                                 "
                                 class="
-                                  bg-green-500
+                                  bg-secondary-color
                                   py-2.5
                                   px-4
                                   text-white

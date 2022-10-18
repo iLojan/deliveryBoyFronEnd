@@ -83,8 +83,8 @@
                       border
                       text-p2-font
                       py-2
-                      bg-green-500
-                      text-white
+                      bg-userDashboard-color
+                      text-white 
                       w-full
                       px-1
                       rounded-full

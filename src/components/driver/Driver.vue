@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-span-9  pr-3" >
                      <h2 class="w-full text-white font-semibold bg-secondary-color text-h2-font p-4 rounded-lg text-center mb-0">Driver Dashboard</h2>
-                  <div class=" p-3 border border-2 rounded-lg" style="border-color: #B9966E !important;">
+                  <div class=" p-3 border border-0 rounded-lg" style="border-color: #B9966E !important;">
                     <router-view></router-view>
                     </div>
                     

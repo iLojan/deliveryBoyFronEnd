@@ -175,7 +175,7 @@
                                     : ''
                                 "
                                 class="
-                                  bg-green-500
+                                  bg-userDashboard-color
                                   py-2.5
                                   px-4
                                   text-white

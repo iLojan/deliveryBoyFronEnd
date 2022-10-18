@@ -80,7 +80,7 @@
                       border
                       text-p2-font
                       py-2
-                      bg-green-500
+                      bg-secondary-color
                       text-white
                       w-full
                       px-4

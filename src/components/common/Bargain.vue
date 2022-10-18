@@ -115,7 +115,7 @@
                       text-p2-font
                       py-2
                       px-4
-                      bg-green-500
+                      bg-userDashboard-color
                       text-white
                       w-full                    
                       rounded-full
