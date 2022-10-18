@@ -1,5 +1,5 @@
 <template lang="">
-  <header class="header mb-36">
+  <header class="header ">
       <div class="navbar-area">
         <div class="container">
           <div class="row align-items-center">
@@ -7,7 +7,7 @@
               
               <nav class="navbar navbar-expand-lg">
                 <a class="navbar-brand" href="#">
-                  <img src="assets/img/logo/logo.svg" width="592" height="150" alt="Logo" />
+                  <img src="../assets/img/logo/logo.svg" width="592" height="150" alt="Logo" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                   aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@
                         <div>
                           <div class="dropdown relative">
                             <button
-                              class="dropdown-toggle text-p1-font py-2 mt-1 font-medium text-xs leading-tight transition duration-150 ease-in-out flex items-center whitespace-nowrap"
+                              class="dropdown-toggle text-p1-font py-2 font-medium text-xs leading-tight transition duration-150 ease-in-out flex items-center whitespace-nowrap"
                               type="button"
                               id="dropdownMenuButton1d"
                               data-bs-toggle="dropdown"
@@ -148,6 +148,7 @@
                                 <a
                                   class="
                                     dropdown-item
+                                    cursor-pointer
                                     text-sm
                                     py-2
                                     px-4
@@ -202,7 +203,13 @@ export default {
       return localStorage.getItem('username')
     },
     getLogin(){
-            return this.$store.getters.getloginStatus
+      let status= false;
+      if(this.$store.getters.getloginStatus || localStorage.getItem('username')){
+            status= true}
+            else {
+              status = false;
+            }
+            return status;
         },
         getUserDetails(){
            let user ={
@@ -236,6 +243,13 @@ export default {
   },
 }
 </script>
-<style lang="">
-  
+<style >
+  .dropdown-toggle {
+    font-size: 18px;
+    font-weight: 400;
+    color: #676f73;
+    transition: all .3s ease-out 0s;
+    padding: 10px 0;
+    position: relative;
+}
 </style>

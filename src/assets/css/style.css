@@ -1105,7 +1105,7 @@ input[type=number] {
   top: 30px;
   width: 176px;
   height: 1px;
-  background-image: url(../images/line.png);
+  /* background-image: url(../images/line.png); */
   background-repeat: no-repeat;
 }
 

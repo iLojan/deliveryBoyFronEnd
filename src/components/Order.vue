@@ -1,5 +1,5 @@
 <template>
-  <div class="md:px-8 lg:w-10/12 md:10/12 w-full md:m-auto md:p-0 p-3 md:mt-20">
+  <div class="md:px-8 lg:w-10/12 md:10/12 w-full md:m-auto md:p-0 p-3 ">
     <div
       v-if="showAler"
       class="
