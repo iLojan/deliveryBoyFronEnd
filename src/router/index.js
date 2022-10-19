@@ -27,6 +27,7 @@ import DeliveryBoy from "../components/admin/deliveryBoy/DeliveryBoy.vue"
 import AddDeliveryBoy from "../components/admin/deliveryBoy/AddDeliveryBoy.vue"
 import Orders from "../components/admin/orders/Orders.vue"
 import DriverOrders from "../components/driver/Orders.vue"
+import DriverProfile from "../components/driver/DriverProfile.vue"
 import MyRating from "../components/driver/MyRating.vue"
 import OderDetails from "../components/admin/orders/OrderDetails.vue"
 import adminUser from "../components/admin/users/Users.vue"
@@ -220,7 +221,7 @@ const routes = [
       {
         path: 'driver-profile',
         name: "Driverprofile",
-        component: UserProfile
+        component: DriverProfile
       }
     ]
   }
