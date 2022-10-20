@@ -1,6 +1,6 @@
 <template >
     <div class="mt-8">
-        <Profile/>
+        <Profile title="User Profile"/>
     </div>
 </template>
 <script>

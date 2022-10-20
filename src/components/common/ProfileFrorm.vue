@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="font-medium leading-tight text-2xl mt-0 mb-2 text-black-600"> Profile Area.! </h4><br>
+    <h4 class="font-medium leading-tight text-2xl mt-0 mb-2 text-black-600"> {{title}} </h4><br>
     <div class="grid grid-cols-12 mb-3 gap-3 w-full">
       <div class="col-span-5">
       
@@ -97,6 +97,7 @@
 <script>
 import axios from 'axios'
 export default {
+  props:["title"],
   data() {
     return {
       profile: "",
