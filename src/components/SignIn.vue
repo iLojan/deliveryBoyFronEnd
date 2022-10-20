@@ -10,7 +10,7 @@
                 <span class="flex shadow-md mb-5 text-xs relative">
                     <span class="bg-primary-color w-28 font-bold text-center text-gray-200 p-3 px-5 rounded-l">Password</span>
                     <input  class="field text-sm text-gray-600 p-2 px-3 rounded-r w-full" v-model="loginData.password" 
-                    :type="showPassword? 'text':'password'" placeholder="Enter Your Password">
+                    :type="showPassword? 'password':'text'" placeholder="Enter Your Password">
                     <span @click="toggleShow"
                     class="cursor-pointer font-bold text-center text-primary-font rounded-l absolute right-2 top-3">
                         <svg v-if="!showPassword" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -38,9 +38,9 @@
 export default {
     data() {
         return {
-            showPassword: true,
-      password: null,
-            loginData:{
+        showPassword: true,
+        password: null,
+        loginData:{
                
             }
         }
