@@ -1,13 +1,15 @@
 <template>
   <div>
+    <h4 class="font-medium leading-tight text-2xl mt-0 mb-2 text-black-600"> Profile Area.! </h4><br>
     <div class="grid grid-cols-12 mb-3 gap-3 w-full">
       <div class="col-span-5">
+      
         <div class="">
-          <label class="mb-2">Firs Name</label>
+          <label class="mb-2">First Name</label>
           <input
             type="text"
             class="input border py-2 w-full mb-3"
-            placeholder="Origin"
+            placeholder="Please enter your first name"
             v-model="profile.fistName"
           />
         </div>
@@ -18,7 +20,7 @@
           <input
             type="text"
             class="input border py-2 w-full mb-3"
-            placeholder="Last Name"
+            placeholder="Please enter your last name"
           v-model="profile.lastName"
           />
         </div>
@@ -27,11 +29,11 @@
     <div class="grid grid-cols-12 mb-3 gap-3 w-full">
       <div class="col-span-5">
         <div class="">
-          <label class="mb-2">Phone</label>
+          <label class="mb-2">Phone No</label>
           <input
             type="text"
             class="input border py-2 w-full mb-3"
-            placeholder="Origin"
+            placeholder="Please enter your phone no"
             v-model="profile.phoneNumber"
           />
         </div>
@@ -40,11 +42,11 @@
     <div class="grid grid-cols-12 mb-3 gap-3 w-full">
       <div class="col-span-12">
         <div class="">
-          <label class="mb-2">Address line1</label>
+          <label class="mb-2">Address Line</label>
           <input
             type="text"
             class="input border py-2 w-full mb-3"
-            placeholder="Origin"
+            placeholder="Please enter your address"
             v-model="profile.address"
           />
         </div>
@@ -61,7 +63,7 @@
           <input
             type="text"
             class="input border py-2 w-full mb-3"
-            placeholder="Origin"
+            placeholder="Please enter your city"
             ref="origin"
             v-model="profile.city"
           />
@@ -74,7 +76,7 @@
           <input
             type="text"
             class="input border py-2 w-full mb-3"
-            placeholder="Country"
+            placeholder="Please enter your country"
            v-model="profile.country"
           />
         </div>
