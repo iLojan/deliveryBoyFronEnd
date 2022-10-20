@@ -88,7 +88,8 @@
     >
       Save
     </button>
-      <div class="" v-if="showAlert">
+    {{showAlert}}
+      <div class="" >
       <AlertPopup @hidenPopup="hidenPopup" alertMgs="Profile update Successfully" alertTitle="Success" />
     </div>
   </div>
@@ -99,7 +100,7 @@ export default {
   data() {
     return {
       profile: "",
-      showAlert:"",
+      showAlert:false,
     };
   },
   methods: {
@@ -121,8 +122,9 @@ export default {
   console.log("this.driver",this.profile);
        let path = "/api/auth/putUser";
        let profile = {user:this.profile}
-      axios.post(commonPath+path,profile, { withCredentials: true }).then((res) => {
+       axios.post(commonPath+path,profile, { withCredentials: true }).then((res) => {
             console.log(res);
+            this.showAlert = true
       });
     },
   },
