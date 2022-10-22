@@ -117,7 +117,6 @@ const commonValidation = (traveler) => {
     if(emailNotValid) errorMap.set('email', emailNotValid);
     if(validatePassword) errorMap.set('password', validatePassword);
 
-    console.log(traveler.name,"==errorMap",errorMap);
     return errorMap;
 }
 const loginValidation = (login)=>{
@@ -127,7 +126,6 @@ const loginValidation = (login)=>{
     // 
     if(LogInEmail) errorMap.set('usernameOrEmail',LogInEmail)
     if(LogInPassword) errorMap.set('password',LogInPassword)
-    console.log(login,"==errorMap",errorMap);
     return errorMap;
 }
 const validate = {

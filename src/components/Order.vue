@@ -162,7 +162,7 @@
                 "
                 @click="next()"
               >
-                Next
+                Place Order
               </button>
               <!-- <button class="mb-3 border   py-2 w-full px-3 rounded bg-primary-color text-white "
                 @click="updateOrder()">Send now </button> -->
@@ -475,10 +475,10 @@ driverList: "",
             this.$router.push({ name: "allRequest" });      
     },
     showRating(ratingList) {
-      console.log("ratingList", ratingList);
+     // console.log("ratingList", ratingList);
     let ratingCal = 0,total =0;
       if (ratingList.length > 0) {
-        console.log("ratingList",ratingList.length);
+       // console.log("ratingList",ratingList.length);
         for (let index = 0; index < ratingList.length; index++) {
                      total += ratingList[index].rating;
         }
@@ -498,7 +498,7 @@ driverList: "",
                 const path = "/api/auth/getRating/"+id;
                 axios.get(commonPath+path,{ withCredentials: true })
                 .then(res => {
-                  console.log("res.data.rating",res.data.length);
+                 // console.log("res.data.rating",res.data.length);
                     // this.rating = this.calculateRating(res.data) 
                     // this.ratingList.push({rating:this.rating,id:id})  
                     if(res.data.length > 0 ){
@@ -507,7 +507,7 @@ driverList: "",
                     res.data.forEach(rate => { arra.push(rate.rating) });     
                   //  arra.reduce(function (curr, prev) { return curr + prev; })
     this.rating   = 10; 
-                     console.log("rating",arra )
+                   //  console.log("rating",arra )
                     }
                     else{
                       this.rating = 0
@@ -535,11 +535,11 @@ driverList: "",
       this.order.total = this.order.standardPrice
      }
   
-     console.log(driver,"this.order",this.order);
+    // console.log(driver,"this.order",this.order);
     },
     selectVehile(e) {
       this.order.standardPrice = e.price;
-      console.log("event price", e);
+     // console.log("event price", e);
       this.orderNow();
     },
 
@@ -550,24 +550,24 @@ driverList: "",
       this.setDistance = event;
       this.order.duration = event.duration;
       this.order.distance = event.distance;
-      console.log("getDistance", event);
+   //   console.log("getDistance", event);
     },
     test() {
       this.$store.dispatch("setDynamicLoop", this.testPosition);
     },
     dispatchLatLngdata() {},
     orderNow() {
-      console.log("orderNow", this.order);
+    //  console.log("orderNow", this.order);
       const path = "api/v1/addOrder";
       axios
         .post(path, this.order, { withCredentials: true })
         .then((res) => {
-          console.log(res);
+         // console.log(res);
           this.order.id = res.data.id
           // this.showAler = true;
         })
         .catch((error) => {
-          console.log("updateAccessTokenStatus", error);
+        //  console.log("updateAccessTokenStatus", error);
         });
     },
     next() {
@@ -576,12 +576,12 @@ driverList: "",
       // this.showDriverDiv = true;
     },
     updateOrder(status) {
-      console.log("orderNow", this.order);
+    //  console.log("orderNow", this.order);
       const path = "api/v1/addOrder";
       axios
         .post(path, this.order, { withCredentials: true })
         .then((res) => {
-          console.log(res);
+     //     console.log(res);
           if(status){
              this.open = true;
           // this.$router.push("/user")
@@ -589,7 +589,7 @@ driverList: "",
          
         })
         .catch((error) => {
-          console.log("updateAccessTokenStatus", error);
+         // console.log("updateAccessTokenStatus", error);
         });
     },
     getAllDriver() {
@@ -603,11 +603,11 @@ driverList: "",
           // );
         })
         .catch((error) => {
-          console.log("updateAccessTokenStatus", error);
+       //   console.log("updateAccessTokenStatus", error);
         });
     },
     getAddressFrom(latLng) {
-      console.log("latLng", latLng);
+     // console.log("latLng", latLng);
       axios
         .get(
           "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
@@ -617,10 +617,10 @@ driverList: "",
             "&key=AIzaSyCJOePtL2XYo9jZ0ShzYE7zvYQFZGYJ99w"
         )
         .then((res) => {
-          console.log(res);
+        //  console.log(res);
         })
         .catch((error) => {
-          console.log("error", error);
+        //  console.log("error", error);
         });
     },
     pickUpLocation() {
@@ -628,7 +628,7 @@ driverList: "",
         (this.latLng.originLongitude = this.originLng),
         (this.latLng.destinationLongitude = this.destinationLng),
         (this.latLng.destinationLatitude = this.destinationLat),
-        console.log("data", this.latLng);
+       // console.log("data", this.latLng);
 
       this.$store.dispatch("setLatAndLng", this.latLng);
     },
@@ -636,7 +636,7 @@ driverList: "",
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            console.log("position", position.coords.latitude);
+          //  console.log("position", position.coords.latitude);
             this.originLat = position.coords.latitude;
             this.originLng = position.coords.longitude;
 
@@ -671,12 +671,12 @@ driverList: "",
           acOptions
         );
       originAutocomplete.addListener("place_changed", () => {
-        console.log("place.geometry", this.$refs["origin"]);
+      //  console.log("place.geometry", this.$refs["origin"]);
         const place = originAutocomplete.getPlace();
         this.originLat = place.geometry.location.lat();
         this.originLng = place.geometry.location.lng();
         this.order.fromLocation = place.formatted_address;
-        console.log("place", place.formatted_address);
+      //  console.log("place", place.formatted_address);
       });
 
       const destinationAutocomplete =
@@ -689,12 +689,7 @@ driverList: "",
         this.destinationLat = place.geometry.location.lat();
         this.destinationLng = place.geometry.location.lng();
         this.order.toLocation = place.formatted_address;
-        console.log(
-          "place",
-          place.geometry.location.lat(),
-          place.geometry.location.lng(),
-          place
-        );
+        
       });
     },
   },
@@ -705,7 +700,7 @@ driverList: "",
           if(newData){
       newData.forEach(driver => {
         this.setDriverIdToRating(driver.id)
-        console.log("driver",driver);
+     //   console.log("driver",driver);
       });
           }
         },

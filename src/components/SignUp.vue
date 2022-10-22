@@ -45,8 +45,6 @@
             </CustomSelect>
           </div>
 
-      
-
         <div class="col-span-1 mb-2">
           <span
             @click="signUp"

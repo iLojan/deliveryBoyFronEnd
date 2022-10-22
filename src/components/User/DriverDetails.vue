@@ -53,7 +53,7 @@
                 "
               >
                 <div class="bg-white px-4 pt-2 pb-4 sm:p-6 sm:pb-4">
-                  <div class="sm:flex sm:items-start">
+                  <div class="w-full">
                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <DialogTitle
                         as="h2"
@@ -65,12 +65,13 @@
                           flex
                           justify-between
                           text-gray-900
+                          w-full
                         "
                         ><h2 class="font-bold">Driver Details</h2>
                         <span class="font-bold cursor-pointer" @click="hide()">X</span>
                       </DialogTitle>
                       <div class="mt-2">
-                        <div class="mt-5">
+                        <div class="mt-2">
                           <!-- {{driver.driverPrices}} -->
         <div class="grid grid-cols-12 gap-4 text-left">
           <div class="col-span-6 ">
@@ -90,105 +91,6 @@
             <label class="text-primary-font font-medium">{{ratingCal}}</label>
           </div>
         </div>
-    <!--  -->
-    <h3 class="font-bold mt-4">Bargain</h3>
-                          <div
-                            class="
-                              grid grid-cols-12
-                              gap-2
-                              mb-2
-                              content-end
-                              py-1
-                              bg-gray-50
-                              rounded-lg
-                            "
-                          >
-                            <div class="col-span-12"></div>
-                            <div class="col-span-4">
-                              <div class="">
-                                <label
-                                  class="
-                                    block
-                                    text-secondary-font
-                                    font-medium
-                                    capitalize
-                                  "
-                                  >Price</label
-                                >
-                                <input
-                                  v-model="driverPrices.price"
-                                  type="text"
-                                  placeholder="price"
-                                  class="
-                                    w-full
-                                    border
-                                    rounded
-                                    text-p1-font text-primary-font
-                                    focus:ring-0
-                                    pl-2
-                                    border-gray-300
-                                    py-2
-                                  "
-                                />
-                              </div>
-                            </div>
-
-                            <div class="col-span-4">
-                              <div class="">
-                                <label
-                                  class="
-                                    block
-                                    text-secondary-font
-                                    font-medium
-                                    capitalize
-                                  "
-                                  >hour</label
-                                >
-                                <input
-                                  v-model="driverPrices.hour"
-                                  type="text"
-                                  placeholder="hour"
-                                  class="
-                                    w-full
-                                    border
-                                    rounded
-                                    text-p1-font text-primary-font
-                                    focus:ring-0
-                                    pl-2
-                                    border-gray-300
-                                    py-2
-                                  "
-                                />
-                              </div>
-                            </div>
-                            <div class="col-span-4 flex justify-end items-end">
-                              <label></label>
-                              <button
-                                :disabled="
-                                  driverPrices.price <= 0 &&
-                                  driverPrices.hour <= 0
-                                "
-                                :class="
-                                  driverPrices.price <= 0 ||
-                                  driverPrices.hour <= 0
-                                    ? 'cursor-not-allowed opacity-25'
-                                    : ''
-                                "
-                                class="
-                                  bg-userDashboard-color
-                                  py-2.5
-                                  px-4
-                                  text-white
-                                  rounded-lg
-                                  w-full
-                                "
-                                @click="update()"
-                              >
-                                Sent
-                              </button>
-                              <!-- @click="update()" -->
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -213,7 +115,7 @@ import {
 } from "@headlessui/vue";
 import axios from "axios";
 export default {
-  props: ["selectedBargainRate"],
+  props: ["selectedOrder"],
   components: {
     Dialog,
     DialogPanel,
@@ -232,19 +134,9 @@ export default {
   methods: {
     hide() {
       this.open = false;
-      this.$emit("hidenPopup",false)
+      this.$emit("hidenDriverPopup",false)
     },
-    update() {
-      this.driverPrices.type="Bargain";
-      let commonPath = process.env.VUE_APP_SERVER;
-      let path = "/api/v1/updateBargain";
-      axios
-        .post(commonPath + path, this.driverPrices, { withCredentials: true })
-        .then((res) => {
-          console.log(res);
-          this.hide();
-        });
-    },
+   
     getDriverById(id) {
       let commonPath = process.env.VUE_APP_SERVER;
       let path = "/api/auth/getUserById/" + id;
@@ -271,8 +163,8 @@ export default {
     },
   },
   mounted() {
-    this.driverPrices = this.selectedBargainRate;    
-    this.getDriverById(this.selectedBargainRate.driverId)
+    this.driverPrices = this.selectedOrder;    
+    this.getDriverById(this.selectedOrder.driverId)
     console.log("driverPrices",this.driverPrices);
   },
 };

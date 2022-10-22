@@ -131,7 +131,7 @@
     },
     watch: { 
        selectedItem(newSelection, oldSelection) {
-        this.$emit('update:selection', newSelection.value);
+        this.$emit('update:selection', newSelection);
       }
     },
     computed: {

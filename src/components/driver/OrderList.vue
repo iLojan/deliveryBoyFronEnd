@@ -122,7 +122,7 @@
             <div class="modal-body relative p-4">
 
 
-              <AddPrice :selectedOrder="selectedOrder" />
+              <AddPrice :selectedOrder="selectedOrder" :user='user'/>
             </div>
           </div>
         </div>
@@ -138,12 +138,15 @@ export default {
         return {
             orders:'',    
             selectedOrder:'',       
-            interval:null
+            interval:null,
+            user:""
         }
     },
     methods: {
          setOrder(order){
-          this.selectedOrder = order
+           this.selectedOrder = order
+          this.getUserById()
+         
          },
          getDate(date){
           let dt,time;
@@ -151,6 +154,13 @@ export default {
            time = date.slice(11,19).replace(/-/g,'/')
           return dt +" "+ time
          },
+          getUserById() {
+      let commonPath = process.env.VUE_APP_SERVER;
+      let path = "/api/auth/getUserById/" + this.selectedOrder.userId;
+      axios.get(commonPath + path, { withCredentials: true }).then((res) => {
+        this.user = res.data;
+      });
+    },
            getTime(date){
             let newDate = new Date();
             console.log(newDate,"   ",newDate.getMinutes(),"date",newDate.getHours(),'===');

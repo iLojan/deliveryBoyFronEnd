@@ -45,6 +45,11 @@
                   scope="col"
                   class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                 
+                >Driver</th>
+                <th
+                  scope="col"
+                  class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                
                 >
                   Track Order
                 </th>
@@ -68,6 +73,9 @@
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
                   {{order.toLocation}}
                 </td>
+                <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
+                  <span class="cursor-pointer text-green-700" @click="showDriverDetails(order)">Driver details</span>
+                  </td>
                 <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
                   <button
                     class="
@@ -116,6 +124,9 @@
           </table>
         </div>
       </div>
+      <div class="" v-if="showDriverPopup">
+      <DriverDetails @hidenDriverPopup="hidenDriverPopup" :selectedOrder="selectedOrder"></DriverDetails>
+    </div>
       <div class="" v-if="showPopup">
          <TrackOrder @hidenPopup="hidenPopup" :selectTrackOrder="selectTrackOrder"></TrackOrder>
     </div>
@@ -123,12 +134,14 @@
   </div>
 </template>
 <script>
+import DriverDetails from "../DriverDetails.vue";
 import TrackOrder from "./TrackOrder.vue"
 import axios from "axios";
 export default {
-  components:{TrackOrder},
+  components:{TrackOrder,DriverDetails},
   data() {
     return {
+      showDriverPopup:false,
       orders: "",
       showAlert:"",
       errorData:"",
@@ -137,6 +150,13 @@ export default {
     };
   },
   methods: {
+    showDriverDetails(order){
+this.selectedOrder = order;
+this.showDriverPopup = true;
+    },
+    hidenDriverPopup(event){
+      this.showDriverPopup = event
+    },
     hidenPopup(event){
 this.showPopup = event;
     },

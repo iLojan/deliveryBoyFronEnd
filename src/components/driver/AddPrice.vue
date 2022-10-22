@@ -44,11 +44,11 @@
               <div class="grid grid-cols-12 gap-4">
           <div class="mt-2 col-span-6 ">
             <label class="block text-secondary-font font-medium capitalize">User Name</label>
-            <label class="text-primary-font font-medium mt-2">{{user?.fistName}} {{user?.lastName}}</label>
+            <label class="text-primary-font font-medium mt-2">{{user.fistName}} {{user.lastName}}</label>
           </div>
            <div class="mt-2 col-span-6">
             <label class="block text-secondary-font font-medium capitalize">User Phone Number</label>
-            <label class="text-primary-font font-medium mt-2">{{user?.phoneNumber}}</label>
+            <label class="text-primary-font font-medium mt-2">{{user.phoneNumber}}</label>
           </div>
         </div>
         </div>
@@ -94,7 +94,7 @@
 import AlertPopup from "../common/AlertPopup.vue";
 import axios from "axios";
 export default {
-  props:['selectedOrder'],
+  props:['selectedOrder','user'],
   components:{AlertPopup},
   data() {
     return {
@@ -109,7 +109,6 @@ export default {
        type:"Request",
        status:"Open"
       },
-      user:'',
        driverPrices:{
           price:0,
           hour:0,
@@ -128,13 +127,13 @@ export default {
       this.showAlert = event;
       this.$router.push({name:'driverBargain'})
     },
-    getUserById() {
-      let commonPath = process.env.VUE_APP_SERVER;
-      let path = "/api/auth/getUserById/" + this.selectedOrder.userId;
-      axios.get(commonPath + path, { withCredentials: true }).then((res) => {
-        this.user = res.data;
-      });
-    },
+    // getUserById() {
+    //   let commonPath = process.env.VUE_APP_SERVER;
+    //   let path = "/api/auth/getUserById/" + this.selectedOrder.userId;
+    //   axios.get(commonPath + path, { withCredentials: true }).then((res) => {
+    //     this.user = res.data;
+    //   });
+    // },
     addPrice(){
       let priceObj =   {"price": "", "OrderId": "", "hour": "" }
       this.driver.driverPrices.push(priceObj)
@@ -142,12 +141,12 @@ export default {
     getOrderByEmail() {
       let userId = localStorage.getItem("id");
      let commonPath = process.env.VUE_APP_SERVER
-     console.log("commonPath",commonPath);
+    // console.log("commonPath",commonPath);
       let path = commonPath+"/api/auth/getUser/" + userId;
       axios.get(path, { withCredentials: true }).then((res) => {
         this.driver = res.data;
         this.updateUser()
-        console.log(res);
+     //   console.log(res);
       });
     },
     updateUser(){
@@ -157,17 +156,17 @@ export default {
        let path = "/api/auth/putUser";
        let driver = {user:this.driver}
       axios.post(commonPath+path,driver, { withCredentials: true }).then((res) => {
-            console.log(res);
+          //  console.log(res);
       });
     },
     updateStatus(){
       this.status.id = this.selectedOrder.id
   let commonPath = process.env.VUE_APP_SERVER
   this.driver.driverPrices= {"price": 0, "OrderId": 0, "hour": "0" }
-  console.log("this.driver",this.driver);
+  //console.log("this.driver",this.driver);
        let path = "/api/v1/updateStatus";
       axios.post(commonPath+path,this.status, { withCredentials: true }).then((res) => {
-            console.log("updateStatus",res);
+           // console.log("updateStatus",res);
       });
     },
     update(){
@@ -197,9 +196,10 @@ export default {
       
     }
   },
-  mounted() {    
+  mounted() {   
+    console.log("this.bargain",this.bargain); 
     this.bargain.userId = this.selectedOrder?.userId;
-    this.getUserById();
+    // this.getUserById();
     this.getOrderByEmail();
     
   },
