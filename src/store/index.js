@@ -6,6 +6,8 @@ import axios from 'axios';
 
 export default createStore({
     state:()=>({
+        forceShowErrors:false,
+        disableForm: false,
         cultureCode: 'En-us',
         authenticated: false,
         sessionId: null,
@@ -29,6 +31,9 @@ export default createStore({
         ]
     }),
     mutations: {
+        showAllErrorsInForm(state) {
+            state.forceShowErrors = true;
+        },
         seatLatLng(state,data){
             
             console.log("seatLatLng",data);

@@ -1620,7 +1620,6 @@ input[type=number] {
   font-size: 12px;
   line-height: 18px;
   color: #6A7186;
-  opacity: 0;
 }
 
 .registration__address-formitem input:focus + label {
