@@ -112,9 +112,9 @@
                                                         >Delivered</span
                                                     >
                                                     <span
-                                                        v-if="item.status === 'Ruturn'"
-                                                        :class="item.status === 'Ruturn' ? 'text-white font-medium rounded-lg p-1 bg-failColor' : ''"
-                                                        >Fail</span
+                                                        v-if="item.status === 'Return'"
+                                                        :class="item.status === 'Return' ? 'text-white font-medium rounded-lg p-1 bg-failColor' : ''"
+                                                        >Return</span
                                                     >
                                     </td>
                               
@@ -125,7 +125,7 @@
                                 </td>
                              
                                 <th>
-                                    <button class="px-4 py-2 bg-secondary-color font-medium text-white rounded-lg" @click="updateStatus(item.id)">cancel</button>
+                                    <!-- <button class="px-4 py-2 bg-secondary-color font-medium text-white rounded-lg" @click="updateStatus(item.id)">cancel</button> -->
                                 </th>
                                
                             </tr>
@@ -162,7 +162,7 @@ export default {
       let path = "/api/v1/orderByEmail/"+userId;
     axios.get(commonPath+path,{ withCredentials: true })
     .then(res=>{
-      this.order = this.filtertems(res.data)
+      this.order = res.data
       console.log(res);
     })
     },

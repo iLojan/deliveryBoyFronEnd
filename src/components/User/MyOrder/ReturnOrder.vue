@@ -66,18 +66,7 @@
                 >
                   create date
                 </th>
-                <th
-                  scope="col"
-                  class="
-                    text-sm
-                    font-medium
-                    w-40
-                    text-gray-900
-                    px-6
-                    py-4
-                    text-left
-                  "
-                ></th>
+                
               </tr>
             </thead>
             <tbody>
@@ -130,28 +119,6 @@
                 <td class="text-sm text-gray-900 font-light px-6 py-4">
                   {{ getDate(order.updatedAt) }}
                 </td>
-                <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
-                  <button
-                    @click="setOrder(order)"
-                    class="
-                      mb-3
-                      border
-                      text-p2-font
-                      py-2
-                      bg-secondary-color
-                      text-white
-                      w-full
-                      px-1
-                      rounded
-                      font-medium
-                      text-
-                    "
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModalLg"
-                  >
-                    Action
-                  </button>
-                </td>
               </tr>
             </tbody>
           </table>
@@ -180,7 +147,7 @@ export default {
     },
     filtertems(data) {
       console.log("data", data);
-      const searchObject = data.filter((order) => order.status === "Fail");
+      const searchObject = data.filter((order) => order.status === "Return");
       return searchObject;
     },
     getDate(date){
