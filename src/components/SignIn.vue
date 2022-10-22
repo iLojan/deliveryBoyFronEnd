@@ -1,4 +1,7 @@
 <template >
+<div class="fixed right-3 top-28" v-if="showValidAlert">
+      <div class="alert  bg-red-200 text-red-800 p-3 rounded-lg border font-semibold border-red-600 py-28">Please enter the details</div>
+    </div>
     <div class="mb-24 p-10 pt-5 mx-auto flex rounded w-4/12">
         <div class="sec flex-1">
                 <img class="mb-3 mx-auto" style="height: 150px;" src="../assets/img/login.svg" alt="">
@@ -42,6 +45,7 @@ export default {
     data() {
         return {
         userFormInvalid:false,
+        showValidAlert:false,
         formErrorMap: new Map(),
         showPassword: true,
         password: null,
@@ -75,7 +79,10 @@ export default {
         this.login()
       }
       else{
-        
+         this.showValidAlert = true;
+        setTimeout(() => {
+          this.showValidAlert = false;
+        }, 3500);
         this.$store.commit("showAllErrorsInForm");
       }
     },

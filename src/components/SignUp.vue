@@ -1,5 +1,9 @@
 <template>
   <div class="">
+    <div class="fixed right-3 top-28" v-if="showValidAlert">
+      <div class="alert  bg-red-200 text-red-800 p-3 rounded-lg border font-semibold border-red-600 py-28">Please enter the details</div>
+    </div>
+    
     <div class="mb-24 p-10 pt-5 mx-auto flex rounded w-5/12" >
       <div class="w-full    rounded-xl py-6 px-8">
         <h1 class="text-h1-font text-center mb-12">Sign up</h1>
@@ -86,6 +90,7 @@ export default {
     components:{SignUpAlert,TextInput,CustomSelect},
   data() {
     return {
+      showValidAlert:false,
       role:[{value:'ROLE_USER',label:'User'},{value:'ROLE_DRIVER',label:'Driver'}],
       userFormInvalid:false,
         formErrorMap: new Map(),
@@ -113,7 +118,10 @@ export default {
         this.createUser()
       }
       else{
-        
+        this.showValidAlert = true;
+        setTimeout(() => {
+          this.showValidAlert = false;
+        }, 3500);
         this.$store.commit("showAllErrorsInForm");
       }
     },
