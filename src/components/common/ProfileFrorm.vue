@@ -88,16 +88,17 @@
     >
       Save
     </button>
-    {{showAlert}}
-      <div class="" >
+      <div class="" v-if="showAlert" >
       <AlertPopup @hidenPopup="hidenPopup" alertMgs="Profile update Successfully" alertTitle="Success" />
     </div>
   </div>
 </template>
 <script>
 import axios from 'axios'
+import AlertPopup from './AlertPopup.vue'
 export default {
   props:["title"],
+  components:{AlertPopup},
   data() {
     return {
       profile: "",
@@ -107,7 +108,7 @@ export default {
   methods: {
     hidenPopup(event){
       this.showAlert = event;
-      this.updateProfile()
+      this.getProfileById()
     },
     getProfileById() {
       let id = localStorage.getItem("id");
