@@ -112,8 +112,8 @@
                       font-medium
                       text-
                     "
-                    :disabled="order.status != 'New' || order.status != 'Confirmed' "
-                    :class="order.status != 'New' || order.status != 'Confirmed' ? 'opacity-25 cursor-not-allowed':'opacity-100 cursor-pointer'"
+                    :disabled="order.status != 'Confirmed' "
+                    :class="order.status != 'Confirmed' ? 'opacity-25 cursor-not-allowed':'opacity-100 cursor-pointer'"
                     @click="cancelOrder(order.id)"
                   >
                     Cancel

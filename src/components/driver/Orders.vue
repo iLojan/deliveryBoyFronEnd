@@ -52,6 +52,20 @@
                     text-left
                   "
                 >
+                  User Details
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    text-sm
+                    font-medium
+                    w-64
+                    text-gray-900
+                    px-6
+                    py-4
+                    text-left
+                  "
+                >
                   Status Update
                 </th>
                
@@ -73,7 +87,9 @@
                 <td class="text-sm text-gray-900 w-64 font-light px-6 py-4">
                   {{order.toLocation}}
                 </td>
-              
+               <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
+                  <span class="cursor-pointer text-green-700" @click="showUserDetails(order)">User details</span>
+                  </td>
                 <td class="text-sm text-gray-900 font-light px-2 w-40 py-4">
                   <button
                     class="
@@ -190,6 +206,11 @@
     </TransitionRoot>
     <!--  -->
     </div>
+    <!--  -->
+     <div class="" v-if="showUserPopup">
+      <UserDetails @hidenDriverPopup="hidenDriverPopup" :selectedOrder="selectedOrder"></UserDetails>
+    </div>
+    <!--  -->
     <div class="" v-if="showAlert">
       <AlertPopup @hidenPopup="hidenPopup" alertMgs="Package Status Succesfully Updated" alertTitle="Status of Package" />
     </div>
@@ -201,6 +222,7 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
+import UserDetails from "./UserDetails.vue";
 import AlertPopup from "../common/AlertPopup.vue";
 import axios from "axios";
 export default {
@@ -209,10 +231,13 @@ export default {
     DialogPanel,
     TransitionChild,
     TransitionRoot,
-    AlertPopup
+    AlertPopup,
+    UserDetails
   },
   data() {
     return {
+      showUserPopup:false,
+      selectedOrder:'',
        open: false,
        orders:"",
        showAlert:"",
@@ -223,6 +248,13 @@ export default {
     }
   },
   methods: {
+    showUserDetails(order){
+this.selectedOrder = order;
+this.showUserPopup = true;
+    },
+    hidenDriverPopup(event){
+      this.showUserPopup = event
+    },
     statusPopup(id){
       this.open = true;
       this.status.id = id
