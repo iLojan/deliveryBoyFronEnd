@@ -119,29 +119,29 @@ export default {
   },
   methods: {
     getOrder(id){
-      console.log("id",id);
+      //console.log("id",id);
       let commonPath = process.env.VUE_APP_SERVER
       let path = "/api/v1/orderById/"+id.id;
     axios.get(commonPath+path,{ withCredentials: true })
     .then(res=>{
       this.order = res.data
-      console.log(res);
+     // console.log(res);
     })
     },
     getUser(id){
-      console.log("id",id);
+      //console.log("id",id);
       let userId = localStorage.getItem("id")
       let commonPath = process.env.VUE_APP_SERVER
       let path = "/api/auth/getUser/"+userId;
     axios.get(commonPath+path,{ withCredentials: true })
     .then(res=>{
       this.user = res.data
-      console.log(res);
+      //console.log(res);
     })
     }
   },
   mounted() {
-    console.log("query",this.$route.query);
+    //console.log("query",this.$route.query);
     let id = this.$route.query
     this.getOrder(id)
     this.getUser();

@@ -87,16 +87,16 @@ export default {
       }
     },
         login(){
-            console.log("logindata",this.loginData);
+         //   console.log("logindata",this.loginData);
             const path = "/api/auth/signin";
              axios.post(path,this.loginData,{ withCredentials: true })
             .then(res => {
-                console.log("setAccessToken",res.data)
+             //   console.log("setAccessToken",res.data)
                 this.getUserDetails(res.data)
                 this.$emit('update-cart', true)
             })
             .catch(error => {
-                console.log("updateAccessTokenStatus", error)
+             //   console.log("updateAccessTokenStatus", error)
             })
         },
         getUserDetails(email){

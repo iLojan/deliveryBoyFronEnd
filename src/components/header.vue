@@ -230,7 +230,7 @@ export default {
   },
   watch: {
       hideEmail(newCriteria, oldCriteria) {
-        console.log("newCriteria, oldCriteria", newCriteria, oldCriteria);
+       // console.log("newCriteria, oldCriteria", newCriteria, oldCriteria);
         // this.showEmail = false;
 
       }

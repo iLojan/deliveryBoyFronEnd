@@ -74,12 +74,12 @@
                 price:price 
             }
             this.$emit("selectedVehile",priceObj)
-console.log(type);
+
         }
     },
     mounted() {
       
-        console.log("this.setDistance.distance",this.setDistance.distance);
+       // console.log("this.setDistance.distance",this.setDistance.distance);
         this.smallPrice = Math.round(this.setDistance.distance * 100);
         this.medimPrice = Math.round(this.setDistance.distance * 200);
         this.largePrice = Math.round(this.setDistance.distance * 400);

@@ -64,7 +64,7 @@ async function refreshAccessToken() {
             store.dispatch('refreshAccessToken', response.data.accessToken);
         })
         .catch(async (error) => {
-            console.log("Error occured while refreshing token :", error);
+           // console.log("Error occured while refreshing token :", error);
         });
 }
 

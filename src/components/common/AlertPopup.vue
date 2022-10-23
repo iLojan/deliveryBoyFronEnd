@@ -129,14 +129,14 @@ export default {
       axios
         .post(commonPath + path, this.driverPrices, { withCredentials: true })
         .then((res) => {
-          console.log(res);
+          //console.log(res);
           this.hide();
         });
     },
   },
   mounted() {
     this.driverPrices = this.selectedBargainRate;
-    console.log("driverPrices",this.driverPrices);
+   // console.log("driverPrices",this.driverPrices);
   },
 };
 </script>

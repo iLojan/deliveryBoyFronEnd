@@ -40,7 +40,7 @@
         deep: true,
         handler(latLng) {
           this.initMap()
-        console.log("Oh, look, a new color!", latLng);
+       // console.log("Oh, look, a new color!", latLng);
         if(latLng.destinationLatitude){
           this.pickUpLocation()
         }
@@ -86,7 +86,7 @@
         const _self = this
         //pass the request to the route method
         directionsService.route(request, function (result, status) {
-          console.log("result, status", result);
+         // console.log("result, status", result);
      
           if (status == window.google.maps.DirectionsStatus.OK) {
 
@@ -99,7 +99,7 @@
               } 
               _self.passData(distance);
          
-            console.log("output if", output);
+            //console.log("output if", output);
             //display route
             directionsDisplay.setDirections(result);
            
@@ -114,11 +114,11 @@
           }
         });
 
-        console.log("this.output", output);
+       // console.log("this.output", output);
       },
       initMap() {
         
-        console.log("this.originLat, this.originLng",this.gerMergeArray);
+       // console.log("this.originLat, this.originLng",this.gerMergeArray);
         this.myLatLng = { lat: this.gerMergeArray.originLatitude, lng: this.gerMergeArray.originLongitude };
         var mapOptions = {
           center: this.myLatLng,

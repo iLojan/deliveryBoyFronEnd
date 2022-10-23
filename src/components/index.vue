@@ -245,7 +245,7 @@ import axios from "axios";
       
       bookParcel() {
         const email = localStorage.getItem('email');
-        console.log("email", email);
+        //console.log("email", email);
         if (email) {
           this.$router.push({ name: 'order' })
         }
@@ -255,27 +255,27 @@ import axios from "axios";
 
       },
       emptyCart() {
-        console.log("event");
+       // console.log("event");
       },
       showEmailPopup(e) {
-        console.log("event", e);
+       // console.log("event", e);
         this.showEmail = false
       },
         getpriceDetails(){
             const path = "/api/v1/price";
              axios.get(path,{ withCredentials: true })
             .then(res => {                           
-                console.log("setAccessToken",res)
+               // console.log("setAccessToken",res)
             })
             .catch(error => {
-                console.log("updateAccessTokenStatus", error)
+               // console.log("updateAccessTokenStatus", error)
             })
         }
 
     },
     watch: {
       hideEmail(newCriteria, oldCriteria) {
-        console.log("newCriteria, oldCriteria", newCriteria, oldCriteria);
+        //console.log("newCriteria, oldCriteria", newCriteria, oldCriteria);
         this.showEmail = false;
 
       }
