@@ -178,12 +178,12 @@ export default {
       });
     },
     filtertems(data) {
-      console.log("data", data);
+     // console.log("data", data);
       const searchObject = data.filter((order) => order.status != "Cancel");
       return searchObject;
     },
     getDate(date){
-        console.log("date",date);
+      //  console.log("date",date);
         let dt,time;
         dt = date.slice(0,10).replace(/-/g,'/')
         time = date.slice(11,19).replace(/-/g,'/')
@@ -191,7 +191,7 @@ export default {
     },
     getTime(date){
         let newDate = new Date();
-        console.log(newDate,"   ",newDate.getMinutes(),"date",newDate.getHours(),'===');
+       // console.log(newDate,"   ",newDate.getMinutes(),"date",newDate.getHours(),'===');
         let dt,time;
         dt = newDate.getHours()
         time = date.slice(11,19).replace(/-/g,'/')

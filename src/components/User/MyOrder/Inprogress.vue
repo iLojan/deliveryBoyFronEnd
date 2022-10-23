@@ -175,7 +175,7 @@ this.showPopup = event;
         this.showAlert = true;
         this.getOrderDriverId()
         this.errorData = "your order has been cancelled successfully"
-            console.log("updateStatus",res);
+            //console.log("updateStatus",res);
       });
     },
     getOrderDriverId() {
@@ -187,14 +187,14 @@ this.showPopup = event;
       });
     },
     filtertems(data) {
-      console.log("data", data);
+      //console.log("data", data);
       const searchObject = data.filter(
         (order) => {return (order.status != "Cancel" && order.status != "Success")} 
       );
       return searchObject;
     },
     getDate(date) {
-      console.log("date", date);
+      //console.log("date", date);
       let dt, time;
       dt = date.slice(0, 10).replace(/-/g, "/");
       time = date.slice(11, 19).replace(/-/g, "/");
@@ -202,14 +202,7 @@ this.showPopup = event;
     },
     getTime(date) {
       let newDate = new Date();
-      console.log(
-        newDate,
-        "   ",
-        newDate.getMinutes(),
-        "date",
-        newDate.getHours(),
-        "==="
-      );
+      
       let dt, time;
       dt = newDate.getHours();
       time = date.slice(11, 19).replace(/-/g, "/");

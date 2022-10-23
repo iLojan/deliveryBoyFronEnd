@@ -235,7 +235,7 @@ export default {
   let commonPath = process.env.VUE_APP_SERVER;
        let path = "/api/v1/updateStatus";
       axios.post(commonPath+path,this.status, { withCredentials: true }).then((res) => {
-            console.log("updateStatus",res);
+          //  console.log("updateStatus",res);
             this.open = false;
             this.showAlert = true
       });
@@ -246,7 +246,7 @@ export default {
       let path = "/api/v1/orderDriverId/" + driverId;
       axios.get(commonPath + path, { withCredentials: true }).then((res) => {
         this.orders = this.filtertems(res.data);
-         console.log("data", this.orders);
+        // console.log("data", this.orders);
       });
     },
     filtertems(data) {

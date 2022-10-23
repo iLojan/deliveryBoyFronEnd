@@ -41,11 +41,11 @@ export default {
     .then(res=>{
       newBargain = this.filtertems(res.data)
       this.bargain = this.sortedItems(newBargain);
-      console.log("this.bargain",this.bargain,"===",newBargain);
+      //console.log("this.bargain",this.bargain,"===",newBargain);
     })
     },
       filtertems(data) {
-      console.log("data", data);
+     // console.log("data", data);
       const searchObject = data.filter((bargain) => bargain.status === "Open");
       return searchObject;
     },

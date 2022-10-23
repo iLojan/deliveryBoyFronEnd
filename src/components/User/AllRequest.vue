@@ -151,7 +151,7 @@ export default {
   },
   methods: {
     hidenAlertPopup(event){
-      console.log("routeName",this.routeName);
+      //console.log("routeName",this.routeName);
       this.showAlert = event;
       if (this.routeName === 'Confirmed') {
         this.$router.push("/user/my-in-progress")
@@ -162,7 +162,7 @@ export default {
       
     },
       getOrder(id){
-      console.log("id",id);
+      //console.log("id",id);
       let commonPath = process.env.VUE_APP_SERVER
       let path = "/api/v1/orderById/"+id;
     axios.get(commonPath+path,{ withCredentials: true })

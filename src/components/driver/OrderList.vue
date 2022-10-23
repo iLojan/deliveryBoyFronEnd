@@ -163,7 +163,7 @@ export default {
     },
            getTime(date){
             let newDate = new Date();
-            console.log(newDate,"   ",newDate.getMinutes(),"date",newDate.getHours(),'===');
+          //  console.log(newDate,"   ",newDate.getMinutes(),"date",newDate.getHours(),'===');
           let dt,time;
           dt = newDate.getHours()
            time = date.slice(11,19).replace(/-/g,'/')
@@ -177,13 +177,13 @@ export default {
     .then(res=>{
       newOdrders = this.filtertems(res.data)
       this.orders = this.sortedItems(newOdrders);
-      console.log("this.orders",this.orders,"===",newOdrders);
+     // console.log("this.orders",this.orders,"===",newOdrders);
     })
     },
      filtertems(data) {
       
       const searchObject = data.filter((order) => order.status === "New");
-      console.log("data", searchObject);
+     // console.log("data", searchObject);
       return searchObject;
     },
      sortedItems: function(items) {
